@@ -10,26 +10,23 @@
 
 @interface PHPathWatcher ()
 
-@property FSEventStreamRef stream;
-@property (copy) void(^handler)();
-@property NSString *path;
+@property (nonatomic) FSEventStreamRef stream;
+@property (nonatomic) NSString *path;
+@property (nonatomic, copy) void(^handler)();
 
 @end
 
 @implementation PHPathWatcher
 
-void fsEventsCallback(ConstFSEventStreamRef streamRef, void *clientCallBackInfo, size_t numEvents, void *eventPaths, const FSEventStreamEventFlags eventFlags[], const FSEventStreamEventId eventIds[])
+void fsEventsCallback(ConstFSEventStreamRef streamRef,
+                      void *clientCallBackInfo,
+                      size_t numEvents,
+                      void *eventPaths,
+                      const FSEventStreamEventFlags eventFlags[],
+                      const FSEventStreamEventId eventIds[])
 {
     PHPathWatcher* watcher = (__bridge PHPathWatcher *)clientCallBackInfo;
     [watcher fileChanged];
-}
-
-- (void)dealloc {
-    if (self.stream) {
-        FSEventStreamStop(self.stream);
-        FSEventStreamInvalidate(self.stream);
-        FSEventStreamRelease(self.stream);
-    }
 }
 
 + (PHPathWatcher *)watcherFor:(NSString *)path handler:(void(^)())handler {
@@ -38,6 +35,14 @@ void fsEventsCallback(ConstFSEventStreamRef streamRef, void *clientCallBackInfo,
     watcher.path = path;
     [watcher setup];
     return watcher;
+}
+
+- (void)dealloc {
+    if (self.stream) {
+        FSEventStreamStop(self.stream);
+        FSEventStreamInvalidate(self.stream);
+        FSEventStreamRelease(self.stream);
+    }
 }
 
 - (void)setup {
