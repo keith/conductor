@@ -49,8 +49,6 @@
 
 + (float)getBrightness
 {
-    NSLog(@"Do stuff");
-
     io_iterator_t iterator;
     kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
                                                         IOServiceMatching("IODisplayConnect"),
