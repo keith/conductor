@@ -7,6 +7,7 @@
 //
 
 #import "NSScreen+PHExtension.h"
+#include <IOKit/graphics/IOGraphicsLib.h>
 
 @implementation NSScreen (PHExtension)
 
@@ -26,13 +27,12 @@
 
 - (NSScreen *)nextScreen {
     NSArray *screens = [NSScreen screens];
-    NSUInteger idx = [screens indexOfObject:self];
+    NSUInteger index = [screens indexOfObject:self] + 1;
+    if (index == screens.count) {
+        index = 0;
+    }
 
-    idx += 1;
-    if (idx == [screens count])
-        idx = 0;
-
-    return [screens objectAtIndex:idx];
+    return [screens objectAtIndex:index];
 }
 
 - (NSScreen *)previousScreen {
@@ -45,6 +45,55 @@
     }
 
     return [screens objectAtIndex:(NSUInteger)index];
+}
+
++ (float)getBrightness
+{
+    NSLog(@"Do stuff");
+
+    io_iterator_t iterator;
+    kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
+                                                        IOServiceMatching("IODisplayConnect"),
+                                                        &iterator);
+
+    if (result != kIOReturnSuccess) {
+        return -1.0;
+    }
+
+    io_object_t service;
+    while ((service = IOIteratorNext(iterator))) {
+        float level;
+        IODisplayGetFloatParameter(service, kNilOptions,
+                                   CFSTR(kIODisplayBrightnessKey), &level);
+        IOObjectRelease(service);
+
+        return level * 100;
+    }
+
+    return -1.0;
+}
+
++ (void)setBrightness:(float)brightness
+{
+    double userLevel = brightness / 100.0;
+    userLevel = MAX(MIN(userLevel, 1.0), 0.0);
+    float level = (float)userLevel;
+
+    io_iterator_t iterator;
+    kern_return_t result = IOServiceGetMatchingServices(kIOMasterPortDefault,
+                                                        IOServiceMatching("IODisplayConnect"),
+                                                        &iterator);
+
+    if (result != kIOReturnSuccess) {
+        return;
+    }
+
+    io_object_t service;
+    while ((service = IOIteratorNext(iterator))) {
+        IODisplaySetFloatParameter(service, kNilOptions,
+                                   CFSTR(kIODisplayBrightnessKey), level);
+        IOObjectRelease(service);
+    }
 }
 
 @end

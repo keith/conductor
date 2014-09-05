@@ -8,6 +8,9 @@
 
 @protocol NSScreenJSExport <JSExport>
 
++ (float)getBrightness;
++ (void)setBrightness:(float)brightness;
+
 - (CGRect)frameIncludingDockAndMenu;
 - (CGRect)frameWithoutDockOrMenu;
 

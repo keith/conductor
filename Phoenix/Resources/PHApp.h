@@ -8,6 +8,8 @@
 
 @protocol PHAppJSExport <JSExport>
 
+@property (readonly) pid_t pid;
+
 + (NSArray *)runningApps;
 
 - (NSArray *)allWindows;
@@ -17,8 +19,6 @@
 - (BOOL)isHidden;
 - (void)show;
 - (void)hide;
-
-@property (readonly) pid_t pid;
 
 - (void)kill;
 - (void)kill9;
