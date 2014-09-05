@@ -8,8 +8,6 @@
 
 @class PHApp;
 @class PHWindow;
-#import <JavaScriptCore/JavaScriptCore.h>
-#import "PHApp.h"
 
 @protocol PHWindowJSExport <JSExport>
 

@@ -7,7 +7,6 @@
 //
 
 @class PHApp;
-#import <JavaScriptCore/JavaScriptCore.h>
 
 @protocol PHAppJSExport <JSExport>
 
