@@ -11,13 +11,13 @@
 
 @protocol PHAlertHoraMortisNostraeDelegate <NSObject>
 
-- (void) oraPro:(id)nobis;
+- (void)oraPro:(id)nobis;
 
 @end
 
 @interface PHAlertWindowController : NSWindowController
 
-- (void) show:(NSString*)oneLineMsg duration:(CGFloat)duration pushDownBy:(CGFloat)adjustment;
+- (void)show:(NSString *)oneLineMsg duration:(CGFloat)duration pushDownBy:(CGFloat)adjustment;
 
 @property (weak) id<PHAlertHoraMortisNostraeDelegate> delegate;
 
@@ -31,45 +31,56 @@
 
 @implementation PHAlerts
 
-+ (PHAlerts*) sharedAlerts {
-    static PHAlerts* sharedAlerts;
++ (PHAlerts *) sharedAlerts {
+    static PHAlerts *sharedAlerts;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedAlerts = [[PHAlerts alloc] init];
-        sharedAlerts.alertDisappearDelay = 1.0;
-        sharedAlerts.visibleAlerts = [NSMutableArray array];
     });
     return sharedAlerts;
 }
 
-- (void) show:(NSString*)oneLineMsg {
+- (id)init
+{
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+
+    self.alertDisappearDelay = 1.0;
+    self.visibleAlerts = [NSMutableArray array];
+
+    return self;
+}
+
+- (void)show:(NSString *)oneLineMsg {
     [self show:oneLineMsg duration:self.alertDisappearDelay];
 }
 
-- (void) show:(NSString*)oneLineMsg duration:(CGFloat)duration {
+- (void) show:(NSString *)oneLineMsg duration:(CGFloat)duration {
     CGFloat absoluteTop;
 
     NSScreen* currentScreen = [NSScreen mainScreen];
 
     if ([self.visibleAlerts count] == 0) {
         CGRect screenRect = [currentScreen frame];
-        absoluteTop = screenRect.size.height / 1.55; // pretty good spot
-    }
-    else {
+        absoluteTop = screenRect.size.height / 1.55;
+    } else {
         PHAlertWindowController* ctrl = [self.visibleAlerts lastObject];
         absoluteTop = NSMinY([[ctrl window] frame]) - 3.0;
     }
 
-    if (absoluteTop <= 0)
+    if (absoluteTop <= 0) {
         absoluteTop = NSMaxY([currentScreen visibleFrame]);
+    }
 
-    PHAlertWindowController* alert = [[PHAlertWindowController alloc] init];
+    PHAlertWindowController *alert = [[PHAlertWindowController alloc] init];
     alert.delegate = self;
     [alert show:oneLineMsg duration:duration pushDownBy:absoluteTop];
     [self.visibleAlerts addObject:alert];
 }
 
-- (void) oraPro:(id)nobis {
+- (void)oraPro:(id)nobis {
     [self.visibleAlerts removeObject:nobis];
 }
 
@@ -77,8 +88,8 @@
 
 @interface PHAlertWindowController ()
 
-@property IBOutlet NSTextField* textField;
-@property IBOutlet NSBox* box;
+@property (nonatomic) IBOutlet NSTextField *textField;
+@property (nonatomic) IBOutlet NSBox *box;
 
 @end
 
@@ -94,11 +105,15 @@
     self.window.opaque = NO;
     self.window.level = NSFloatingWindowLevel;
     self.window.ignoresMouseEvents = YES;
-    self.window.animationBehavior = ([PHAlerts sharedAlerts].alertAnimates ? NSWindowAnimationBehaviorAlertPanel : NSWindowAnimationBehaviorNone);
+    if ([[PHAlerts sharedAlerts] alertAnimates]) {
+        self.window.animationBehavior = NSWindowAnimationBehaviorAlertPanel;
+    } else {
+        self.window.animationBehavior = NSWindowAnimationBehaviorNone;
+    }
 //    self.collectionBehavior = NSWindowCollectionBehaviorCanJoinAllSpaces | NSWindowCollectionBehaviorStationary;
 }
 
-- (void) show:(NSString*)oneLineMsg duration:(CGFloat)duration pushDownBy:(CGFloat)adjustment {
+- (void)show:(NSString *)oneLineMsg duration:(CGFloat)duration pushDownBy:(CGFloat)adjustment {
     NSDisableScreenUpdates();
 
     [NSAnimationContext beginGrouping];
@@ -114,7 +129,7 @@
     NSEnableScreenUpdates();
 }
 
-- (void) setFrameWithAdjustment:(CGFloat)pushDownBy {
+- (void)setFrameWithAdjustment:(CGFloat)pushDownBy {
     NSScreen* currentScreen = [NSScreen mainScreen];
     CGRect screenRect = [currentScreen frame];
     CGRect winRect = [[self window] frame];
@@ -125,7 +140,7 @@
     [self.window setFrame:winRect display:NO];
 }
 
-- (void) fadeWindowOut {
+- (void)fadeWindowOut {
     [NSAnimationContext beginGrouping];
     [[NSAnimationContext currentContext] setDuration:0.15];
     [[[self window] animator] setAlphaValue:0.0];
@@ -134,14 +149,14 @@
     [self performSelector:@selector(closeAndResetWindow) withObject:nil afterDelay:0.15];
 }
 
-- (void) closeAndResetWindow {
+- (void)closeAndResetWindow {
     [[self window] orderOut:nil];
     [[self window] setAlphaValue:1.0];
 
     [self.delegate oraPro:self];
 }
 
-- (void) useTitleAndResize:(NSString*)title {
+- (void)useTitleAndResize:(NSString *)title {
     [self window]; // sigh; required in case nib hasnt loaded yet
 
     self.textField.stringValue = title;
