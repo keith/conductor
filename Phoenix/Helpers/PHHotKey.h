@@ -6,14 +6,13 @@
 //  Copyright (c) 2013 Steven. All rights reserved.
 //
 
-
 typedef BOOL(^PHHotKeyHandler)(void);
 @class PHHotKey;
 
 @protocol PHHotKeyJSExport <JSExport>
 
-@property NSString* key;
-@property NSArray* mods;
+@property NSString *key;
+@property NSArray *mods;
 @property (copy) PHHotKeyHandler handler;
 
 + (PHHotKey *)withKey:(NSString *)key mods:(NSArray *)mods handler:(PHHotKeyHandler)handler;
@@ -25,8 +24,8 @@ typedef BOOL(^PHHotKeyHandler)(void);
 
 @interface PHHotKey : NSObject <PHHotKeyJSExport>
 
-@property NSString* key;
-@property NSArray* mods;
+@property NSString *key;
+@property NSArray *mods;
 @property (copy) PHHotKeyHandler handler;
 
 @end

@@ -25,12 +25,12 @@ void fsEventsCallback(ConstFSEventStreamRef streamRef,
                       const FSEventStreamEventFlags eventFlags[],
                       const FSEventStreamEventId eventIds[])
 {
-    PHPathWatcher* watcher = (__bridge PHPathWatcher *)clientCallBackInfo;
+    PHPathWatcher *watcher = (__bridge PHPathWatcher *)clientCallBackInfo;
     [watcher fileChanged];
 }
 
 + (PHPathWatcher *)watcherFor:(NSString *)path handler:(void(^)())handler {
-    PHPathWatcher* watcher = [[PHPathWatcher alloc] init];
+    PHPathWatcher *watcher = [[PHPathWatcher alloc] init];
     watcher.handler = handler;
     watcher.path = path;
     [watcher setup];

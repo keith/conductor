@@ -153,7 +153,7 @@ static NSMutableDictionary *relocatableKeys;
 
 
 
-static NSMutableDictionary* PHHotKeys;
+static NSMutableDictionary *PHHotKeys;
 static UInt32 PHHotKeyLastCarbonID;
 
 @interface PHHotKey ()
@@ -169,7 +169,7 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
     EventHotKeyID eventID;
     GetEventParameter(inEvent, kEventParamDirectObject, typeEventHotKeyID, NULL, sizeof(eventID), NULL, &eventID);
 
-    PHHotKey* hotkey = PHHotKeys[@(eventID.id)];
+    PHHotKey *hotkey = PHHotKeys[@(eventID.id)];
     return (hotkey.handler() ? noErr : eventNotHandledErr);
 }
 
@@ -185,7 +185,7 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
 }
 
 + (PHHotKey *)withKey:(NSString *)key mods:(NSArray *)mods handler:(PHHotKeyHandler)handler {
-    PHHotKey* hotkey = [[PHHotKey alloc] init];
+    PHHotKey *hotkey = [[PHHotKey alloc] init];
     hotkey.key = key;
     hotkey.mods = mods;
     hotkey.handler = handler;

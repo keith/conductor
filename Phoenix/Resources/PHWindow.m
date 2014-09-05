@@ -40,9 +40,9 @@
 }
 
 + (NSArray *)allWindows {
-    NSMutableArray* windows = [NSMutableArray array];
+    NSMutableArray *windows = [NSMutableArray array];
     
-    for (PHApp* app in [PHApp runningApps]) {
+    for (PHApp *app in [PHApp runningApps]) {
         [windows addObjectsFromArray:[app allWindows]];
     }
     
@@ -54,7 +54,7 @@
 }
 
 + (NSArray *)visibleWindows {
-    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow* win, NSDictionary *bindings) {
+    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow *win, NSDictionary *bindings) {
         return ![[win app] isHidden]
         && ![win isWindowMinimized]
         && [win isNormalWindow];
@@ -64,7 +64,7 @@
 // XXX: undocumented API.  We need this to match dictionary entries returned by CGWindowListCopyWindowInfo (which
 // appears to be the *only* way to get a list of all windows on the system in "most-recently-used first" order) against
 // AXUIElementRef's returned by AXUIElementCopyAttributeValues
-AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
+AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 
 + (NSArray *)visibleWindowsMostRecentFirst {
     // This gets windows sorted by most-recently-used criteria.  The
@@ -75,8 +75,8 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
 
     // But we only got some dictionaries containing info.  Need to get
     // the actual AXUIMyHeadHurts for each of them and create SDWindow-s.
-    NSMutableArray* windows = [NSMutableArray array];
-    for (NSMutableDictionary* entry in (__bridge NSArray *)visible_win_info) {
+    NSMutableArray *windows = [NSMutableArray array];
+    for (NSMutableDictionary *entry in (__bridge NSArray *)visible_win_info) {
         // Tricky...  for Google Chrome we get one hidden window for
         // each visible window, so we need to check alpha > 0.
         int alpha = [[entry objectForKey:(id)kCGWindowAlpha] intValue];
@@ -115,13 +115,13 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
 }
 
 - (NSArray *)otherWindowsOnSameScreen {
-    return [[PHWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow* win, NSDictionary *bindings) {
+    return [[PHWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow *win, NSDictionary *bindings) {
         return !CFEqual(self.window, win.window) && [[self screen] isEqual: [win screen]];
     }]];
 }
 
 - (NSArray *)otherWindowsOnAllScreens {
-    return [[PHWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow* win, NSDictionary *bindings) {
+    return [[PHWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow *win, NSDictionary *bindings) {
         return !CFEqual(self.window, win.window);
     }]];
 }
@@ -146,7 +146,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
         CFRelease(app);
         
         if (result == kAXErrorSuccess) {
-            PHWindow* window = [[PHWindow alloc] init];
+            PHWindow *window = [[PHWindow alloc] init];
             window.window = win;
             return window;
         }
@@ -230,9 +230,9 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     CGRect windowFrame = [self frame];
     
     CGFloat lastVolume = 0;
-    NSScreen* lastScreen = nil;
+    NSScreen *lastScreen = nil;
     
-    for (NSScreen* screen in [NSScreen screens]) {
+    for (NSScreen *screen in [NSScreen screens]) {
         CGRect screenFrame = [screen frameIncludingDockAndMenu];
         CGRect intersection = CGRectIntersection(windowFrame, screenFrame);
         CGFloat volume = intersection.size.width * intersection.size.height;
@@ -266,7 +266,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
         return NO;
     }
     
-    NSRunningApplication* app = [NSRunningApplication runningApplicationWithProcessIdentifier:[self processIdentifier]];
+    NSRunningApplication *app = [NSRunningApplication runningApplicationWithProcessIdentifier:[self processIdentifier]];
     return [app activateWithOptions:NSApplicationActivateIgnoringOtherApps];
 }
 
@@ -331,13 +331,13 @@ NSPoint SDMidpoint(NSRect r) {
 - (NSArray *)windowsInDirectionFn:(double(^)(double angle))whichDirectionFn
                 shouldDisregardFn:(BOOL(^)(double deltaX, double deltaY))shouldDisregardFn
 {
-    PHWindow* thisWindow = [PHWindow focusedWindow];
+    PHWindow *thisWindow = [PHWindow focusedWindow];
     NSPoint startingPoint = SDMidpoint([thisWindow frame]);
     
-    NSArray* otherWindows = [thisWindow otherWindowsOnAllScreens];
-    NSMutableArray* closestOtherWindows = [NSMutableArray arrayWithCapacity:[otherWindows count]];
+    NSArray *otherWindows = [thisWindow otherWindowsOnAllScreens];
+    NSMutableArray *closestOtherWindows = [NSMutableArray arrayWithCapacity:[otherWindows count]];
     
-    for (PHWindow* win in otherWindows) {
+    for (PHWindow *win in otherWindows) {
         NSPoint otherPoint = SDMidpoint([win frame]);
         
         double deltaX = otherPoint.x - startingPoint.x;
@@ -359,7 +359,7 @@ NSPoint SDMidpoint(NSRect r) {
          }];
     }
     
-    NSArray* sortedOtherWindows = [closestOtherWindows sortedArrayUsingComparator:^NSComparisonResult(NSDictionary* pair1, NSDictionary* pair2) {
+    NSArray *sortedOtherWindows = [closestOtherWindows sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *pair1, NSDictionary *pair2) {
         return [[pair1 objectForKey:@"score"] compare: [pair2 objectForKey:@"score"]];
     }];
     
@@ -367,7 +367,7 @@ NSPoint SDMidpoint(NSRect r) {
 }
 
 - (void)focusFirstValidWindowIn:(NSArray *)closestWindows {
-    for (PHWindow* win in closestWindows) {
+    for (PHWindow *win in closestWindows) {
         if ([win focusWindow])
             break;
     }

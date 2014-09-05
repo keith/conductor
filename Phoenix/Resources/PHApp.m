@@ -20,7 +20,7 @@
 @property AXUIElementRef app;
 @property (readwrite) pid_t pid;
 
-@property NSMutableArray* observers;
+@property NSMutableArray *observers;
 
 - (id)initWithElement:(AXUIElementRef)element;
 
@@ -30,10 +30,10 @@
 @implementation PHApp
 
 + (NSArray *)runningApps {
-    NSMutableArray* apps = [NSMutableArray array];
+    NSMutableArray *apps = [NSMutableArray array];
 
-    for (NSRunningApplication* runningApp in [[NSWorkspace sharedWorkspace] runningApplications]) {
-        PHApp* app = [[PHApp alloc] initWithPID:[runningApp processIdentifier]];
+    for (NSRunningApplication *runningApp in [[NSWorkspace sharedWorkspace] runningApplications]) {
+        PHApp *app = [[PHApp alloc] initWithPID:[runningApp processIdentifier]];
         [apps addObject:app];
     }
 
@@ -76,7 +76,7 @@
 }
 
 - (NSArray *)visibleWindows {
-    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow* win, NSDictionary *bindings) {
+    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow *win, NSDictionary *bindings) {
         return ![[win app] isHidden]
         && ![win isWindowMinimized]
         && [win isNormalWindow];
@@ -84,7 +84,7 @@
 }
 
 - (NSArray *)allWindows {
-    NSMutableArray* windows = [NSMutableArray array];
+    NSMutableArray *windows = [NSMutableArray array];
 
     CFArrayRef _windows;
     AXError result = AXUIElementCopyAttributeValues(self.app, kAXWindowsAttribute, 0, 100, &_windows);
@@ -92,7 +92,7 @@
         for (NSInteger i = 0; i < CFArrayGetCount(_windows); i++) {
             AXUIElementRef win = CFArrayGetValueAtIndex(_windows, i);
 
-            PHWindow* window = [[PHWindow alloc] initWithElement:win];
+            PHWindow *window = [[PHWindow alloc] initWithElement:win];
             [windows addObject:window];
         }
         CFRelease(_windows);
@@ -103,7 +103,7 @@
 
 - (BOOL)isHidden {
     CFTypeRef _isHidden;
-    NSNumber* isHidden = @NO;
+    NSNumber *isHidden = @NO;
     if (AXUIElementCopyAttributeValue(self.app, (CFStringRef)NSAccessibilityHiddenAttribute, (CFTypeRef *)&_isHidden) == kAXErrorSuccess) {
         isHidden = CFBridgingRelease(_isHidden);
     }
@@ -131,7 +131,7 @@
 }
 
 //- (void) sendJustOneNotification:(NSString *)name withThing:(id)thing {
-//    NSNotification* note = [NSNotification notificationWithName:name object:nil userInfo:@{@"thing": thing}];
+//    NSNotification *note = [NSNotification notificationWithName:name object:nil userInfo:@{@"thing": thing}];
 //    [[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostNow];
 //}
 

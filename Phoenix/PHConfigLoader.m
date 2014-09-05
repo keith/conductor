@@ -22,7 +22,7 @@
 
 @end
 
-static NSString* PHConfigPath = @"~/.phoenix.js";
+static NSString *PHConfigPath = @"~/.phoenix.js";
 
 @implementation PHConfigLoader
 
@@ -100,30 +100,30 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
 }
 
 - (void)setupAPI:(JSContext *)ctx {
-    JSValue* api = [JSValue valueWithNewObjectInContext:ctx];
+    JSValue *api = [JSValue valueWithNewObjectInContext:ctx];
     ctx[@"api"] = api;
 
-    api[@"reload"] = ^(NSString* str) {
+    api[@"reload"] = ^(NSString *str) {
         [self reload];
     };
 
-    api[@"launch"] = ^(NSString* appName) {
+    api[@"launch"] = ^(NSString *appName) {
         [[NSWorkspace sharedWorkspace] launchApplication:appName];
     };
 
-    api[@"alert"] = ^(NSString* str, CGFloat duration) {
+    api[@"alert"] = ^(NSString *str, CGFloat duration) {
         if (isnan(duration))
             duration = 2.0;
 
         [[PHAlerts sharedAlerts] show:str duration:duration];
     };
 
-    api[@"log"] = ^(NSString* msg) {
+    api[@"log"] = ^(NSString *msg) {
         NSLog(@"%@", msg);
     };
 
-    api[@"bind"] = ^(NSString* key, NSArray* mods, JSValue* handler) {
-        PHHotKey* hotkey = [PHHotKey withKey:key mods:mods handler:^BOOL{
+    api[@"bind"] = ^(NSString *key, NSArray *mods, JSValue *handler) {
+        PHHotKey *hotkey = [PHHotKey withKey:key mods:mods handler:^BOOL{
             return [[handler callWithArguments:@[]] toBool];
         }];
         [self.hotkeys addObject:hotkey];
@@ -131,7 +131,7 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
         return hotkey;
     };
 
-    api[@"runCommand"] = ^(NSString* path, NSArray *args) {
+    api[@"runCommand"] = ^(NSString *path, NSArray *args) {
         NSTask *task = [[NSTask alloc] init];
 
         [task setArguments:args];
@@ -158,7 +158,7 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
         CGSetDisplayTransferByTable(CGMainDisplayID(), size, cred, cgreen, cblue);
     };
 
-    __weak JSContext* weakCtx = ctx;
+    __weak JSContext *weakCtx = ctx;
 
     ctx[@"require"] = ^(NSString *path) {
         path = [path stringByStandardizingPath];
@@ -174,7 +174,7 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
         } else {
             [self addConfigListener: path];
 
-            NSString* _js = [NSString stringWithContentsOfFile: path encoding: NSUTF8StringEncoding error: NULL];
+            NSString *_js = [NSString stringWithContentsOfFile: path encoding: NSUTF8StringEncoding error: NULL];
             [weakCtx evaluateScript:_js];
         }
     };

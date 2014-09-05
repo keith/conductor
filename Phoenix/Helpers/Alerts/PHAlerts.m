@@ -25,7 +25,7 @@
 
 @interface PHAlerts () <PHAlertHoraMortisNostraeDelegate>
 
-@property NSMutableArray* visibleAlerts;
+@property NSMutableArray *visibleAlerts;
 
 @end
 
@@ -60,13 +60,13 @@
 - (void)show:(NSString *)oneLineMsg duration:(CGFloat)duration {
     CGFloat absoluteTop;
 
-    NSScreen* currentScreen = [NSScreen mainScreen];
+    NSScreen *currentScreen = [NSScreen mainScreen];
 
     if ([self.visibleAlerts count] == 0) {
         CGRect screenRect = [currentScreen frame];
         absoluteTop = screenRect.size.height / 1.55;
     } else {
-        PHAlertWindowController* ctrl = [self.visibleAlerts lastObject];
+        PHAlertWindowController *ctrl = [self.visibleAlerts lastObject];
         absoluteTop = NSMinY([[ctrl window] frame]) - 3.0;
     }
 
@@ -130,7 +130,7 @@
 }
 
 - (void)setFrameWithAdjustment:(CGFloat)pushDownBy {
-    NSScreen* currentScreen = [NSScreen mainScreen];
+    NSScreen *currentScreen = [NSScreen mainScreen];
     CGRect screenRect = [currentScreen frame];
     CGRect winRect = [[self window] frame];
 

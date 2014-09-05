@@ -22,7 +22,7 @@
 }
 
 - (void)setupStatusItem {
-    NSImage* img = [NSImage imageNamed:@"statusitem"];
+    NSImage *img = [NSImage imageNamed:@"statusitem"];
     [img setTemplate:YES];
 
     self.statusItem = [[NSStatusBar systemStatusBar]
@@ -33,7 +33,12 @@
 }
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
-    [[menu itemWithTitle:@"Open at Login"] setState:([PHOpenAtLogin opensAtLogin] ? NSOnState : NSOffState)];
+    NSCellStateValue state = NSOffState;
+    if ([PHOpenAtLogin opensAtLogin]) {
+        state = NSOnState;
+    }
+
+    [[menu itemWithTitle:@"Open at Login"] setState:state];
 }
 
 #pragma mark - IBActions
@@ -48,7 +53,8 @@
 }
 
 - (IBAction)toggleOpenAtLogin:(NSMenuItem *)sender {
-    [PHOpenAtLogin setOpensAtLogin:[sender state] == NSOffState];
+    BOOL openAtLogin = sender.state == NSOffState;
+    [PHOpenAtLogin setOpensAtLogin:openAtLogin];
 }
 
 @end
