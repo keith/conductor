@@ -132,6 +132,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
     dispatch_once(&onceToken, ^{
         systemWideElement = AXUIElementCreateSystemWide();
     });
+
     return systemWideElement;
 }
 
@@ -163,9 +164,9 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 }
 
 - (void)setFrame:(CGRect)frame {
-    [self setSize: frame.size];
-    [self setTopLeft: frame.origin];
-    [self setSize: frame.size];
+    [self setSize:frame.size];
+    [self setTopLeft:frame.origin];
+    [self setSize:frame.size];
 }
 
 - (CGPoint)topLeft {

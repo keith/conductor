@@ -38,7 +38,7 @@
 
             OSStatus result = LSSharedFileListItemResolve(sharedFileItem, 0, &url, NULL);
             if (result == noErr && url != nil) {
-                if ([appURL isEqual: [(__bridge NSURL *)url fileReferenceURL]])
+                if ([appURL isEqual:[(__bridge NSURL *)url fileReferenceURL]])
                     LSSharedFileListItemRemove([self sharedFileList], sharedFileItem);
 
                 CFRelease(url);
@@ -58,7 +58,7 @@
 
         OSStatus result = LSSharedFileListItemResolve(sharedFileItem, 0, &url, NULL);
         if (result == noErr && url != NULL) {
-            BOOL foundIt = [appURL isEqual: [(__bridge NSURL *)url fileReferenceURL]];
+            BOOL foundIt = [appURL isEqual:[(__bridge NSURL *)url fileReferenceURL]];
 
             CFRelease(url);
 

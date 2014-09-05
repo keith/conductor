@@ -6,9 +6,8 @@
 //  Copyright (c) 2013 Steven. All rights reserved.
 //
 
-#import "PHHotKey.h"
-
 #import <Carbon/Carbon.h>
+#import "PHHotKey.h"
 
 @interface PHHotKeyTranslator : NSObject
 @end

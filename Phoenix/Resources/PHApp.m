@@ -8,12 +8,6 @@
 
 #import "PHApp.h"
 #import "PHWindow.h"
-//#import "SDUniversalAccessHelper.h"
-
-//#import "SDAppStalker.h"
-
-//#import "SDObserver.h"
-
 
 @interface PHApp ()
 
@@ -25,7 +19,6 @@
 - (id)initWithElement:(AXUIElementRef)element;
 
 @end
-
 
 @implementation PHApp
 
@@ -129,11 +122,6 @@
 - (void)kill9 {
     [[NSRunningApplication runningApplicationWithProcessIdentifier:self.pid] forceTerminate];
 }
-
-//- (void) sendJustOneNotification:(NSString *)name withThing:(id)thing {
-//    NSNotification *note = [NSNotification notificationWithName:name object:nil userInfo:@{@"thing": thing}];
-//    [[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostNow];
-//}
 
 - (id)getAppProperty:(NSString *)propType withDefaultValue:(id)defaultValue {
     CFTypeRef _someProperty;

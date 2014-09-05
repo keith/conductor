@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Giant Robot Software. All rights reserved.
 //
 
-@class PHApp;
-
 @protocol PHAppJSExport <JSExport>
 
 + (NSArray *)runningApps;
