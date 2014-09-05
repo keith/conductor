@@ -8,6 +8,6 @@
 
 @interface PHConfigLoader : NSObject
 
-- (void) reload;
+- (void)reload;
 
 @end

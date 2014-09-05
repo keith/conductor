@@ -29,18 +29,18 @@ static NSMutableDictionary *relocatableKeys;
         kVK_ANSI_Grave, kVK_ANSI_Equal, kVK_ANSI_Minus, kVK_ANSI_RightBracket,
         kVK_ANSI_LeftBracket, kVK_ANSI_Quote, kVK_ANSI_Semicolon, kVK_ANSI_Backslash,
         kVK_ANSI_Comma, kVK_ANSI_Slash, kVK_ANSI_Period };
-    
+
     relocatableKeys = [[NSMutableDictionary alloc] init];
-    
+
     TISInputSourceRef currentKeyboard = TISCopyCurrentKeyboardInputSource();
     CFDataRef layoutData = TISGetInputSourceProperty(currentKeyboard, kTISPropertyUnicodeKeyLayoutData);
-    
+
     if (layoutData) {
         const UCKeyboardLayout *keyboardLayout = (const UCKeyboardLayout *)CFDataGetBytePtr(layoutData);
         UInt32 keysDown = 0;
         UniChar chars[4];
         UniCharCount realLength;
-        
+
         for (int i = 0 ; i < sizeof(relocatableKeyCodes)/sizeof(relocatableKeyCodes[0]) ; i++) {
             UCKeyTranslate(keyboardLayout,
                            relocatableKeyCodes[i],
@@ -52,12 +52,12 @@ static NSMutableDictionary *relocatableKeys;
                            sizeof(chars) / sizeof(chars[0]),
                            &realLength,
                            chars);
-            
+
             [relocatableKeys setObject:[NSNumber numberWithInt:relocatableKeyCodes[i]]
                                 forKey:[NSString stringWithCharacters:chars length:1]];
         }
     }
-    
+
     CFRelease(currentKeyboard);
     return;
 }
@@ -69,7 +69,7 @@ static NSMutableDictionary *relocatableKeys;
         return [keycode intValue];
     } else {
         str = [str uppercaseString];
-        
+
         // you should prefer typing these in upper-case in your config file,
         // since they look more unique (and less confusing) that way
         if ([str isEqualToString:@"F1"]) return kVK_F1;
@@ -92,7 +92,7 @@ static NSMutableDictionary *relocatableKeys;
         if ([str isEqualToString:@"F18"]) return kVK_F18;
         if ([str isEqualToString:@"F19"]) return kVK_F19;
         if ([str isEqualToString:@"F20"]) return kVK_F20;
-        
+
         // you should prefer typing these in lower-case in your config file,
         // since there's no concern for ambiguity/confusion with words, just with chars.
         if ([str isEqualToString:@"PAD."]) return kVK_ANSI_KeypadDecimal;
@@ -113,7 +113,7 @@ static NSMutableDictionary *relocatableKeys;
         if ([str isEqualToString:@"PAD9"]) return kVK_ANSI_Keypad9;
         if ([str isEqualToString:@"PAD_CLEAR"]) return kVK_ANSI_KeypadClear;
         if ([str isEqualToString:@"PAD_ENTER"]) return kVK_ANSI_KeypadEnter;
-        
+
         if ([str isEqualToString:@"RETURN"]) return kVK_Return;
         if ([str isEqualToString:@"TAB"]) return kVK_Tab;
         if ([str isEqualToString:@"SPACE"]) return kVK_Space;
@@ -129,27 +129,27 @@ static NSMutableDictionary *relocatableKeys;
         if ([str isEqualToString:@"RIGHT"]) return kVK_RightArrow;
         if ([str isEqualToString:@"DOWN"]) return kVK_DownArrow;
         if ([str isEqualToString:@"UP"]) return kVK_UpArrow;
-        
+
         //    // aww, this would have been really cool. oh well.
         //    if ([str isEqualToString:@"VOL_UP"]) return kVK_VolumeUp;
         //    if ([str isEqualToString:@"VOL_DOWN"]) return kVK_VolumeDown;
         //    if ([str isEqualToString:@"RIGHT_SHIFT"]) return kVK_RightShift;
     }
-    
+
     // TODO: make this do something smarter than return -1 for unknowns
     return -1;
 }
 
 + (UInt32) modifierFlagsForStrings:(NSArray*)strs {
     strs = [strs valueForKeyPath:@"uppercaseString"];
-    
+
     UInt32 result = 0;
-    
+
     if ([strs containsObject:@"SHIFT"]) result |= shiftKey;
     if ([strs containsObject:@"CTRL"]) result |= controlKey;
     if ([strs containsObject:@"ALT"]) result |= optionKey;
     if ([strs containsObject:@"CMD"]) result |= cmdKey;
-    
+
     return result;
 }
 
@@ -172,7 +172,7 @@ static UInt32 PHHotKeyLastCarbonID;
 static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, EventRef inEvent, void *inUserData) {
     EventHotKeyID eventID;
     GetEventParameter(inEvent, kEventParamDirectObject, typeEventHotKeyID, NULL, sizeof(eventID), NULL, &eventID);
-    
+
     PHHotKey* hotkey = PHHotKeys[@(eventID.id)];
     return (hotkey.handler() ? noErr : eventNotHandledErr);
 }
@@ -182,7 +182,7 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
     if (settedUp)
         return;
     settedUp = YES;
-    
+
     PHHotKeys = [NSMutableDictionary dictionary];
     EventTypeSpec hotKeyPressedSpec = { .eventClass = kEventClassKeyboard, .eventKind = kEventHotKeyPressed };
     InstallEventHandler(GetEventDispatcherTarget(), PHHotKeyCarbonCallback, 1, &hotKeyPressedSpec, NULL, NULL);
@@ -198,28 +198,28 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
 
 - (BOOL) enable {
     [PHHotKey setup];
-    
+
     UInt32 key = [PHHotKeyTranslator keyCodeForString:self.key];
     uint32 mods = [PHHotKeyTranslator modifierFlagsForStrings:self.mods];
-    
+
     self.internalRegistrationNumber = ++PHHotKeyLastCarbonID;
 	EventHotKeyID hotKeyID = { .signature = 'FNYX', .id = self.internalRegistrationNumber };
     EventHotKeyRef carbonHotKey = NULL;
     OSStatus status = RegisterEventHotKey(key, mods, hotKeyID, GetEventDispatcherTarget(), kEventHotKeyExclusive, &carbonHotKey);
-    
+
     self.carbonHotKey = carbonHotKey;
-    
+
     if (status == noErr) {
         PHHotKeys[@(self.internalRegistrationNumber)] = self;
     }
-    
+
     return status == noErr;
 }
 
 - (void) disable {
     if (self.internalRegistrationNumber == 0)
         return;
-    
+
     UnregisterEventHotKey(self.carbonHotKey);
     [PHHotKeys removeObjectForKey:@(self.internalRegistrationNumber)];
     self.internalRegistrationNumber = 0;

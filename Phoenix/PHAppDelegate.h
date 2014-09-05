@@ -10,9 +10,8 @@
 
 @interface PHAppDelegate : NSObject <NSApplicationDelegate>
 
-@property IBOutlet NSMenu *statusItemMenu;
-@property NSStatusItem *statusItem;
-
-@property PHConfigLoader* configLoader;
+@property (nonatomic) IBOutlet NSMenu *statusItemMenu;
+@property (nonatomic) NSStatusItem *statusItem;
+@property (nonatomic) PHConfigLoader *configLoader;
 
 @end

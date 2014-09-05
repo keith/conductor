@@ -17,8 +17,8 @@
 
 @interface PHConfigLoader ()
 
-@property NSMutableArray* hotkeys;
-@property NSMutableArray* watchers;
+@property NSMutableArray *hotkeys;
+@property NSMutableArray *watchers;
 
 @end
 
@@ -39,27 +39,23 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
 }
 
 - (void) addConfigListener: (NSString *) path {
-    for(PHPathWatcher *watcher in self.watchers) {
-        if([watcher.path isEqualToString: path]) {
-            // Already watching this path, no need to add another watcher
+    for (PHPathWatcher *watcher in self.watchers) {
+        if ([watcher.path isEqualToString:path]) {
             return;
         }
     }
-    
-    PHPathWatcher *watcher = [PHPathWatcher watcherFor: path handler:^{
+
+    PHPathWatcher *watcher = [PHPathWatcher watcherFor:path handler:^{
         [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(reload) object:nil];
         [self performSelector:@selector(reload) withObject:nil afterDelay:0.25];
     }];
-    
-    [self.watchers addObject: watcher];
+
+    [self.watchers addObject:watcher];
 }
 
-/*!
- * Clears all config listeners and adds a listener for the default config file
- */
 - (void) resetConfigListeners {
     [self.watchers removeAllObjects];
-    [self addConfigListener: PHConfigPath];
+    [self addConfigListener:PHConfigPath];
 }
 
 - (void)createConfigInFile:(NSString *)filename {
@@ -70,31 +66,35 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
     [[PHAlerts sharedAlerts] show:message duration:7.0];
 }
 
-- (void) reload {
+- (void)reload {
     [self resetConfigListeners];
-    
-    NSString* filename = [PHConfigPath stringByStandardizingPath];
-    NSString* config = [NSString stringWithContentsOfFile:filename encoding:NSUTF8StringEncoding error:NULL];
-    
+
+    NSString *filename = [PHConfigPath stringByStandardizingPath];
+    NSString *config = [NSString stringWithContentsOfFile:filename
+                                                 encoding:NSUTF8StringEncoding
+                                                    error:NULL];
+
     if (!config) {
         [self createConfigInFile:filename];
         return;
     }
-    
+
     [self.hotkeys makeObjectsPerformSelector:@selector(disable)];
     self.hotkeys = [NSMutableArray array];
-    
+
     JSContext* ctx = [[JSContext alloc] initWithVirtualMachine:[[JSVirtualMachine alloc] init]];
-    
+
     ctx.exceptionHandler = ^(JSContext* ctx, JSValue* val) {
         [[PHAlerts sharedAlerts] show:[NSString stringWithFormat:@"[js exception] %@", val] duration:3.0];
     };
-    
-    NSURL* _jsURL = [[NSBundle mainBundle] URLForResource:@"underscore-min" withExtension:@"js"];
-    NSString* _js = [NSString stringWithContentsOfURL:_jsURL encoding:NSUTF8StringEncoding error:NULL];
+
+    NSURL *_jsURL = [[NSBundle mainBundle] URLForResource:@"underscore-min" withExtension:@"js"];
+    NSString *_js = [NSString stringWithContentsOfURL:_jsURL
+                                             encoding:NSUTF8StringEncoding
+                                                error:NULL];
     [ctx evaluateScript:_js];
     [self setupAPI:ctx];
-    
+
     [ctx evaluateScript:config];
     [[PHAlerts sharedAlerts] show:@"Phoenix config loaded" duration:1.0];
 }
@@ -102,26 +102,26 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
 - (void) setupAPI:(JSContext*)ctx {
     JSValue* api = [JSValue valueWithNewObjectInContext:ctx];
     ctx[@"api"] = api;
-    
+
     api[@"reload"] = ^(NSString* str) {
         [self reload];
     };
-    
+
     api[@"launch"] = ^(NSString* appName) {
         [[NSWorkspace sharedWorkspace] launchApplication:appName];
     };
-    
+
     api[@"alert"] = ^(NSString* str, CGFloat duration) {
         if (isnan(duration))
             duration = 2.0;
-        
+
         [[PHAlerts sharedAlerts] show:str duration:duration];
     };
-    
+
     api[@"log"] = ^(NSString* msg) {
-        NSLog(@"%@", msg); 
+        NSLog(@"%@", msg);
     };
-    
+
     api[@"bind"] = ^(NSString* key, NSArray* mods, JSValue* handler) {
         PHHotKey* hotkey = [PHHotKey withKey:key mods:mods handler:^BOOL{
             return [[handler callWithArguments:@[]] toBool];
@@ -140,7 +140,7 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
 
         while([task isRunning]);
     };
-    
+
     api[@"setTint"] = ^(NSArray *red, NSArray *green, NSArray *blue) {
         CGGammaValue cred[red.count];
         for (int i = 0; i < red.count; ++i) {
@@ -156,28 +156,28 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
         }
         CGSetDisplayTransferByTable(CGMainDisplayID(), (int)sizeof(cred) / sizeof(cred[0]), cred, cgreen, cblue);
     };
-    
+
     __weak JSContext* weakCtx = ctx;
-    
+
     ctx[@"require"] = ^(NSString *path) {
         path = [path stringByStandardizingPath];
-        
+
         if(! [path hasPrefix: @"/"]) {
             NSString *configPath = [PHConfigPath stringByResolvingSymlinksInPath];
             NSURL *requirePathUrl = [NSURL URLWithString: path relativeToURL: [NSURL URLWithString: configPath]];
             path = [requirePathUrl absoluteString];
         }
-        
+
         if(! [[NSFileManager defaultManager] fileExistsAtPath: path isDirectory: NULL]) {
             [self showJsException: [NSString stringWithFormat: @"Require: cannot find path %@", path]];
         } else {
             [self addConfigListener: path];
-            
+
             NSString* _js = [NSString stringWithContentsOfFile: path encoding: NSUTF8StringEncoding error: NULL];
             [weakCtx evaluateScript:_js];
         }
     };
-    
+
     ctx[@"Window"] = [PHWindow self];
     ctx[@"App"] = [PHApp self];
     ctx[@"Screen"] = [NSScreen self];

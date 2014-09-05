@@ -8,6 +8,6 @@
 
 @interface PHUniversalAccessHelper : NSObject
 
-+ (void) complainIfNeeded;
++ (void)complainIfNeeded;
 
 @end
