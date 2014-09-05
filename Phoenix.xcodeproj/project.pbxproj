@@ -75,7 +75,7 @@
 		94CF94DD184C5F7700E63DE0 /* PHConfigLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHConfigLoader.h; sourceTree = "<group>"; };
 		94CF94DE184C5F7700E63DE0 /* PHConfigLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHConfigLoader.m; sourceTree = "<group>"; };
 		94FF5A73184B142A001A0315 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		9623D39C194DBDE600D1F92A /* Phoenix.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Phoenix.icns; sourceTree = SOURCE_ROOT; };
+		9623D39C194DBDE600D1F92A /* Phoenix.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Phoenix.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +104,7 @@
 				9451790F18E0DA2B00FB2B4B /* PHMousePosition.h */,
 				9451791018E0DA2B00FB2B4B /* PHMousePosition.m */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		949D56E2184D0176008E92DE /* Alerts */ = {
@@ -114,7 +114,7 @@
 				94CF94CF184C50C700E63DE0 /* PHAlerts.h */,
 				94CF94D0184C50C700E63DE0 /* PHAlerts.m */,
 			);
-			name = Alerts;
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 		94C602211849D3B9005E7DB3 = {
@@ -182,7 +182,7 @@
 				94C6023B1849D3B9005E7DB3 /* Phoenix-Prefix.pch */,
 				94C6023C1849D3B9005E7DB3 /* Credits.rtf */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		94CF94D5184C546300E63DE0 /* Helpers */ = {
@@ -201,7 +201,7 @@
 				949D56E3184D0B30008E92DE /* PHPathWatcher.h */,
 				949D56E4184D0B30008E92DE /* PHPathWatcher.m */,
 			);
-			name = Helpers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,8 +395,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Phoenix/Phoenix-Prefix.pch";
-				INFOPLIST_FILE = "Phoenix/Phoenix-Info.plist";
+				GCC_PREFIX_HEADER = "Phoenix/Supporting Files/Phoenix-Prefix.pch";
+				INFOPLIST_FILE = "Phoenix/Supporting Files/Phoenix-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -408,8 +408,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Phoenix/Phoenix-Prefix.pch";
-				INFOPLIST_FILE = "Phoenix/Phoenix-Info.plist";
+				GCC_PREFIX_HEADER = "Phoenix/Supporting Files/Phoenix-Prefix.pch";
+				INFOPLIST_FILE = "Phoenix/Supporting Files/Phoenix-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
