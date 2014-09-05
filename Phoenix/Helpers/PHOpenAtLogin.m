@@ -31,14 +31,14 @@
     }
     else {
         UInt32 seed;
-        NSArray *sharedFileListArray = (__bridge_transfer NSArray*)LSSharedFileListCopySnapshot([self sharedFileList], &seed);
+        NSArray *sharedFileListArray = (__bridge_transfer NSArray *)LSSharedFileListCopySnapshot([self sharedFileList], &seed);
         for (id item in sharedFileListArray) {
             LSSharedFileListItemRef sharedFileItem = (__bridge LSSharedFileListItemRef)item;
             CFURLRef url = NULL;
 
             OSStatus result = LSSharedFileListItemResolve(sharedFileItem, 0, &url, NULL);
             if (result == noErr && url != nil) {
-                if ([appURL isEqual: [(__bridge NSURL*)url fileReferenceURL]])
+                if ([appURL isEqual: [(__bridge NSURL *)url fileReferenceURL]])
                     LSSharedFileListItemRemove([self sharedFileList], sharedFileItem);
 
                 CFRelease(url);
@@ -51,14 +51,14 @@
     NSURL *appURL = [[[NSBundle mainBundle] bundleURL] fileReferenceURL];
 
     UInt32 seed;
-    NSArray *sharedFileListArray = (__bridge_transfer NSArray*)LSSharedFileListCopySnapshot([self sharedFileList], &seed);
+    NSArray *sharedFileListArray = (__bridge_transfer NSArray *)LSSharedFileListCopySnapshot([self sharedFileList], &seed);
     for (id item in sharedFileListArray) {
         LSSharedFileListItemRef sharedFileItem = (__bridge LSSharedFileListItemRef)item;
         CFURLRef url = NULL;
 
         OSStatus result = LSSharedFileListItemResolve(sharedFileItem, 0, &url, NULL);
         if (result == noErr && url != NULL) {
-            BOOL foundIt = [appURL isEqual: [(__bridge NSURL*)url fileReferenceURL]];
+            BOOL foundIt = [appURL isEqual: [(__bridge NSURL *)url fileReferenceURL]];
 
             CFRelease(url);
 

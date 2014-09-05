@@ -47,7 +47,7 @@
     [NSApp orderFrontStandardAboutPanel:sender];
 }
 
-- (IBAction)toggleOpenAtLogin:(NSMenuItem*)sender {
+- (IBAction)toggleOpenAtLogin:(NSMenuItem *)sender {
     [PHOpenAtLogin setOpensAtLogin:[sender state] == NSOffState];
 }
 

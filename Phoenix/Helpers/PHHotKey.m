@@ -62,7 +62,7 @@ static NSMutableDictionary *relocatableKeys;
     return;
 }
 
-+ (UInt32) keyCodeForString:(NSString*)str {
++ (UInt32) keyCodeForString:(NSString *)str {
     str = [str lowercaseString];
     NSNumber *keycode;
     if ((keycode = (NSNumber *)[relocatableKeys objectForKey:str])) {
@@ -140,7 +140,7 @@ static NSMutableDictionary *relocatableKeys;
     return -1;
 }
 
-+ (UInt32) modifierFlagsForStrings:(NSArray*)strs {
++ (UInt32) modifierFlagsForStrings:(NSArray *)strs {
     strs = [strs valueForKeyPath:@"uppercaseString"];
 
     UInt32 result = 0;
@@ -188,7 +188,7 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
     InstallEventHandler(GetEventDispatcherTarget(), PHHotKeyCarbonCallback, 1, &hotKeyPressedSpec, NULL, NULL);
 }
 
-+ (PHHotKey*) withKey:(NSString*)key mods:(NSArray*)mods handler:(PHHotKeyHandler)handler {
++ (PHHotKey *) withKey:(NSString *)key mods:(NSArray *)mods handler:(PHHotKeyHandler)handler {
     PHHotKey* hotkey = [[PHHotKey alloc] init];
     hotkey.key = key;
     hotkey.mods = mods;

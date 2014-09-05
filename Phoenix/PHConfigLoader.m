@@ -99,7 +99,7 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
     [[PHAlerts sharedAlerts] show:@"Phoenix config loaded" duration:1.0];
 }
 
-- (void) setupAPI:(JSContext*)ctx {
+- (void) setupAPI:(JSContext *)ctx {
     JSValue* api = [JSValue valueWithNewObjectInContext:ctx];
     ctx[@"api"] = api;
 

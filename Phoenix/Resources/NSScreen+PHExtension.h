@@ -13,8 +13,8 @@
 - (CGRect) frameIncludingDockAndMenu;
 - (CGRect) frameWithoutDockOrMenu;
 
-- (NSScreen*) nextScreen;
-- (NSScreen*) previousScreen;
+- (NSScreen *) nextScreen;
+- (NSScreen *) previousScreen;
 
 @end
 

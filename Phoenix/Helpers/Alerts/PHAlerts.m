@@ -95,7 +95,7 @@
 
 @implementation PHAlertWindowController
 
-- (NSString*) windowNibName {
+- (NSString *) windowNibName {
     return @"AlertWindow";
 }
 

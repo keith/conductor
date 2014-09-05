@@ -11,12 +11,12 @@
 
 @protocol PHAppJSExport <JSExport>
 
-+ (NSArray*) runningApps;
++ (NSArray *) runningApps;
 
-- (NSArray*) allWindows;
-- (NSArray*) visibleWindows;
+- (NSArray *) allWindows;
+- (NSArray *) visibleWindows;
 
-- (NSString*) title;
+- (NSString *) title;
 - (BOOL) isHidden;
 - (void) show;
 - (void) hide;
@@ -31,7 +31,7 @@
 @interface PHApp : NSObject <PHAppJSExport>
 
 - (id) initWithPID:(pid_t)pid;
-- (id) initWithRunningApp:(NSRunningApplication*)app;
+- (id) initWithRunningApp:(NSRunningApplication *)app;
 
 @property (readonly) pid_t pid;
 

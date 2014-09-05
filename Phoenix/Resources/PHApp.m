@@ -29,7 +29,7 @@
 
 @implementation PHApp
 
-+ (NSArray*) runningApps {
++ (NSArray *) runningApps {
     NSMutableArray* apps = [NSMutableArray array];
 
     for (NSRunningApplication* runningApp in [[NSWorkspace sharedWorkspace] runningApplications]) {
@@ -46,7 +46,7 @@
     return [self initWithPID:pid];
 }
 
-- (id) initWithRunningApp:(NSRunningApplication*)app {
+- (id) initWithRunningApp:(NSRunningApplication *)app {
     return [self initWithPID:[app processIdentifier]];
 }
 
@@ -66,7 +66,7 @@
         CFRelease(self.app);
 }
 
-- (BOOL) isEqual:(PHApp*)object {
+- (BOOL) isEqual:(PHApp *)object {
     return ([self isKindOfClass: [object class]] &&
             self.pid == object.pid);
 }
@@ -75,7 +75,7 @@
     return self.pid;
 }
 
-- (NSArray*) visibleWindows {
+- (NSArray *) visibleWindows {
     return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow* win, NSDictionary *bindings) {
         return ![[win app] isHidden]
         && ![win isWindowMinimized]
@@ -83,7 +83,7 @@
     }]];
 }
 
-- (NSArray*) allWindows {
+- (NSArray *) allWindows {
     NSMutableArray* windows = [NSMutableArray array];
 
     CFArrayRef _windows;
@@ -118,7 +118,7 @@
     [self setAppProperty:NSAccessibilityHiddenAttribute withValue:@YES];
 }
 
-- (NSString*) title {
+- (NSString *) title {
     return [[NSRunningApplication runningApplicationWithProcessIdentifier:self.pid] localizedName];
 }
 
@@ -130,12 +130,12 @@
     [[NSRunningApplication runningApplicationWithProcessIdentifier:self.pid] forceTerminate];
 }
 
-//- (void) sendJustOneNotification:(NSString*)name withThing:(id)thing {
+//- (void) sendJustOneNotification:(NSString *)name withThing:(id)thing {
 //    NSNotification* note = [NSNotification notificationWithName:name object:nil userInfo:@{@"thing": thing}];
 //    [[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostNow];
 //}
 
-- (id) getAppProperty:(NSString*)propType withDefaultValue:(id)defaultValue {
+- (id) getAppProperty:(NSString *)propType withDefaultValue:(id)defaultValue {
     CFTypeRef _someProperty;
     if (AXUIElementCopyAttributeValue(self.app, (__bridge CFStringRef)propType, &_someProperty) == kAXErrorSuccess)
         return CFBridgingRelease(_someProperty);
@@ -143,7 +143,7 @@
     return defaultValue;
 }
 
-- (BOOL) setAppProperty:(NSString*)propType withValue:(id)value {
+- (BOOL) setAppProperty:(NSString *)propType withValue:(id)value {
     AXError result = AXUIElementSetAttributeValue(self.app, (__bridge CFStringRef)(propType), (__bridge CFTypeRef)(value));
     return result == kAXErrorSuccess;
 }

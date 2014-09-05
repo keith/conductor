@@ -15,12 +15,12 @@
 
 // getting windows
 
-+ (NSArray*) allWindows;
-+ (NSArray*) visibleWindows;
-+ (PHWindow*) focusedWindow;
-+ (NSArray*) visibleWindowsMostRecentFirst;
-- (NSArray*) otherWindowsOnSameScreen;
-- (NSArray*) otherWindowsOnAllScreens;
++ (NSArray *) allWindows;
++ (NSArray *) visibleWindows;
++ (PHWindow *) focusedWindow;
++ (NSArray *) visibleWindowsMostRecentFirst;
+- (NSArray *) otherWindowsOnSameScreen;
+- (NSArray *) otherWindowsOnAllScreens;
 
 
 // window position & size
@@ -41,8 +41,8 @@
 
 // other
 
-- (NSScreen*) screen;
-- (PHApp*) app;
+- (NSScreen *) screen;
+- (PHApp *) app;
 
 - (BOOL) isNormalWindow;
 
@@ -55,15 +55,15 @@
 - (void) focusWindowUp;
 - (void) focusWindowDown;
 
-- (NSArray*) windowsToWest;
-- (NSArray*) windowsToEast;
-- (NSArray*) windowsToNorth;
-- (NSArray*) windowsToSouth;
+- (NSArray *) windowsToWest;
+- (NSArray *) windowsToEast;
+- (NSArray *) windowsToNorth;
+- (NSArray *) windowsToSouth;
 
 
 // other window properties
 
-- (NSString*) title;
+- (NSString *) title;
 - (BOOL) isWindowMinimized;
 
 @end

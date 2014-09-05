@@ -52,7 +52,7 @@
 //    return YES;
 //}
 
-- (NSScreen*) nextScreen {
+- (NSScreen *) nextScreen {
     NSArray* screens = [NSScreen screens];
     NSUInteger idx = [screens indexOfObject:self];
 
@@ -63,7 +63,7 @@
     return [screens objectAtIndex:idx];
 }
 
-- (NSScreen*) previousScreen {
+- (NSScreen *) previousScreen {
     NSArray* screens = [NSScreen screens];
     NSUInteger idx = [screens indexOfObject:self];
 

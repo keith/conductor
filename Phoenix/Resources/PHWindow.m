@@ -30,7 +30,7 @@
         CFRelease(self.window);
 }
 
-- (BOOL) isEqual:(PHWindow*)other {
+- (BOOL) isEqual:(PHWindow *)other {
     return ([self isKindOfClass: [other class]] &&
             CFEqual(self.window, other.window));
 }
@@ -39,7 +39,7 @@
     return CFHash(self.window);
 }
 
-+ (NSArray*) allWindows {
++ (NSArray *) allWindows {
     NSMutableArray* windows = [NSMutableArray array];
     
     for (PHApp* app in [PHApp runningApps]) {
@@ -50,10 +50,10 @@
 }
 
 - (BOOL) isNormalWindow {
-    return [[self subrole] isEqualToString: (__bridge NSString*)kAXStandardWindowSubrole];
+    return [[self subrole] isEqualToString: (__bridge NSString *)kAXStandardWindowSubrole];
 }
 
-+ (NSArray*) visibleWindows {
++ (NSArray *) visibleWindows {
     return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow* win, NSDictionary *bindings) {
         return ![[win app] isHidden]
         && ![win isWindowMinimized]
@@ -66,7 +66,7 @@
 // AXUIElementRef's returned by AXUIElementCopyAttributeValues
 AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
 
-+ (NSArray*) visibleWindowsMostRecentFirst {
++ (NSArray *) visibleWindowsMostRecentFirst {
     // This gets windows sorted by most-recently-used criteria.  The
     // first one will be the active window.
     CFArrayRef visible_win_info = CGWindowListCopyWindowInfo(
@@ -76,7 +76,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     // But we only got some dictionaries containing info.  Need to get
     // the actual AXUIMyHeadHurts for each of them and create SDWindow-s.
     NSMutableArray* windows = [NSMutableArray array];
-    for (NSMutableDictionary* entry in (__bridge NSArray*)visible_win_info) {
+    for (NSMutableDictionary* entry in (__bridge NSArray *)visible_win_info) {
         // Tricky...  for Google Chrome we get one hidden window for
         // each visible window, so we need to check alpha > 0.
         int alpha = [[entry objectForKey:(id)kCGWindowAlpha] intValue];
@@ -94,7 +94,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
             if (appwindows) {
                 // looks like appwindows can be NULL when this function is called during the
                 // switch-workspaces animation
-                for (id w in (__bridge NSArray*)appwindows) {
+                for (id w in (__bridge NSArray *)appwindows) {
                     AXUIElementRef win = (__bridge AXUIElementRef)w;
                     CGWindowID tmp;
                     _AXUIElementGetWindow(win, &tmp); //XXX: undocumented API.  but the alternative is horrifying.
@@ -114,13 +114,13 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     return windows;
 }
 
-- (NSArray*) otherWindowsOnSameScreen {
+- (NSArray *) otherWindowsOnSameScreen {
     return [[PHWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow* win, NSDictionary *bindings) {
         return !CFEqual(self.window, win.window) && [[self screen] isEqual: [win screen]];
     }]];
 }
 
-- (NSArray*) otherWindowsOnAllScreens {
+- (NSArray *) otherWindowsOnAllScreens {
     return [[PHWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow* win, NSDictionary *bindings) {
         return !CFEqual(self.window, win.window);
     }]];
@@ -135,7 +135,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     return systemWideElement;
 }
 
-+ (PHWindow*) focusedWindow {
++ (PHWindow *) focusedWindow {
     CFTypeRef app;
     AXUIElementCopyAttributeValue([self systemWideElement], kAXFocusedApplicationAttribute, &app);
     
@@ -226,7 +226,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
         CFRelease(sizeStorage);
 }
 
-- (NSScreen*) screen {
+- (NSScreen *) screen {
     CGRect windowFrame = [self frame];
     
     CGFloat lastVolume = 0;
@@ -279,11 +279,11 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
         return 0;
 }
 
-- (PHApp*) app {
+- (PHApp *) app {
     return [[PHApp alloc] initWithPID:[self processIdentifier]];
 }
 
-- (id) getWindowProperty:(NSString*)propType withDefaultValue:(id)defaultValue {
+- (id) getWindowProperty:(NSString *)propType withDefaultValue:(id)defaultValue {
     CFTypeRef _someProperty;
     if (AXUIElementCopyAttributeValue(self.window, (__bridge CFStringRef)propType, &_someProperty) == kAXErrorSuccess)
         return CFBridgingRelease(_someProperty);
@@ -291,7 +291,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     return defaultValue;
 }
 
-- (BOOL) setWindowProperty:(NSString*)propType withValue:(id)value {
+- (BOOL) setWindowProperty:(NSString *)propType withValue:(id)value {
     if ([value isKindOfClass:[NSNumber class]]) {
         AXError result = AXUIElementSetAttributeValue(self.window, (__bridge CFStringRef)(propType), (__bridge CFTypeRef)(value));
         if (result == kAXErrorSuccess)
@@ -328,7 +328,7 @@ NSPoint SDMidpoint(NSRect r) {
     return NSMakePoint(NSMidX(r), NSMidY(r));
 }
 
-- (NSArray*) windowsInDirectionFn:(double(^)(double angle))whichDirectionFn
+- (NSArray *) windowsInDirectionFn:(double(^)(double angle))whichDirectionFn
                 shouldDisregardFn:(BOOL(^)(double deltaX, double deltaY))shouldDisregardFn
 {
     PHWindow* thisWindow = [PHWindow focusedWindow];
@@ -366,29 +366,29 @@ NSPoint SDMidpoint(NSRect r) {
     return sortedOtherWindows;
 }
 
-- (void) focusFirstValidWindowIn:(NSArray*)closestWindows {
+- (void) focusFirstValidWindowIn:(NSArray *)closestWindows {
     for (PHWindow* win in closestWindows) {
         if ([win focusWindow])
             break;
     }
 }
 
-- (NSArray*) windowsToWest {
+- (NSArray *) windowsToWest {
     return [[self windowsInDirectionFn:^double(double angle) { return M_PI - abs(angle); }
                      shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaX >= 0); }] valueForKeyPath:@"win"];
 }
 
-- (NSArray*) windowsToEast {
+- (NSArray *) windowsToEast {
     return [[self windowsInDirectionFn:^double(double angle) { return 0.0 - angle; }
                      shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaX <= 0); }] valueForKeyPath:@"win"];
 }
 
-- (NSArray*) windowsToNorth {
+- (NSArray *) windowsToNorth {
     return [[self windowsInDirectionFn:^double(double angle) { return -M_PI_2 - angle; }
                      shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaY >= 0); }] valueForKeyPath:@"win"];
 }
 
-- (NSArray*) windowsToSouth {
+- (NSArray *) windowsToSouth {
     return [[self windowsInDirectionFn:^double(double angle) { return M_PI_2 - angle; }
                      shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaY <= 0); }] valueForKeyPath:@"win"];
 }
