@@ -18,28 +18,28 @@
 
 @implementation PHWindow
 
-- (id) initWithElement:(AXUIElementRef)win {
+- (id)initWithElement:(AXUIElementRef)win {
     if (self = [super init]) {
         self.window = CFRetain(win);
     }
     return self;
 }
 
-- (void) dealloc {
+- (void)dealloc {
     if (self.window)
         CFRelease(self.window);
 }
 
-- (BOOL) isEqual:(PHWindow *)other {
+- (BOOL)isEqual:(PHWindow *)other {
     return ([self isKindOfClass: [other class]] &&
             CFEqual(self.window, other.window));
 }
 
-- (NSUInteger) hash {
+- (NSUInteger)hash {
     return CFHash(self.window);
 }
 
-+ (NSArray *) allWindows {
++ (NSArray *)allWindows {
     NSMutableArray* windows = [NSMutableArray array];
     
     for (PHApp* app in [PHApp runningApps]) {
@@ -49,11 +49,11 @@
     return windows;
 }
 
-- (BOOL) isNormalWindow {
+- (BOOL)isNormalWindow {
     return [[self subrole] isEqualToString: (__bridge NSString *)kAXStandardWindowSubrole];
 }
 
-+ (NSArray *) visibleWindows {
++ (NSArray *)visibleWindows {
     return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow* win, NSDictionary *bindings) {
         return ![[win app] isHidden]
         && ![win isWindowMinimized]
@@ -66,7 +66,7 @@
 // AXUIElementRef's returned by AXUIElementCopyAttributeValues
 AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
 
-+ (NSArray *) visibleWindowsMostRecentFirst {
++ (NSArray *)visibleWindowsMostRecentFirst {
     // This gets windows sorted by most-recently-used criteria.  The
     // first one will be the active window.
     CFArrayRef visible_win_info = CGWindowListCopyWindowInfo(
@@ -114,19 +114,19 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     return windows;
 }
 
-- (NSArray *) otherWindowsOnSameScreen {
+- (NSArray *)otherWindowsOnSameScreen {
     return [[PHWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow* win, NSDictionary *bindings) {
         return !CFEqual(self.window, win.window) && [[self screen] isEqual: [win screen]];
     }]];
 }
 
-- (NSArray *) otherWindowsOnAllScreens {
+- (NSArray *)otherWindowsOnAllScreens {
     return [[PHWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow* win, NSDictionary *bindings) {
         return !CFEqual(self.window, win.window);
     }]];
 }
 
-+ (AXUIElementRef) systemWideElement {
++ (AXUIElementRef)systemWideElement {
     static AXUIElementRef systemWideElement;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -135,7 +135,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     return systemWideElement;
 }
 
-+ (PHWindow *) focusedWindow {
++ (PHWindow *)focusedWindow {
     CFTypeRef app;
     AXUIElementCopyAttributeValue([self systemWideElement], kAXFocusedApplicationAttribute, &app);
     
@@ -155,20 +155,20 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     return nil;
 }
 
-- (CGRect) frame {
+- (CGRect)frame {
     CGRect r;
     r.origin = [self topLeft];
     r.size = [self size];
     return r;
 }
 
-- (void) setFrame:(CGRect)frame {
+- (void)setFrame:(CGRect)frame {
     [self setSize: frame.size];
     [self setTopLeft: frame.origin];
     [self setSize: frame.size];
 }
 
-- (CGPoint) topLeft {
+- (CGPoint)topLeft {
     CFTypeRef positionStorage;
     AXError result = AXUIElementCopyAttributeValue(self.window, (CFStringRef)NSAccessibilityPositionAttribute, &positionStorage);
     
@@ -190,7 +190,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     return topLeft;
 }
 
-- (CGSize) size {
+- (CGSize)size {
     CFTypeRef sizeStorage;
     AXError result = AXUIElementCopyAttributeValue(self.window, (CFStringRef)NSAccessibilitySizeAttribute, &sizeStorage);
     
@@ -212,21 +212,21 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     return size;
 }
 
-- (void) setTopLeft:(CGPoint)thePoint {
+- (void)setTopLeft:(CGPoint)thePoint {
     CFTypeRef positionStorage = (CFTypeRef)(AXValueCreate(kAXValueCGPointType, (const void *)&thePoint));
     AXUIElementSetAttributeValue(self.window, (CFStringRef)NSAccessibilityPositionAttribute, positionStorage);
     if (positionStorage)
         CFRelease(positionStorage);
 }
 
-- (void) setSize:(CGSize)theSize {
+- (void)setSize:(CGSize)theSize {
     CFTypeRef sizeStorage = (CFTypeRef)(AXValueCreate(kAXValueCGSizeType, (const void *)&theSize));
     AXUIElementSetAttributeValue(self.window, (CFStringRef)NSAccessibilitySizeAttribute, sizeStorage);
     if (sizeStorage)
         CFRelease(sizeStorage);
 }
 
-- (NSScreen *) screen {
+- (NSScreen *)screen {
     CGRect windowFrame = [self frame];
     
     CGFloat lastVolume = 0;
@@ -246,20 +246,20 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     return lastScreen;
 }
 
-- (void) maximize {
+- (void)maximize {
     CGRect screenRect = [[self screen] frameWithoutDockOrMenu];
     [self setFrame: screenRect];
 }
 
-- (void) minimize {
+- (void)minimize {
     [self setWindowMinimized:YES];
 }
 
-- (void) unMinimize {
+- (void)unMinimize {
     [self setWindowMinimized:NO];
 }
 
-- (BOOL) focusWindow {
+- (BOOL)focusWindow {
     AXError changedMainWindowResult = AXUIElementSetAttributeValue(self.window, (CFStringRef)NSAccessibilityMainAttribute, kCFBooleanTrue);
     if (changedMainWindowResult != kAXErrorSuccess) {
         NSLog(@"ERROR: Could not change focus to window");
@@ -270,7 +270,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     return [app activateWithOptions:NSApplicationActivateIgnoringOtherApps];
 }
 
-- (pid_t) processIdentifier {
+- (pid_t)processIdentifier {
     pid_t pid = 0;
     AXError result = AXUIElementGetPid(self.window, &pid);
     if (result == kAXErrorSuccess)
@@ -279,11 +279,11 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
         return 0;
 }
 
-- (PHApp *) app {
+- (PHApp *)app {
     return [[PHApp alloc] initWithPID:[self processIdentifier]];
 }
 
-- (id) getWindowProperty:(NSString *)propType withDefaultValue:(id)defaultValue {
+- (id)getWindowProperty:(NSString *)propType withDefaultValue:(id)defaultValue {
     CFTypeRef _someProperty;
     if (AXUIElementCopyAttributeValue(self.window, (__bridge CFStringRef)propType, &_someProperty) == kAXErrorSuccess)
         return CFBridgingRelease(_someProperty);
@@ -291,7 +291,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     return defaultValue;
 }
 
-- (BOOL) setWindowProperty:(NSString *)propType withValue:(id)value {
+- (BOOL)setWindowProperty:(NSString *)propType withValue:(id)value {
     if ([value isKindOfClass:[NSNumber class]]) {
         AXError result = AXUIElementSetAttributeValue(self.window, (__bridge CFStringRef)(propType), (__bridge CFTypeRef)(value));
         if (result == kAXErrorSuccess)
@@ -300,23 +300,23 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
     return NO;
 }
 
-- (NSString *) title {
+- (NSString *)title {
     return [self getWindowProperty:NSAccessibilityTitleAttribute withDefaultValue:@""];
 }
 
-- (NSString *) role {
+- (NSString *)role {
     return [self getWindowProperty:NSAccessibilityRoleAttribute withDefaultValue:@""];
 }
 
-- (NSString *) subrole {
+- (NSString *)subrole {
     return [self getWindowProperty:NSAccessibilitySubroleAttribute withDefaultValue:@""];
 }
 
-- (BOOL) isWindowMinimized {
+- (BOOL)isWindowMinimized {
     return [[self getWindowProperty:NSAccessibilityMinimizedAttribute withDefaultValue:@(NO)] boolValue];
 }
 
-- (void) setWindowMinimized:(BOOL)flag
+- (void)setWindowMinimized:(BOOL)flag
 {
     [self setWindowProperty:NSAccessibilityMinimizedAttribute withValue:[NSNumber numberWithLong:flag]];
 }
@@ -328,7 +328,7 @@ NSPoint SDMidpoint(NSRect r) {
     return NSMakePoint(NSMidX(r), NSMidY(r));
 }
 
-- (NSArray *) windowsInDirectionFn:(double(^)(double angle))whichDirectionFn
+- (NSArray *)windowsInDirectionFn:(double(^)(double angle))whichDirectionFn
                 shouldDisregardFn:(BOOL(^)(double deltaX, double deltaY))shouldDisregardFn
 {
     PHWindow* thisWindow = [PHWindow focusedWindow];
@@ -366,7 +366,7 @@ NSPoint SDMidpoint(NSRect r) {
     return sortedOtherWindows;
 }
 
-- (void) focusFirstValidWindowIn:(NSArray *)closestWindows {
+- (void)focusFirstValidWindowIn:(NSArray *)closestWindows {
     for (PHWindow* win in closestWindows) {
         if ([win focusWindow])
             break;

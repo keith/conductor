@@ -17,7 +17,7 @@
 
 static NSMutableDictionary *relocatableKeys;
 
-+ (void) initialize {
++ (void)initialize {
     // List of key codes we'll need to check against current keyboard layout:
     int relocatableKeyCodes[] = {
         kVK_ANSI_A, kVK_ANSI_B, kVK_ANSI_C, kVK_ANSI_D, kVK_ANSI_E, kVK_ANSI_F,
@@ -136,7 +136,7 @@ static NSMutableDictionary *relocatableKeys;
     return 0;
 }
 
-+ (UInt32) modifierFlagsForStrings:(NSArray *)strs {
++ (UInt32)modifierFlagsForStrings:(NSArray *)strs {
     strs = [strs valueForKeyPath:@"uppercaseString"];
 
     UInt32 result = 0;
@@ -173,7 +173,7 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
     return (hotkey.handler() ? noErr : eventNotHandledErr);
 }
 
-+ (void) setup {
++ (void)setup {
     static BOOL settedUp;
     if (settedUp)
         return;
@@ -184,7 +184,7 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
     InstallEventHandler(GetEventDispatcherTarget(), PHHotKeyCarbonCallback, 1, &hotKeyPressedSpec, NULL, NULL);
 }
 
-+ (PHHotKey *) withKey:(NSString *)key mods:(NSArray *)mods handler:(PHHotKeyHandler)handler {
++ (PHHotKey *)withKey:(NSString *)key mods:(NSArray *)mods handler:(PHHotKeyHandler)handler {
     PHHotKey* hotkey = [[PHHotKey alloc] init];
     hotkey.key = key;
     hotkey.mods = mods;
@@ -192,7 +192,7 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
     return hotkey;
 }
 
-- (BOOL) enable {
+- (BOOL)enable {
     [PHHotKey setup];
 
     UInt32 key = [PHHotKeyTranslator keyCodeForString:self.key];
@@ -212,7 +212,7 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
     return status == noErr;
 }
 
-- (void) disable {
+- (void)disable {
     if (self.internalRegistrationNumber == 0)
         return;
 

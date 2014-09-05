@@ -26,7 +26,7 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
 
 @implementation PHConfigLoader
 
-- (id) init {
+- (id)init {
     self = [super init];
     if (!self) {
         return nil;
@@ -38,7 +38,7 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
     return self;
 }
 
-- (void) addConfigListener: (NSString *) path {
+- (void)addConfigListener:(NSString *)path {
     for (PHPathWatcher *watcher in self.watchers) {
         if ([watcher.path isEqualToString:path]) {
             return;
@@ -53,7 +53,7 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
     [self.watchers addObject:watcher];
 }
 
-- (void) resetConfigListeners {
+- (void)resetConfigListeners {
     [self.watchers removeAllObjects];
     [self addConfigListener:PHConfigPath];
 }
@@ -99,7 +99,7 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
     [[PHAlerts sharedAlerts] show:@"Phoenix config loaded" duration:1.0];
 }
 
-- (void) setupAPI:(JSContext *)ctx {
+- (void)setupAPI:(JSContext *)ctx {
     JSValue* api = [JSValue valueWithNewObjectInContext:ctx];
     ctx[@"api"] = api;
 
@@ -185,7 +185,7 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
     ctx[@"MousePosition"] = [PHMousePosition self];
 }
 
-- (void) showJsException: (id) arg {
+- (void)showJsException: (id)arg {
     [[PHAlerts sharedAlerts] show:[NSString stringWithFormat:@"[js exception] %@", arg] duration:3.0];
 }
 

@@ -10,8 +10,8 @@
 
 @protocol PHMousePositionJSExport <JSExport>
 
-+ (NSPoint) capture;
-+ (void) restore:(NSPoint)p;
++ (NSPoint)capture;
++ (void)restore:(NSPoint)p;
 
 @end
 

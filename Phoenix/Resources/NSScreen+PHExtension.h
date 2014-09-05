@@ -8,11 +8,11 @@
 
 @protocol NSScreenJSExport <JSExport>
 
-- (CGRect) frameIncludingDockAndMenu;
-- (CGRect) frameWithoutDockOrMenu;
+- (CGRect)frameIncludingDockAndMenu;
+- (CGRect)frameWithoutDockOrMenu;
 
-- (NSScreen *) nextScreen;
-- (NSScreen *) previousScreen;
+- (NSScreen *)nextScreen;
+- (NSScreen *)previousScreen;
 
 @end
 

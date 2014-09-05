@@ -31,7 +31,7 @@
 
 @implementation PHAlerts
 
-+ (PHAlerts *) sharedAlerts {
++ (PHAlerts *)sharedAlerts {
     static PHAlerts *sharedAlerts;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -57,7 +57,7 @@
     [self show:oneLineMsg duration:self.alertDisappearDelay];
 }
 
-- (void) show:(NSString *)oneLineMsg duration:(CGFloat)duration {
+- (void)show:(NSString *)oneLineMsg duration:(CGFloat)duration {
     CGFloat absoluteTop;
 
     NSScreen* currentScreen = [NSScreen mainScreen];
@@ -95,11 +95,11 @@
 
 @implementation PHAlertWindowController
 
-- (NSString *) windowNibName {
+- (NSString *)windowNibName {
     return @"AlertWindow";
 }
 
-- (void) windowDidLoad {
+- (void)windowDidLoad {
     self.window.styleMask = NSBorderlessWindowMask;
     self.window.backgroundColor = [NSColor clearColor];
     self.window.opaque = NO;

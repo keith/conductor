@@ -10,12 +10,12 @@
 
 @implementation PHMousePosition
 
-+ (NSPoint) capture {
++ (NSPoint)capture {
     CGEventRef ourEvent = CGEventCreate(NULL);
     return CGEventGetLocation(ourEvent);
 }
 
-+ (void) restore:(NSPoint)p {
++ (void)restore:(NSPoint)p {
     CGWarpMouseCursorPosition(p);
 }
 

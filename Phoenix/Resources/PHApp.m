@@ -22,14 +22,14 @@
 
 @property NSMutableArray* observers;
 
-- (id) initWithElement:(AXUIElementRef)element;
+- (id)initWithElement:(AXUIElementRef)element;
 
 @end
 
 
 @implementation PHApp
 
-+ (NSArray *) runningApps {
++ (NSArray *)runningApps {
     NSMutableArray* apps = [NSMutableArray array];
 
     for (NSRunningApplication* runningApp in [[NSWorkspace sharedWorkspace] runningApplications]) {
@@ -40,17 +40,17 @@
     return apps;
 }
 
-- (id) initWithElement:(AXUIElementRef)element {
+- (id)initWithElement:(AXUIElementRef)element {
     pid_t pid;
     AXUIElementGetPid(element, &pid);
     return [self initWithPID:pid];
 }
 
-- (id) initWithRunningApp:(NSRunningApplication *)app {
+- (id)initWithRunningApp:(NSRunningApplication *)app {
     return [self initWithPID:[app processIdentifier]];
 }
 
-- (id) initWithPID:(pid_t)pid {
+- (id)initWithPID:(pid_t)pid {
     if (self = [super init]) {
         self.observers = [NSMutableArray array];
         self.pid = pid;
@@ -59,23 +59,23 @@
     return self;
 }
 
-- (void) dealloc {
+- (void)dealloc {
     self.observers = nil; // this will make them un-observe
 
     if (self.app)
         CFRelease(self.app);
 }
 
-- (BOOL) isEqual:(PHApp *)object {
+- (BOOL)isEqual:(PHApp *)object {
     return ([self isKindOfClass: [object class]] &&
             self.pid == object.pid);
 }
 
-- (NSUInteger) hash {
+- (NSUInteger)hash {
     return (NSUInteger)self.pid;
 }
 
-- (NSArray *) visibleWindows {
+- (NSArray *)visibleWindows {
     return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow* win, NSDictionary *bindings) {
         return ![[win app] isHidden]
         && ![win isWindowMinimized]
@@ -83,7 +83,7 @@
     }]];
 }
 
-- (NSArray *) allWindows {
+- (NSArray *)allWindows {
     NSMutableArray* windows = [NSMutableArray array];
 
     CFArrayRef _windows;
@@ -101,7 +101,7 @@
     return windows;
 }
 
-- (BOOL) isHidden {
+- (BOOL)isHidden {
     CFTypeRef _isHidden;
     NSNumber* isHidden = @NO;
     if (AXUIElementCopyAttributeValue(self.app, (CFStringRef)NSAccessibilityHiddenAttribute, (CFTypeRef *)&_isHidden) == kAXErrorSuccess) {
@@ -110,23 +110,23 @@
     return [isHidden boolValue];
 }
 
-- (void) show {
+- (void)show {
     [self setAppProperty:NSAccessibilityHiddenAttribute withValue:@NO];
 }
 
-- (void) hide {
+- (void)hide {
     [self setAppProperty:NSAccessibilityHiddenAttribute withValue:@YES];
 }
 
-- (NSString *) title {
+- (NSString *)title {
     return [[NSRunningApplication runningApplicationWithProcessIdentifier:self.pid] localizedName];
 }
 
-- (void) kill {
+- (void)kill {
     [[NSRunningApplication runningApplicationWithProcessIdentifier:self.pid] terminate];
 }
 
-- (void) kill9 {
+- (void)kill9 {
     [[NSRunningApplication runningApplicationWithProcessIdentifier:self.pid] forceTerminate];
 }
 
@@ -135,7 +135,7 @@
 //    [[NSNotificationQueue defaultQueue] enqueueNotification:note postingStyle:NSPostNow];
 //}
 
-- (id) getAppProperty:(NSString *)propType withDefaultValue:(id)defaultValue {
+- (id)getAppProperty:(NSString *)propType withDefaultValue:(id)defaultValue {
     CFTypeRef _someProperty;
     if (AXUIElementCopyAttributeValue(self.app, (__bridge CFStringRef)propType, &_someProperty) == kAXErrorSuccess)
         return CFBridgingRelease(_someProperty);
@@ -143,7 +143,7 @@
     return defaultValue;
 }
 
-- (BOOL) setAppProperty:(NSString *)propType withValue:(id)value {
+- (BOOL)setAppProperty:(NSString *)propType withValue:(id)value {
     AXError result = AXUIElementSetAttributeValue(self.app, (__bridge CFStringRef)(propType), (__bridge CFTypeRef)(value));
     return result == kAXErrorSuccess;
 }

@@ -24,7 +24,7 @@ void fsEventsCallback(ConstFSEventStreamRef streamRef, void *clientCallBackInfo,
     [watcher fileChanged];
 }
 
-- (void) dealloc {
+- (void)dealloc {
     if (self.stream) {
         FSEventStreamStop(self.stream);
         FSEventStreamInvalidate(self.stream);
@@ -32,7 +32,7 @@ void fsEventsCallback(ConstFSEventStreamRef streamRef, void *clientCallBackInfo,
     }
 }
 
-+ (PHPathWatcher *) watcherFor:(NSString *)path handler:(void(^)())handler {
++ (PHPathWatcher *)watcherFor:(NSString *)path handler:(void(^)())handler {
     PHPathWatcher* watcher = [[PHPathWatcher alloc] init];
     watcher.handler = handler;
     watcher.path = path;
@@ -40,7 +40,7 @@ void fsEventsCallback(ConstFSEventStreamRef streamRef, void *clientCallBackInfo,
     return watcher;
 }
 
-- (void) setup {
+- (void)setup {
     FSEventStreamContext context;
     context.info = (__bridge void *)self;
     context.version = 0;
@@ -58,7 +58,7 @@ void fsEventsCallback(ConstFSEventStreamRef streamRef, void *clientCallBackInfo,
     FSEventStreamStart(self.stream);
 }
 
-- (void) fileChanged {
+- (void)fileChanged {
     self.handler();
 }
 

@@ -7,7 +7,7 @@
 
 @implementation PHOpenAtLogin
 
-+ (LSSharedFileListRef) sharedFileList {
++ (LSSharedFileListRef)sharedFileList {
     static LSSharedFileListRef sharedFileList;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -16,7 +16,7 @@
     return sharedFileList;
 }
 
-+ (void) setOpensAtLogin:(BOOL)opensAtLogin {
++ (void)setOpensAtLogin:(BOOL)opensAtLogin {
     NSURL *appURL = [[[NSBundle mainBundle] bundleURL] fileReferenceURL];
 
     if (opensAtLogin) {
@@ -47,7 +47,7 @@
     }
 }
 
-+ (BOOL) opensAtLogin {
++ (BOOL)opensAtLogin {
     NSURL *appURL = [[[NSBundle mainBundle] bundleURL] fileReferenceURL];
 
     UInt32 seed;
