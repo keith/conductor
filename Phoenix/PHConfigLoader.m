@@ -82,9 +82,9 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
     [self.hotkeys makeObjectsPerformSelector:@selector(disable)];
     self.hotkeys = [NSMutableArray array];
 
-    JSContext* ctx = [[JSContext alloc] initWithVirtualMachine:[[JSVirtualMachine alloc] init]];
+    JSContext *ctx = [[JSContext alloc] initWithVirtualMachine:[[JSVirtualMachine alloc] init]];
 
-    ctx.exceptionHandler = ^(JSContext* ctx, JSValue* val) {
+    ctx.exceptionHandler = ^(JSContext *context, JSValue *val) {
         [[PHAlerts sharedAlerts] show:[NSString stringWithFormat:@"[js exception] %@", val] duration:3.0];
     };
 
@@ -143,18 +143,19 @@ static NSString* PHConfigPath = @"~/.phoenix.js";
 
     api[@"setTint"] = ^(NSArray *red, NSArray *green, NSArray *blue) {
         CGGammaValue cred[red.count];
-        for (int i = 0; i < red.count; ++i) {
+        for (NSUInteger i = 0; i < red.count; ++i) {
             cred[i] = [[red objectAtIndex:i] floatValue];
         }
         CGGammaValue cgreen[green.count];
-        for (int i = 0; i < green.count; ++i) {
+        for (NSUInteger i = 0; i < green.count; ++i) {
             cgreen[i] = [[green objectAtIndex:i] floatValue];
         }
         CGGammaValue cblue[blue.count];
-        for (int i = 0; i < blue.count; ++i) {
+        for (NSUInteger i = 0; i < blue.count; ++i) {
             cblue[i] = [[blue objectAtIndex:i] floatValue];
         }
-        CGSetDisplayTransferByTable(CGMainDisplayID(), (int)sizeof(cred) / sizeof(cred[0]), cred, cgreen, cblue);
+        uint32_t size = (uint32_t)sizeof(cred) / sizeof(cred[0]);
+        CGSetDisplayTransferByTable(CGMainDisplayID(), size, cred, cgreen, cblue);
     };
 
     __weak JSContext* weakCtx = ctx;

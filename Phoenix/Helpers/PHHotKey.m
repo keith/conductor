@@ -41,9 +41,10 @@ static NSMutableDictionary *relocatableKeys;
         UniChar chars[4];
         UniCharCount realLength;
 
-        for (int i = 0 ; i < sizeof(relocatableKeyCodes)/sizeof(relocatableKeyCodes[0]) ; i++) {
+        NSUInteger size = sizeof(relocatableKeyCodes) / sizeof(relocatableKeyCodes[0]);
+        for (NSUInteger i = 0 ; i < size; i++) {
             UCKeyTranslate(keyboardLayout,
-                           relocatableKeyCodes[i],
+                           (UInt16)relocatableKeyCodes[i],
                            kUCKeyActionDisplay,
                            0,
                            LMGetKbdType(),
@@ -62,11 +63,11 @@ static NSMutableDictionary *relocatableKeys;
     return;
 }
 
-+ (UInt32) keyCodeForString:(NSString *)str {
++ (UInt32)keyCodeForString:(NSString *)str {
     str = [str lowercaseString];
     NSNumber *keycode;
     if ((keycode = (NSNumber *)[relocatableKeys objectForKey:str])) {
-        return [keycode intValue];
+        return [keycode unsignedIntValue];
     } else {
         str = [str uppercaseString];
 
@@ -129,15 +130,10 @@ static NSMutableDictionary *relocatableKeys;
         if ([str isEqualToString:@"RIGHT"]) return kVK_RightArrow;
         if ([str isEqualToString:@"DOWN"]) return kVK_DownArrow;
         if ([str isEqualToString:@"UP"]) return kVK_UpArrow;
-
-        //    // aww, this would have been really cool. oh well.
-        //    if ([str isEqualToString:@"VOL_UP"]) return kVK_VolumeUp;
-        //    if ([str isEqualToString:@"VOL_DOWN"]) return kVK_VolumeDown;
-        //    if ([str isEqualToString:@"RIGHT_SHIFT"]) return kVK_RightShift;
     }
 
-    // TODO: make this do something smarter than return -1 for unknowns
-    return -1;
+    NSLog(@"Unhandled Key Code String: %@", str);
+    return 0;
 }
 
 + (UInt32) modifierFlagsForStrings:(NSArray *)strs {

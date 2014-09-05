@@ -63,15 +63,16 @@
     return [screens objectAtIndex:idx];
 }
 
-- (NSScreen *) previousScreen {
-    NSArray* screens = [NSScreen screens];
-    NSUInteger idx = [screens indexOfObject:self];
+- (NSScreen *)previousScreen {
+    NSArray *screens = [NSScreen screens];
+    NSInteger index = (NSInteger)[screens indexOfObject:self];
 
-    idx -= 1;
-    if (idx == -1)
-        idx = [screens count] - 1;
+    index -= 1;
+    if (index == -1) {
+        index = (NSInteger)[screens count] - 1;
+    }
 
-    return [screens objectAtIndex:idx];
+    return [screens objectAtIndex:(NSUInteger)index];
 }
 
 @end

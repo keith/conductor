@@ -72,7 +72,7 @@
 }
 
 - (NSUInteger) hash {
-    return self.pid;
+    return (NSUInteger)self.pid;
 }
 
 - (NSArray *) visibleWindows {

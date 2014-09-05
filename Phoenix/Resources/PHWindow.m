@@ -83,7 +83,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID* out);
         int layer = [[entry objectForKey:(id)kCGWindowLayer] intValue];
 
         if (layer == 0 && alpha > 0) {
-            CGWindowID win_id = [[entry objectForKey:(id)kCGWindowNumber] intValue];
+            CGWindowID win_id = [[entry objectForKey:(id)kCGWindowNumber] unsignedIntValue];
 
             // some AXUIElementCreateByWindowNumber would be soooo nice.  but nope, we have to take the pain below.
 
@@ -373,39 +373,39 @@ NSPoint SDMidpoint(NSRect r) {
     }
 }
 
-- (NSArray *) windowsToWest {
-    return [[self windowsInDirectionFn:^double(double angle) { return M_PI - abs(angle); }
+- (NSArray *)windowsToWest {
+    return [[self windowsInDirectionFn:^double(double angle) { return M_PI - abs((int)angle); }
                      shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaX >= 0); }] valueForKeyPath:@"win"];
 }
 
-- (NSArray *) windowsToEast {
+- (NSArray *)windowsToEast {
     return [[self windowsInDirectionFn:^double(double angle) { return 0.0 - angle; }
                      shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaX <= 0); }] valueForKeyPath:@"win"];
 }
 
-- (NSArray *) windowsToNorth {
+- (NSArray *)windowsToNorth {
     return [[self windowsInDirectionFn:^double(double angle) { return -M_PI_2 - angle; }
                      shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaY >= 0); }] valueForKeyPath:@"win"];
 }
 
-- (NSArray *) windowsToSouth {
+- (NSArray *)windowsToSouth {
     return [[self windowsInDirectionFn:^double(double angle) { return M_PI_2 - angle; }
                      shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaY <= 0); }] valueForKeyPath:@"win"];
 }
 
-- (void) focusWindowLeft {
+- (void)focusWindowLeft {
     [self focusFirstValidWindowIn:[self windowsToWest]];
 }
 
-- (void) focusWindowRight {
+- (void)focusWindowRight {
     [self focusFirstValidWindowIn:[self windowsToEast]];
 }
 
-- (void) focusWindowUp {
+- (void)focusWindowUp {
     [self focusFirstValidWindowIn:[self windowsToNorth]];
 }
 
-- (void) focusWindowDown {
+- (void)focusWindowDown {
     [self focusFirstValidWindowIn:[self windowsToSouth]];
 }
 
