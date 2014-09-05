@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Steven. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @class PHMousePosition;

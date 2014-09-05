@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Giant Robot Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @protocol NSScreenJSExport <JSExport>
@@ -21,5 +19,4 @@
 @end
 
 @interface NSScreen (PHExtension) <NSScreenJSExport>
-
 @end

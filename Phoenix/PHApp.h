@@ -6,10 +6,8 @@
 //  Copyright (c) 2013 Giant Robot Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import <JavaScriptCore/JavaScriptCore.h>
 @class PHApp;
+#import <JavaScriptCore/JavaScriptCore.h>
 
 @protocol PHAppJSExport <JSExport>
 

@@ -6,17 +6,9 @@
 //  Copyright (c) 2013 Steven. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import <JavaScriptCore/JavaScriptCore.h>
-
-
 
 typedef BOOL(^PHHotKeyHandler)(void);
 @class PHHotKey;
-
-
-
 
 @protocol PHHotKeyJSExport <JSExport>
 
@@ -26,15 +18,10 @@ typedef BOOL(^PHHotKeyHandler)(void);
 
 + (PHHotKey*) withKey:(NSString*)key mods:(NSArray*)mods handler:(PHHotKeyHandler)handler;
 
-- (BOOL) enable;
-- (void) disable;
+- (BOOL)enable;
+- (void)disable;
 
 @end
-
-
-
-
-
 
 @interface PHHotKey : NSObject <PHHotKeyJSExport>
 

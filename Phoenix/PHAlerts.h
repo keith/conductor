@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Giant Robot Software. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
 @interface PHAlerts : NSObject
 
 + (PHAlerts*) sharedAlerts;

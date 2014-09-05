@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Steven. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
 #import "PHConfigLoader.h"
 
 @interface PHAppDelegate : NSObject <NSApplicationDelegate>

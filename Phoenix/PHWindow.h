@@ -6,13 +6,10 @@
 //  Copyright (c) 2013 Steven Degutis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-#import "PHApp.h"
-
-#import <JavaScriptCore/JavaScriptCore.h>
-@class PHWindow;
 @class PHApp;
+@class PHWindow;
+#import <JavaScriptCore/JavaScriptCore.h>
+#import "PHApp.h"
 
 @protocol PHWindowJSExport <JSExport>
 

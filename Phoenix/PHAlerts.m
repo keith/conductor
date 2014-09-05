@@ -6,20 +6,14 @@
 //  Copyright (c) 2013 Giant Robot Software. All rights reserved.
 //
 
-#import "PHAlerts.h"
-
 #import <QuartzCore/QuartzCore.h>
-
-
-
+#import "PHAlerts.h"
 
 @protocol PHAlertHoraMortisNostraeDelegate <NSObject>
 
 - (void) oraPro:(id)nobis;
 
 @end
-
-
 
 @interface PHAlertWindowController : NSWindowController
 
@@ -29,16 +23,11 @@
 
 @end
 
-
-
-
-
 @interface PHAlerts () <PHAlertHoraMortisNostraeDelegate>
 
 @property NSMutableArray* visibleAlerts;
 
 @end
-
 
 @implementation PHAlerts
 
@@ -85,14 +74,6 @@
 }
 
 @end
-
-
-
-
-
-
-
-
 
 @interface PHAlertWindowController ()
 

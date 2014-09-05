@@ -6,19 +6,14 @@
 //  Copyright (c) 2013 Steven. All rights reserved.
 //
 
-#import "PHConfigLoader.h"
-
-#import <JavaScriptCore/JavaScriptCore.h>
-
-#import "PHHotKey.h"
-#import "PHAlerts.h"
-#import "PHPathWatcher.h"
-
-#import "PHMousePosition.h"
-
-#import "PHWindow.h"
-#import "PHApp.h"
 #import "NSScreen+PHExtension.h"
+#import "PHAlerts.h"
+#import "PHApp.h"
+#import "PHConfigLoader.h"
+#import "PHHotKey.h"
+#import "PHMousePosition.h"
+#import "PHPathWatcher.h"
+#import "PHWindow.h"
 
 @interface PHConfigLoader ()
 
@@ -27,17 +22,19 @@
 
 @end
 
-
 static NSString* PHConfigPath = @"~/.phoenix.js";
-
 
 @implementation PHConfigLoader
 
 - (id) init {
-    if (self = [super init]) {
-        self.watchers = [NSMutableArray new];
-        [self resetConfigListeners];
+    self = [super init];
+    if (!self) {
+        return nil;
     }
+
+    self.watchers = [NSMutableArray array];
+    [self resetConfigListeners];
+
     return self;
 }
 

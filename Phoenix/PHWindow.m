@@ -6,11 +6,9 @@
 //  Copyright (c) 2013 Steven Degutis. All rights reserved.
 //
 
-#import "PHWindow.h"
-
-#import "PHApp.h"
-
 #import "NSScreen+PHExtension.h"
+#import "PHApp.h"
+#import "PHWindow.h"
 
 @interface PHWindow ()
 

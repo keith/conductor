@@ -7,7 +7,6 @@
 //
 
 #import "PHApp.h"
-
 #import "PHWindow.h"
 //#import "SDUniversalAccessHelper.h"
 
