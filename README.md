@@ -1,10 +1,10 @@
 <img align="right" valign="top" src="https://raw.githubusercontent.com/Keithbsmiley/phoenix/master/Phoenix/Images.xcassets/AppIcon.appiconset/icon_256x256.png"/>
 
-# Phoenix
+### Phoenix
 
 *The lightweight OS X window manager for hackers*
 
-## Install
+### Install
 
 Download the latest release from
 [here](https://github.com/Keithbsmiley/phoenix/releases)
@@ -18,7 +18,7 @@ An administrator account is required to enable it.
 
 * Requires: OS X 10.9 and up
 
-## Usage
+### Usage
 
 For ideas, read other people's configs
 [in the wiki](https://github.com/Keithbsmiley/phoenix/wiki)
@@ -26,7 +26,7 @@ For ideas, read other people's configs
 Also add your own config to the wiki to show other people the cool
 things you can do.
 
-## Documentation
+### Documentation
 
 - [JavaScript API Documentation](https://github.com/Keithbsmiley/phoenix/wiki/JavaScript-API-documentation)
 
