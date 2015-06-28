@@ -40,7 +40,7 @@ small footprint.
 Phoenix was originally authored by [Steven
 Degutis](https://github.com/sdegutis), ownership was transferred to
 [Jason Milkins](https://github.com/jasonm23), this fork is maintained by
-[Keith Smiley](https://github.com/Keithbsmiley).
+[Keith Smiley](https://github.com/keith).
 
 Steven is continuing work on OS X window management in
 [Mjolnir](https://github.com/mjolnir-io/mjolnir)
