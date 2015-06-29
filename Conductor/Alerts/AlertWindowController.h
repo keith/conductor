@@ -13,4 +13,3 @@
 - (void)show:(NSString *)message duration:(CGFloat)duration YAdjustment:(CGFloat)adjustment;
 
 @end
-
