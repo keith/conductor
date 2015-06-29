@@ -45,7 +45,7 @@
 		94C602401849D3B9005E7DB3 /* PHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHAppDelegate.m; sourceTree = "<group>"; };
 		94C602431849D3B9005E7DB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		94C602451849D3B9005E7DB3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		94CF94BC184C22C500E63DE0 /* underscore-min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "underscore-min.js"; path = "Helpers/underscore-min.js"; sourceTree = "<group>"; };
+		94CF94BC184C22C500E63DE0 /* underscore-min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "underscore-min.js"; sourceTree = "<group>"; };
 		94CF94BF184C45FA00E63DE0 /* NSScreen+PHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScreen+PHExtension.h"; sourceTree = "<group>"; };
 		94CF94C0184C45FA00E63DE0 /* NSScreen+PHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScreen+PHExtension.m"; sourceTree = "<group>"; };
 		94CF94C1184C45FA00E63DE0 /* PHApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHApp.h; sourceTree = "<group>"; };
@@ -85,8 +85,7 @@
 				94CF94C3184C45FA00E63DE0 /* PHWindow.h */,
 				94CF94C4184C45FA00E63DE0 /* PHWindow.m */,
 			);
-			name = Interface;
-			path = Resources;
+			path = Interface;
 			sourceTree = "<group>";
 		};
 		949D56E2184D0176008E92DE /* Alerts */ = {
@@ -96,8 +95,7 @@
 				94CF94CF184C50C700E63DE0 /* PHAlerts.h */,
 				94CF94D0184C50C700E63DE0 /* PHAlerts.m */,
 			);
-			name = Alerts;
-			path = Helpers/Alerts;
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 		94C602211849D3B9005E7DB3 = {
@@ -133,8 +131,7 @@
 				C2C6B13B1B40D5D20041230F /* Resources */,
 				94C602341849D3B9005E7DB3 /* Supporting Files */,
 			);
-			name = Splice;
-			path = Phoenix;
+			path = Splice;
 			sourceTree = "<group>";
 		};
 		94C602341849D3B9005E7DB3 /* Supporting Files */ = {
@@ -170,7 +167,7 @@
 				94C602451849D3B9005E7DB3 /* Images.xcassets */,
 				94CF94BC184C22C500E63DE0 /* underscore-min.js */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +281,7 @@
 				94C602371849D3B9005E7DB3 /* en */,
 			);
 			name = InfoPlist.strings;
+			path = .;
 			sourceTree = "<group>";
 		};
 		94C6023C1849D3B9005E7DB3 /* Credits.rtf */ = {
@@ -292,7 +290,7 @@
 				94C6023D1849D3B9005E7DB3 /* en */,
 			);
 			name = Credits.rtf;
-			path = "Supporting Files";
+			path = .;
 			sourceTree = "<group>";
 		};
 		94C602421849D3B9005E7DB3 /* MainMenu.xib */ = {
@@ -301,6 +299,7 @@
 				94C602431849D3B9005E7DB3 /* Base */,
 			);
 			name = MainMenu.xib;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -411,8 +410,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Phoenix/Supporting Files/Splice-Prefix.pch";
-				INFOPLIST_FILE = "Phoenix/Supporting Files/Splice-Info.plist";
+				GCC_PREFIX_HEADER = "Splice/Supporting Files/Splice-Prefix.pch";
+				INFOPLIST_FILE = "Splice/Supporting Files/Splice-Info.plist";
 				PRODUCT_NAME = Splice;
 				WRAPPER_EXTENSION = app;
 			};
@@ -425,9 +424,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Phoenix/Supporting Files/Splice-Prefix.pch";
+				GCC_PREFIX_HEADER = "Splice/Supporting Files/Splice-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "Phoenix/Supporting Files/Splice-Info.plist";
+				INFOPLIST_FILE = "Splice/Supporting Files/Splice-Info.plist";
 				PRODUCT_NAME = Splice;
 				WRAPPER_EXTENSION = app;
 			};
