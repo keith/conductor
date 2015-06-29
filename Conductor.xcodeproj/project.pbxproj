@@ -25,6 +25,7 @@
 		94CF94D1184C50C700E63DE0 /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94D0184C50C700E63DE0 /* Alerts.m */; };
 		94CF94D4184C527A00E63DE0 /* OpenAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94D3184C527A00E63DE0 /* OpenAtLogin.m */; };
 		94CF94DF184C5F7700E63DE0 /* ConfigLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94DE184C5F7700E63DE0 /* ConfigLoader.m */; };
+		C21F78FE1B40EBB2008E0DE7 /* AlertWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C21F78FD1B40EBB2008E0DE7 /* AlertWindowController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,8 @@
 		94CF94D3184C527A00E63DE0 /* OpenAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenAtLogin.m; sourceTree = "<group>"; };
 		94CF94DD184C5F7700E63DE0 /* ConfigLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigLoader.h; sourceTree = "<group>"; };
 		94CF94DE184C5F7700E63DE0 /* ConfigLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigLoader.m; sourceTree = "<group>"; };
+		C21F78FC1B40EBB2008E0DE7 /* AlertWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertWindowController.h; sourceTree = "<group>"; };
+		C21F78FD1B40EBB2008E0DE7 /* AlertWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,9 +94,11 @@
 		949D56E2184D0176008E92DE /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
-				949D56E0184D016E008E92DE /* AlertWindow.xib */,
 				94CF94CF184C50C700E63DE0 /* Alerts.h */,
 				94CF94D0184C50C700E63DE0 /* Alerts.m */,
+				949D56E0184D016E008E92DE /* AlertWindow.xib */,
+				C21F78FC1B40EBB2008E0DE7 /* AlertWindowController.h */,
+				C21F78FD1B40EBB2008E0DE7 /* AlertWindowController.m */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 				94C6023A1849D3B9005E7DB3 /* main.m in Sources */,
 				94CF94D4184C527A00E63DE0 /* OpenAtLogin.m in Sources */,
 				94CF94DF184C5F7700E63DE0 /* ConfigLoader.m in Sources */,
+				C21F78FE1B40EBB2008E0DE7 /* AlertWindowController.m in Sources */,
 				94CF94C5184C45FA00E63DE0 /* NSScreen+JSInterface.m in Sources */,
 				94CF94D1184C50C700E63DE0 /* Alerts.m in Sources */,
 			);
