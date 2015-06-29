@@ -1,4 +1,4 @@
-#import <Carbon/Carbon.h>
+@import Carbon;
 #import "PHHotKey.h"
 
 @interface PHHotKeyTranslator : NSObject

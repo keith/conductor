@@ -1,5 +1,5 @@
-#import "NSScreen+PHExtension.h"
 #include <IOKit/graphics/IOGraphicsLib.h>
+#import "NSScreen+PHExtension.h"
 
 @implementation NSScreen (PHExtension)
 

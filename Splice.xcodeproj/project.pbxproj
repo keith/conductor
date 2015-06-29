@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		941AABFE184BFE0A00E19E33 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 941AABFD184BFE0A00E19E33 /* Carbon.framework */; };
 		941AAC04184C100600E19E33 /* PHHotKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 941AAC03184C100600E19E33 /* PHHotKey.m */; };
 		9451791118E0DA2B00FB2B4B /* PHMousePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9451791018E0DA2B00FB2B4B /* PHMousePosition.m */; };
 		949D56E1184D016E008E92DE /* AlertWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 949D56E0184D016E008E92DE /* AlertWindow.xib */; };
 		949D56E5184D0B30008E92DE /* PHPathWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 949D56E4184D0B30008E92DE /* PHPathWatcher.m */; };
-		94C6022E1849D3B9005E7DB3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94C6022D1849D3B9005E7DB3 /* Cocoa.framework */; };
 		94C602381849D3B9005E7DB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94C602361849D3B9005E7DB3 /* InfoPlist.strings */; };
 		94C6023A1849D3B9005E7DB3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C602391849D3B9005E7DB3 /* main.m */; };
 		94C6023E1849D3B9005E7DB3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 94C6023C1849D3B9005E7DB3 /* Credits.rtf */; };
@@ -29,13 +27,10 @@
 		94CF94D1184C50C700E63DE0 /* PHAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94D0184C50C700E63DE0 /* PHAlerts.m */; };
 		94CF94D4184C527A00E63DE0 /* PHOpenAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94D3184C527A00E63DE0 /* PHOpenAtLogin.m */; };
 		94CF94DF184C5F7700E63DE0 /* PHConfigLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94DE184C5F7700E63DE0 /* PHConfigLoader.m */; };
-		94FF5A74184B142B001A0315 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FF5A73184B142A001A0315 /* JavaScriptCore.framework */; };
 		9623D39D194DBDE600D1F92A /* Splice.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9623D39C194DBDE600D1F92A /* Splice.icns */; };
-		C25627A219B9870500AE2CCF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C25627A119B9870500AE2CCF /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		941AABFD184BFE0A00E19E33 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		941AAC02184C100600E19E33 /* PHHotKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHHotKey.h; sourceTree = "<group>"; };
 		941AAC03184C100600E19E33 /* PHHotKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHHotKey.m; sourceTree = "<group>"; };
 		9451790F18E0DA2B00FB2B4B /* PHMousePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHMousePosition.h; sourceTree = "<group>"; };
@@ -44,10 +39,6 @@
 		949D56E3184D0B30008E92DE /* PHPathWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHPathWatcher.h; sourceTree = "<group>"; };
 		949D56E4184D0B30008E92DE /* PHPathWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHPathWatcher.m; sourceTree = "<group>"; };
 		94C6022A1849D3B9005E7DB3 /* Splice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splice.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		94C6022D1849D3B9005E7DB3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		94C602301849D3B9005E7DB3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		94C602311849D3B9005E7DB3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		94C602321849D3B9005E7DB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94C602351849D3B9005E7DB3 /* Splice-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Splice-Info.plist"; sourceTree = "<group>"; };
 		94C602371849D3B9005E7DB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		94C602391849D3B9005E7DB3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -57,7 +48,6 @@
 		94C602401849D3B9005E7DB3 /* PHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHAppDelegate.m; sourceTree = "<group>"; };
 		94C602431849D3B9005E7DB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		94C602451849D3B9005E7DB3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		94C6024C1849D3B9005E7DB3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		94CF94BC184C22C500E63DE0 /* underscore-min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "underscore-min.js"; sourceTree = "<group>"; };
 		94CF94BF184C45FA00E63DE0 /* NSScreen+PHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScreen+PHExtension.h"; sourceTree = "<group>"; };
 		94CF94C0184C45FA00E63DE0 /* NSScreen+PHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScreen+PHExtension.m"; sourceTree = "<group>"; };
@@ -75,9 +65,7 @@
 		94CF94D3184C527A00E63DE0 /* PHOpenAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHOpenAtLogin.m; sourceTree = "<group>"; };
 		94CF94DD184C5F7700E63DE0 /* PHConfigLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHConfigLoader.h; sourceTree = "<group>"; };
 		94CF94DE184C5F7700E63DE0 /* PHConfigLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHConfigLoader.m; sourceTree = "<group>"; };
-		94FF5A73184B142A001A0315 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		9623D39C194DBDE600D1F92A /* Splice.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Splice.icns; sourceTree = "<group>"; };
-		C25627A119B9870500AE2CCF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +73,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C25627A219B9870500AE2CCF /* IOKit.framework in Frameworks */,
-				941AABFE184BFE0A00E19E33 /* Carbon.framework in Frameworks */,
-				94FF5A74184B142B001A0315 /* JavaScriptCore.framework in Frameworks */,
-				94C6022E1849D3B9005E7DB3 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				94C602331849D3B9005E7DB3 /* Phoenix */,
-				94C6022C1849D3B9005E7DB3 /* Frameworks */,
 				94C6022B1849D3B9005E7DB3 /* Products */,
 			);
 			indentWidth = 4;
@@ -138,29 +121,6 @@
 				94C6022A1849D3B9005E7DB3 /* Splice.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		94C6022C1849D3B9005E7DB3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C25627A119B9870500AE2CCF /* IOKit.framework */,
-				941AABFD184BFE0A00E19E33 /* Carbon.framework */,
-				94FF5A73184B142A001A0315 /* JavaScriptCore.framework */,
-				94C6022D1849D3B9005E7DB3 /* Cocoa.framework */,
-				94C6024C1849D3B9005E7DB3 /* XCTest.framework */,
-				94C6022F1849D3B9005E7DB3 /* Other Frameworks */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		94C6022F1849D3B9005E7DB3 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				94C602301849D3B9005E7DB3 /* AppKit.framework */,
-				94C602311849D3B9005E7DB3 /* CoreData.framework */,
-				94C602321849D3B9005E7DB3 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		94C602331849D3B9005E7DB3 /* Phoenix */ = {
@@ -448,6 +408,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Phoenix/Supporting Files/Splice-Prefix.pch";
@@ -461,6 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Phoenix/Supporting Files/Splice-Prefix.pch";

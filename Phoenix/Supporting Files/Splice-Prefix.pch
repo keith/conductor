@@ -1,5 +1,5 @@
 #ifdef __OBJC__
-    #import <Cocoa/Cocoa.h>
-    #import <Foundation/Foundation.h>
-    #import <JavaScriptCore/JavaScriptCore.h>
+    @import Cocoa;
+    @import Foundation;
+    @import JavaScriptCore;
 #endif
