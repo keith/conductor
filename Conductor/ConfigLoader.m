@@ -55,7 +55,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
                                             contents:[@"" dataUsingEncoding:NSUTF8StringEncoding]
                                           attributes:nil];
     NSString *message = [NSString stringWithFormat:@"I just created %@ for you :)", filename];
-    [[Alerts sharedAlerts] show:message duration:5.0];
+    [Alerts show:message duration:5.0f];
 }
 
 - (void)createConfigurationOrLoad {
@@ -78,7 +78,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
 
     if (!config) {
         NSString *message = [NSString stringWithFormat:@"No configuration found at %@\nRelaunch to create one automatically", filename];
-        [[Alerts sharedAlerts] show:message duration:5.0];
+        [Alerts show:message duration:5.0f];
         return;
     }
 
@@ -88,7 +88,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     JSContext *ctx = [[JSContext alloc] initWithVirtualMachine:[[JSVirtualMachine alloc] init]];
 
     ctx.exceptionHandler = ^(JSContext *context, JSValue *val) {
-        [[Alerts sharedAlerts] show:[NSString stringWithFormat:@"[js exception] %@", val] duration:3.0];
+        [Alerts show:[NSString stringWithFormat:@"[js exception] %@", val] duration:3.0f];
     };
 
     NSURL *_jsURL = [[NSBundle mainBundle] URLForResource:@"underscore-min" withExtension:@"js"];
@@ -99,7 +99,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     [self setupAPI:ctx];
 
     [ctx evaluateScript:config];
-    [[Alerts sharedAlerts] show:@"Conductor config loaded" duration:1.0];
+    [Alerts show:@"Conductor config loaded" duration:1.3f];
 }
 
 - (void)setupAPI:(JSContext *)ctx {
@@ -115,10 +115,8 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     };
 
     api[@"alert"] = ^(NSString *str, CGFloat duration) {
-        if (isnan(duration))
-            duration = 2.0;
-
-        [[Alerts sharedAlerts] show:str duration:duration];
+        if (isnan(duration)) { duration = 2.0f; }
+        [Alerts show:str duration:duration];
     };
 
     api[@"log"] = ^(NSString *msg) {
@@ -189,7 +187,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
 }
 
 - (void)showJsException: (id)arg {
-    [[Alerts sharedAlerts] show:[NSString stringWithFormat:@"[js exception] %@", arg] duration:3.0];
+    [Alerts show:[NSString stringWithFormat:@"[js exception] %@", arg] duration:3.0f];
 }
 
 @end

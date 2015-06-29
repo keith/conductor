@@ -34,33 +34,26 @@
     return sharedAlerts;
 }
 
-- (id)init
-{
+- (instancetype)init {
     self = [super init];
-    if (!self) {
-        return nil;
-    }
+    if (!self) { return nil; }
 
-    self.alertDisappearDelay = 1.0;
     self.visibleAlerts = [NSMutableArray array];
 
     return self;
 }
 
-- (void)show:(NSString *)oneLineMsg {
-    [self show:oneLineMsg duration:self.alertDisappearDelay];
-}
-
-- (void)show:(NSString *)oneLineMsg duration:(CGFloat)duration {
++ (void)show:(NSString *)oneLineMsg duration:(CGFloat)duration {
+    Alerts *alerts = [Alerts sharedAlerts];
     CGFloat absoluteTop;
 
     NSScreen *currentScreen = [NSScreen mainScreen];
 
-    if ([self.visibleAlerts count] == 0) {
+    if ([alerts.visibleAlerts count] == 0) {
         CGRect screenRect = [currentScreen frame];
         absoluteTop = screenRect.size.height / 1.55;
     } else {
-        AlertWindowController *ctrl = [self.visibleAlerts lastObject];
+        AlertWindowController *ctrl = [alerts.visibleAlerts lastObject];
         absoluteTop = NSMinY([[ctrl window] frame]) - 3.0;
     }
 
@@ -69,9 +62,9 @@
     }
 
     AlertWindowController *alert = [[AlertWindowController alloc] init];
-    alert.delegate = self;
+    alert.delegate = alerts;
     [alert show:oneLineMsg duration:duration pushDownBy:absoluteTop];
-    [self.visibleAlerts addObject:alert];
+    [alerts.visibleAlerts addObject:alert];
 }
 
 - (void)alertClosed:(AlertWindowController *)alert {
