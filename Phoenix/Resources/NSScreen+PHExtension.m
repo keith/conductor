@@ -1,11 +1,3 @@
-//
-//  NSScreenProxy.m
-//  Zephyros
-//
-//  Created by Steven on 4/14/13.
-//  Copyright (c) 2013 Giant Robot Software. All rights reserved.
-//
-
 #import "NSScreen+PHExtension.h"
 #include <IOKit/graphics/IOGraphicsLib.h>
 

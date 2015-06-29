@@ -1,11 +1,3 @@
-//
-//  MyWindow.m
-//  Zephyros
-//
-//  Created by Steven Degutis on 2/28/13.
-//  Copyright (c) 2013 Steven Degutis. All rights reserved.
-//
-
 #import "NSScreen+PHExtension.h"
 #import "PHApp.h"
 #import "PHWindow.h"
@@ -41,11 +33,11 @@
 
 + (NSArray *)allWindows {
     NSMutableArray *windows = [NSMutableArray array];
-    
+
     for (PHApp *app in [PHApp runningApps]) {
         [windows addObjectsFromArray:[app allWindows]];
     }
-    
+
     return windows;
 }
 
@@ -139,20 +131,20 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 + (PHWindow *)focusedWindow {
     CFTypeRef app;
     AXUIElementCopyAttributeValue([self systemWideElement], kAXFocusedApplicationAttribute, &app);
-    
+
     if (app) {
         CFTypeRef win;
         AXError result = AXUIElementCopyAttributeValue(app, (CFStringRef)NSAccessibilityFocusedWindowAttribute, &win);
-        
+
         CFRelease(app);
-        
+
         if (result == kAXErrorSuccess) {
             PHWindow *window = [[PHWindow alloc] init];
             window.window = win;
             return window;
         }
     }
-    
+
     return nil;
 }
 
@@ -172,7 +164,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 - (CGPoint)topLeft {
     CFTypeRef positionStorage;
     AXError result = AXUIElementCopyAttributeValue(self.window, (CFStringRef)NSAccessibilityPositionAttribute, &positionStorage);
-    
+
     CGPoint topLeft;
     if (result == kAXErrorSuccess) {
         if (!AXValueGetValue(positionStorage, kAXValueCGPointType, (void *)&topLeft)) {
@@ -184,17 +176,17 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
         NSLog(@"could not get window topLeft");
         topLeft = CGPointZero;
     }
-    
+
     if (positionStorage)
         CFRelease(positionStorage);
-    
+
     return topLeft;
 }
 
 - (CGSize)size {
     CFTypeRef sizeStorage;
     AXError result = AXUIElementCopyAttributeValue(self.window, (CFStringRef)NSAccessibilitySizeAttribute, &sizeStorage);
-    
+
     CGSize size;
     if (result == kAXErrorSuccess) {
         if (!AXValueGetValue(sizeStorage, kAXValueCGSizeType, (void *)&size)) {
@@ -206,10 +198,10 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
         NSLog(@"could not get window size");
         size = CGSizeZero;
     }
-    
+
     if (sizeStorage)
         CFRelease(sizeStorage);
-    
+
     return size;
 }
 
@@ -229,21 +221,21 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 
 - (NSScreen *)screen {
     CGRect windowFrame = [self frame];
-    
+
     CGFloat lastVolume = 0;
     NSScreen *lastScreen = nil;
-    
+
     for (NSScreen *screen in [NSScreen screens]) {
         CGRect screenFrame = [screen frameIncludingDockAndMenu];
         CGRect intersection = CGRectIntersection(windowFrame, screenFrame);
         CGFloat volume = intersection.size.width * intersection.size.height;
-        
+
         if (volume > lastVolume) {
             lastVolume = volume;
             lastScreen = screen;
         }
     }
-    
+
     return lastScreen;
 }
 
@@ -266,7 +258,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
         NSLog(@"ERROR: Could not change focus to window");
         return NO;
     }
-    
+
     NSRunningApplication *app = [NSRunningApplication runningApplicationWithProcessIdentifier:[self processIdentifier]];
     return [app activateWithOptions:NSApplicationActivateIgnoringOtherApps];
 }
@@ -288,7 +280,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
     CFTypeRef _someProperty;
     if (AXUIElementCopyAttributeValue(self.window, (__bridge CFStringRef)propType, &_someProperty) == kAXErrorSuccess)
         return CFBridgingRelease(_someProperty);
-    
+
     return defaultValue;
 }
 
@@ -334,36 +326,36 @@ NSPoint SDMidpoint(NSRect r) {
 {
     PHWindow *thisWindow = [PHWindow focusedWindow];
     NSPoint startingPoint = SDMidpoint([thisWindow frame]);
-    
+
     NSArray *otherWindows = [thisWindow otherWindowsOnAllScreens];
     NSMutableArray *closestOtherWindows = [NSMutableArray arrayWithCapacity:[otherWindows count]];
-    
+
     for (PHWindow *win in otherWindows) {
         NSPoint otherPoint = SDMidpoint([win frame]);
-        
+
         double deltaX = otherPoint.x - startingPoint.x;
         double deltaY = otherPoint.y - startingPoint.y;
-        
+
         if (shouldDisregardFn(deltaX, deltaY))
             continue;
-        
+
         double angle = atan2(deltaY, deltaX);
         double distance = hypot(deltaX, deltaY);
-        
+
         double angleDifference = whichDirectionFn(angle);
-        
+
         double score = distance / cos(angleDifference / 2.0);
-        
+
         [closestOtherWindows addObject:@{
          @"score": @(score),
          @"win": win,
          }];
     }
-    
+
     NSArray *sortedOtherWindows = [closestOtherWindows sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *pair1, NSDictionary *pair2) {
         return [[pair1 objectForKey:@"score"] compare: [pair2 objectForKey:@"score"]];
     }];
-    
+
     return sortedOtherWindows;
 }
 

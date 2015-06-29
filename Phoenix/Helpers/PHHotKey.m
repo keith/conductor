@@ -1,11 +1,3 @@
-//
-//  PHHotKeyHandler.m
-//  Phoenix
-//
-//  Created by Steven Degutis on 12/1/13.
-//  Copyright (c) 2013 Steven. All rights reserved.
-//
-
 #import <Carbon/Carbon.h>
 #import "PHHotKey.h"
 

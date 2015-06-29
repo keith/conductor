@@ -1,11 +1,3 @@
-//
-//  PHConfigLoader.m
-//  Phoenix
-//
-//  Created by Steven on 12/2/13.
-//  Copyright (c) 2013 Steven. All rights reserved.
-//
-
 #import "NSScreen+PHExtension.h"
 #import "PHAlerts.h"
 #import "PHApp.h"
