@@ -1,4 +1,4 @@
-<img align="right" valign="top" src="https://raw.githubusercontent.com/keith/conductor/master/Conductor/Images.xcassets/AppIcon.appiconset/icon_256x256.png"/>
+<img align="right" valign="top" src="https://raw.githubusercontent.com/keith/conductor/master/Conductor/Resources/Images.xcassets/AppIcon.appiconset/icon_256x256.png"/>
 
 ### Conductor
 
