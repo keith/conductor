@@ -190,7 +190,7 @@ static OSStatus HotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Event
     uint32 mods = [HotKeyTranslator modifierFlagsForStrings:self.mods];
 
     self.internalRegistrationNumber = ++HotKeyLastCarbonID;
-	EventHotKeyID hotKeyID = { .signature = 'FNYX', .id = self.internalRegistrationNumber };
+    EventHotKeyID hotKeyID = { .signature = 'FNYX', .id = self.internalRegistrationNumber };
     EventHotKeyRef carbonHotKey = NULL;
     OSStatus status = RegisterEventHotKey(key, mods, hotKeyID, GetEventDispatcherTarget(), kEventHotKeyExclusive, &carbonHotKey);
 
