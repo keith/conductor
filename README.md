@@ -6,7 +6,7 @@
 
 ### Install
 
-Install with [`brew-cask`]()
+Install with [`brew-cask`](https://github.com/caskroom/homebrew-cask)
 
 ```
 brew cask install conductor
@@ -18,6 +18,8 @@ Download the latest binary from [the
 releases](https://github.com/keith/conductor/releases) and drag it to
 your `/Applications` folder.
 
+### Usage
+
 The first time you run Conductor, you will need to enable accessibility.
 OS X will alert you of this, and open **System Preferences > Security**
 
@@ -25,10 +27,8 @@ An administrator account is required to enable it.
 
 * Requires: OS X 10.9 and up
 
-### Usage
-
-For ideas, read other people's configs
-[in the wiki](https://github.com/keith/conductor/wiki)
+For ideas, read other people's configs [in the
+wiki](https://github.com/keith/conductor/wiki)
 
 Also add your own config to the wiki to show other people the cool
 things you can do.
