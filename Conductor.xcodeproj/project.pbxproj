@@ -299,7 +299,7 @@
 				94C602431849D3B9005E7DB3 /* Base */,
 			);
 			name = MainMenu.xib;
-			path = ../.;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
