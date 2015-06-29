@@ -86,19 +86,12 @@
 }
 
 - (void)show:(NSString *)message duration:(CGFloat)duration YAdjustment:(CGFloat)adjustment {
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        context.duration = 0.01;
-        [[[self window] animator] setAlphaValue:1.0];
-        [self useTitleAndResize:message];
-        [self setFrameWithAdjustment:adjustment];
-        [self showWindow:self];
-    } completionHandler:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
-                                     (int64_t)(duration * NSEC_PER_SEC)),
-                       dispatch_get_main_queue(), ^{
-            [self fadeWindowOut];
-        });
-    }];
+    [self useTitleAndResize:message];
+    [self setFrameWithAdjustment:adjustment];
+    [self showWindow:self];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self fadeWindowOut];
+    });
 }
 
 - (void)setFrameWithAdjustment:(CGFloat)adjustment {
@@ -113,12 +106,12 @@
 }
 
 - (void)fadeWindowOut {
-    [NSAnimationContext beginGrouping];
-    [[NSAnimationContext currentContext] setDuration:0.15];
-    [[[self window] animator] setAlphaValue:0.0];
-    [NSAnimationContext endGrouping];
-
-    [self performSelector:@selector(closeAndResetWindow) withObject:nil afterDelay:0.15];
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        context.duration = 0.15f;
+        [[[self window] animator] setAlphaValue:0.0];
+    } completionHandler:^{
+        [self closeAndResetWindow];
+    }];
 }
 
 - (void)closeAndResetWindow {
