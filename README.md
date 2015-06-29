@@ -1,17 +1,24 @@
-<img align="right" valign="top" src="https://raw.githubusercontent.com/Keithbsmiley/phoenix/master/Phoenix/Images.xcassets/AppIcon.appiconset/icon_256x256.png"/>
+<img align="right" valign="top" src="https://raw.githubusercontent.com/keith/conductor/master/Conductor/Images.xcassets/AppIcon.appiconset/icon_256x256.png"/>
 
-### Phoenix
+### Conductor
 
 *The lightweight OS X window manager for hackers*
 
 ### Install
 
-Download the latest release from
-[here](https://github.com/Keithbsmiley/phoenix/releases)
+Install with [`brew-cask`]()
 
-To install it just drag-drop it to your `/Applications` folder.
+```
+brew cask install conductor
+```
 
-The first time you run Phoenix, you will need to enable accessibility.
+OR:
+
+Download the latest binary from [the
+releases](https://github.com/keith/conductor/releases) and drag it to
+your `/Applications` folder.
+
+The first time you run Conductor, you will need to enable accessibility.
 OS X will alert you of this, and open **System Preferences > Security**
 
 An administrator account is required to enable it.
@@ -21,26 +28,25 @@ An administrator account is required to enable it.
 ### Usage
 
 For ideas, read other people's configs
-[in the wiki](https://github.com/Keithbsmiley/phoenix/wiki)
+[in the wiki](https://github.com/keith/conductor/wiki)
 
 Also add your own config to the wiki to show other people the cool
 things you can do.
 
 ### Documentation
 
-- [JavaScript API Documentation](https://github.com/Keithbsmiley/phoenix/wiki/JavaScript-API-documentation)
+- [JavaScript API Documentation](https://github.com/keith/conductor/wiki/JavaScript-API-documentation)
 
-Phoenix can only be scripted in JavaScript.
+Conductor can only be scripted in JavaScript.
 
 #### History
 
-Phoenix is a fork of Zephyros that aims for efficiency and a very
-small footprint.
+Conductor is a fork of Phoenix which is a fork of Zephyros
 
-Phoenix was originally authored by [Steven
-Degutis](https://github.com/sdegutis), ownership was transferred to
-[Jason Milkins](https://github.com/jasonm23), this fork is maintained by
-[Keith Smiley](https://github.com/Keithbsmiley).
+Phoenix and Zephyros were originally authored by [Steven
+Degutis](https://github.com/sdegutis), ownership of Phoenix was
+transferred to [Jason Milkins](https://github.com/jasonm23), this is a
+fork of Phoenix which has diverged and was renamed to avoid confusion.
 
 Steven is continuing work on OS X window management in
 [Mjolnir](https://github.com/mjolnir-io/mjolnir)
