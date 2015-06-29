@@ -101,7 +101,7 @@
 		94C602211849D3B9005E7DB3 = {
 			isa = PBXGroup;
 			children = (
-				94C602331849D3B9005E7DB3 /* Splice */,
+				94C602331849D3B9005E7DB3 /* Conductor */,
 				94C6022B1849D3B9005E7DB3 /* Products */,
 			);
 			indentWidth = 4;
@@ -117,7 +117,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		94C602331849D3B9005E7DB3 /* Splice */ = {
+		94C602331849D3B9005E7DB3 /* Conductor */ = {
 			isa = PBXGroup;
 			children = (
 				949D56E2184D0176008E92DE /* Alerts */,
@@ -131,7 +131,7 @@
 				C2C6B13B1B40D5D20041230F /* Resources */,
 				94C602341849D3B9005E7DB3 /* Supporting Files */,
 			);
-			path = Splice;
+			path = Conductor;
 			sourceTree = "<group>";
 		};
 		94C602341849D3B9005E7DB3 /* Supporting Files */ = {
@@ -410,8 +410,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Splice/Supporting Files/Conductor-Prefix.pch";
-				INFOPLIST_FILE = "Splice/Supporting Files/Conductor-Info.plist";
+				GCC_PREFIX_HEADER = "Conductor/Supporting Files/Conductor-Prefix.pch";
+				INFOPLIST_FILE = "Conductor/Supporting Files/Conductor-Info.plist";
 				PRODUCT_NAME = Conductor;
 				WRAPPER_EXTENSION = app;
 			};
@@ -424,9 +424,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Splice/Supporting Files/Conductor-Prefix.pch";
+				GCC_PREFIX_HEADER = "Conductor/Supporting Files/Conductor-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "Splice/Supporting Files/Conductor-Info.plist";
+				INFOPLIST_FILE = "Conductor/Supporting Files/Conductor-Info.plist";
 				PRODUCT_NAME = Conductor;
 				WRAPPER_EXTENSION = app;
 			};

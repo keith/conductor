@@ -14,7 +14,7 @@
 
 @end
 
-static NSString *PHConfigPath = @"~/.splice.js";
+static NSString *PHConfigPath = @"~/.conductor.js";
 
 @implementation PHConfigLoader
 
@@ -97,7 +97,7 @@ static NSString *PHConfigPath = @"~/.splice.js";
     [self setupAPI:ctx];
 
     [ctx evaluateScript:config];
-    [[PHAlerts sharedAlerts] show:@"Splice config loaded" duration:1.0];
+    [[PHAlerts sharedAlerts] show:@"Conductor config loaded" duration:1.0];
 }
 
 - (void)setupAPI:(JSContext *)ctx {
