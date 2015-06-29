@@ -10,7 +10,7 @@
     [self setupStatusItem];
 
     self.configLoader = [[ConfigLoader alloc] init];
-    [self.configLoader createConfigiurationIfNeeded];
+    [self.configLoader createConfigurationOrLoad];
 }
 
 - (void)setupStatusItem {

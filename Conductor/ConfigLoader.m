@@ -58,10 +58,12 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     [[Alerts sharedAlerts] show:message duration:5.0];
 }
 
-- (void)createConfigiurationIfNeeded {
+- (void)createConfigurationOrLoad {
     NSString *filename = [ConfigPath stringByStandardizingPath];
     BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:filename];
-    if (!exists) {
+    if (exists) {
+        [self reload];
+    } else {
         [self createConfigInFile:filename];
     }
 }

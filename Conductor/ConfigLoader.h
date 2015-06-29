@@ -1,6 +1,6 @@
 @interface ConfigLoader : NSObject
 
 - (void)reload;
-- (void)createConfigiurationIfNeeded;
+- (void)createConfigurationOrLoad;
 
 @end
