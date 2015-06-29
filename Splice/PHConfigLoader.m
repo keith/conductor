@@ -14,7 +14,7 @@
 
 @end
 
-static NSString *PHConfigPath = @"~/.phoenix.js";
+static NSString *PHConfigPath = @"~/.splice.js";
 
 @implementation PHConfigLoader
 
@@ -88,7 +88,7 @@ static NSString *PHConfigPath = @"~/.phoenix.js";
     [self setupAPI:ctx];
 
     [ctx evaluateScript:config];
-    [[PHAlerts sharedAlerts] show:@"Phoenix config loaded" duration:1.0];
+    [[PHAlerts sharedAlerts] show:@"Splice config loaded" duration:1.0];
 }
 
 - (void)setupAPI:(JSContext *)ctx {

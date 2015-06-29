@@ -9,7 +9,7 @@
 
     if (!enabled) {
         NSRunAlertPanel(@"Enable Accessibility First",
-                        @"Find the little popup right behind this one, click \"Open System Preferences\" and enable Phoenix. Then launch Phoenix again.",
+                        @"Find the little popup right behind this one, click \"Open System Preferences\" and enable Splice. Then launch Splice again.",
                         @"Quit",
                         nil,
                         nil);
