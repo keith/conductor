@@ -187,7 +187,6 @@
 			dependencies = (
 			);
 			name = Splice;
-			productName = Phoenix;
 			productReference = 94C6022A1849D3B9005E7DB3 /* Splice.app */;
 			productType = "com.apple.product-type.application";
 		};
