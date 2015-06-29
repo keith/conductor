@@ -144,8 +144,8 @@ static NSMutableDictionary *relocatableKeys;
 
 
 
-static NSMutableDictionary *PHHotKeys;
-static UInt32 PHHotKeyLastCarbonID;
+static NSMutableDictionary *HotKeys;
+static UInt32 HotKeyLastCarbonID;
 
 @interface HotKey ()
 
@@ -156,11 +156,11 @@ static UInt32 PHHotKeyLastCarbonID;
 
 @implementation HotKey
 
-static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, EventRef inEvent, void *inUserData) {
+static OSStatus HotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, EventRef inEvent, void *inUserData) {
     EventHotKeyID eventID;
     GetEventParameter(inEvent, kEventParamDirectObject, typeEventHotKeyID, NULL, sizeof(eventID), NULL, &eventID);
 
-    HotKey *hotkey = PHHotKeys[@(eventID.id)];
+    HotKey *hotkey = HotKeys[@(eventID.id)];
     return (hotkey.handler() ? noErr : eventNotHandledErr);
 }
 
@@ -170,9 +170,9 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
         return;
     settedUp = YES;
 
-    PHHotKeys = [NSMutableDictionary dictionary];
+    HotKeys = [NSMutableDictionary dictionary];
     EventTypeSpec hotKeyPressedSpec = { .eventClass = kEventClassKeyboard, .eventKind = kEventHotKeyPressed };
-    InstallEventHandler(GetEventDispatcherTarget(), PHHotKeyCarbonCallback, 1, &hotKeyPressedSpec, NULL, NULL);
+    InstallEventHandler(GetEventDispatcherTarget(), HotKeyCarbonCallback, 1, &hotKeyPressedSpec, NULL, NULL);
 }
 
 + (HotKey *)withKey:(NSString *)key mods:(NSArray *)mods handler:(CONHotKeyHandler)handler {
@@ -189,7 +189,7 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
     UInt32 key = [HotKeyTranslator keyCodeForString:self.key];
     uint32 mods = [HotKeyTranslator modifierFlagsForStrings:self.mods];
 
-    self.internalRegistrationNumber = ++PHHotKeyLastCarbonID;
+    self.internalRegistrationNumber = ++HotKeyLastCarbonID;
 	EventHotKeyID hotKeyID = { .signature = 'FNYX', .id = self.internalRegistrationNumber };
     EventHotKeyRef carbonHotKey = NULL;
     OSStatus status = RegisterEventHotKey(key, mods, hotKeyID, GetEventDispatcherTarget(), kEventHotKeyExclusive, &carbonHotKey);
@@ -197,7 +197,7 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
     self.carbonHotKey = carbonHotKey;
 
     if (status == noErr) {
-        PHHotKeys[@(self.internalRegistrationNumber)] = self;
+        HotKeys[@(self.internalRegistrationNumber)] = self;
     }
 
     return status == noErr;
@@ -208,7 +208,7 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
         return;
 
     UnregisterEventHotKey(self.carbonHotKey);
-    [PHHotKeys removeObjectForKey:@(self.internalRegistrationNumber)];
+    [HotKeys removeObjectForKey:@(self.internalRegistrationNumber)];
     self.internalRegistrationNumber = 0;
 }
 
