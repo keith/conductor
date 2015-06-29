@@ -9,12 +9,6 @@
 
 @end
 
-@protocol PHAlertHoraMortisNostraeDelegate <NSObject>
-
-- (void)oraPro:(id)nobis;
-
-@end
-
 @interface AlertWindowController : NSWindowController
 
 @property (weak) id<AlertDelegate> delegate;
