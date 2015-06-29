@@ -30,7 +30,7 @@
 		94CF94D4184C527A00E63DE0 /* PHOpenAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94D3184C527A00E63DE0 /* PHOpenAtLogin.m */; };
 		94CF94DF184C5F7700E63DE0 /* PHConfigLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94DE184C5F7700E63DE0 /* PHConfigLoader.m */; };
 		94FF5A74184B142B001A0315 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FF5A73184B142A001A0315 /* JavaScriptCore.framework */; };
-		9623D39D194DBDE600D1F92A /* Phoenix.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9623D39C194DBDE600D1F92A /* Phoenix.icns */; };
+		9623D39D194DBDE600D1F92A /* Splice.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9623D39C194DBDE600D1F92A /* Splice.icns */; };
 		C25627A219B9870500AE2CCF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C25627A119B9870500AE2CCF /* IOKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,15 +43,15 @@
 		949D56E0184D016E008E92DE /* AlertWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertWindow.xib; sourceTree = "<group>"; };
 		949D56E3184D0B30008E92DE /* PHPathWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHPathWatcher.h; sourceTree = "<group>"; };
 		949D56E4184D0B30008E92DE /* PHPathWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHPathWatcher.m; sourceTree = "<group>"; };
-		94C6022A1849D3B9005E7DB3 /* Phoenix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phoenix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94C6022A1849D3B9005E7DB3 /* Splice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C6022D1849D3B9005E7DB3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		94C602301849D3B9005E7DB3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		94C602311849D3B9005E7DB3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		94C602321849D3B9005E7DB3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		94C602351849D3B9005E7DB3 /* Phoenix-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Phoenix-Info.plist"; sourceTree = "<group>"; };
+		94C602351849D3B9005E7DB3 /* Splice-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Splice-Info.plist"; sourceTree = "<group>"; };
 		94C602371849D3B9005E7DB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		94C602391849D3B9005E7DB3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		94C6023B1849D3B9005E7DB3 /* Phoenix-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Phoenix-Prefix.pch"; sourceTree = "<group>"; };
+		94C6023B1849D3B9005E7DB3 /* Splice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Splice-Prefix.pch"; sourceTree = "<group>"; };
 		94C6023D1849D3B9005E7DB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		94C6023F1849D3B9005E7DB3 /* PHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHAppDelegate.h; sourceTree = "<group>"; };
 		94C602401849D3B9005E7DB3 /* PHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHAppDelegate.m; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 		94CF94DD184C5F7700E63DE0 /* PHConfigLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHConfigLoader.h; sourceTree = "<group>"; };
 		94CF94DE184C5F7700E63DE0 /* PHConfigLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHConfigLoader.m; sourceTree = "<group>"; };
 		94FF5A73184B142A001A0315 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		9623D39C194DBDE600D1F92A /* Phoenix.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Phoenix.icns; sourceTree = "<group>"; };
+		9623D39C194DBDE600D1F92A /* Splice.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Splice.icns; sourceTree = "<group>"; };
 		C25627A119B9870500AE2CCF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -135,7 +135,7 @@
 		94C6022B1849D3B9005E7DB3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				94C6022A1849D3B9005E7DB3 /* Phoenix.app */,
+				94C6022A1849D3B9005E7DB3 /* Splice.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -182,11 +182,11 @@
 		94C602341849D3B9005E7DB3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9623D39C194DBDE600D1F92A /* Phoenix.icns */,
-				94C602351849D3B9005E7DB3 /* Phoenix-Info.plist */,
+				9623D39C194DBDE600D1F92A /* Splice.icns */,
+				94C602351849D3B9005E7DB3 /* Splice-Info.plist */,
 				94C602361849D3B9005E7DB3 /* InfoPlist.strings */,
 				94C602391849D3B9005E7DB3 /* main.m */,
-				94C6023B1849D3B9005E7DB3 /* Phoenix-Prefix.pch */,
+				94C6023B1849D3B9005E7DB3 /* Splice-Prefix.pch */,
 				94C6023C1849D3B9005E7DB3 /* Credits.rtf */,
 			);
 			path = "Supporting Files";
@@ -214,9 +214,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		94C602291849D3B9005E7DB3 /* Phoenix */ = {
+		94C602291849D3B9005E7DB3 /* Splice */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94C6025B1849D3B9005E7DB3 /* Build configuration list for PBXNativeTarget "Phoenix" */;
+			buildConfigurationList = 94C6025B1849D3B9005E7DB3 /* Build configuration list for PBXNativeTarget "Splice" */;
 			buildPhases = (
 				94C602261849D3B9005E7DB3 /* Sources */,
 				94C602271849D3B9005E7DB3 /* Frameworks */,
@@ -227,9 +227,9 @@
 			);
 			dependencies = (
 			);
-			name = Phoenix;
+			name = Splice;
 			productName = Phoenix;
-			productReference = 94C6022A1849D3B9005E7DB3 /* Phoenix.app */;
+			productReference = 94C6022A1849D3B9005E7DB3 /* Splice.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -242,7 +242,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Steven;
 			};
-			buildConfigurationList = 94C602251849D3B9005E7DB3 /* Build configuration list for PBXProject "Phoenix" */;
+			buildConfigurationList = 94C602251849D3B9005E7DB3 /* Build configuration list for PBXProject "Splice" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -255,7 +255,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				94C602291849D3B9005E7DB3 /* Phoenix */,
+				94C602291849D3B9005E7DB3 /* Splice */,
 			);
 		};
 /* End PBXProject section */
@@ -267,7 +267,7 @@
 			files = (
 				949D56E1184D016E008E92DE /* AlertWindow.xib in Resources */,
 				94CF94CD184C509100E63DE0 /* statusitem.png in Resources */,
-				9623D39D194DBDE600D1F92A /* Phoenix.icns in Resources */,
+				9623D39D194DBDE600D1F92A /* Splice.icns in Resources */,
 				94C602381849D3B9005E7DB3 /* InfoPlist.strings in Resources */,
 				94C602461849D3B9005E7DB3 /* Images.xcassets in Resources */,
 				94C6023E1849D3B9005E7DB3 /* Credits.rtf in Resources */,
@@ -450,9 +450,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Phoenix/Supporting Files/Phoenix-Prefix.pch";
-				INFOPLIST_FILE = "Phoenix/Supporting Files/Phoenix-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Phoenix/Supporting Files/Splice-Prefix.pch";
+				INFOPLIST_FILE = "Phoenix/Supporting Files/Splice-Info.plist";
+				PRODUCT_NAME = Splice;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -463,10 +463,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Phoenix/Supporting Files/Phoenix-Prefix.pch";
+				GCC_PREFIX_HEADER = "Phoenix/Supporting Files/Splice-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "Phoenix/Supporting Files/Phoenix-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Phoenix/Supporting Files/Splice-Info.plist";
+				PRODUCT_NAME = Splice;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -474,7 +474,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		94C602251849D3B9005E7DB3 /* Build configuration list for PBXProject "Phoenix" */ = {
+		94C602251849D3B9005E7DB3 /* Build configuration list for PBXProject "Splice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94C602591849D3B9005E7DB3 /* Debug */,
@@ -483,7 +483,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		94C6025B1849D3B9005E7DB3 /* Build configuration list for PBXNativeTarget "Phoenix" */ = {
+		94C6025B1849D3B9005E7DB3 /* Build configuration list for PBXNativeTarget "Splice" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94C6025C1849D3B9005E7DB3 /* Debug */,

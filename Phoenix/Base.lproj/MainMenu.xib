@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -10,13 +10,13 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <menu title="AMainMenu" systemMenu="main" id="29">
             <items>
-                <menuItem title="Phoenix" id="56">
-                    <menu key="submenu" title="Phoenix" systemMenu="apple" id="57">
+                <menuItem title="Splice" id="56">
+                    <menu key="submenu" title="Splice" systemMenu="apple" id="57">
                         <items>
-                            <menuItem title="About Phoenix" id="58">
+                            <menuItem title="About Splice" id="58">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
@@ -35,7 +35,7 @@
                             <menuItem isSeparatorItem="YES" id="144">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Hide Phoenix" keyEquivalent="h" id="134">
+                            <menuItem title="Hide Splice" keyEquivalent="h" id="134">
                                 <connections>
                                     <action selector="hide:" target="-1" id="367"/>
                                 </connections>
@@ -54,7 +54,7 @@
                             <menuItem isSeparatorItem="YES" id="149">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Quit Phoenix" keyEquivalent="q" id="136">
+                            <menuItem title="Quit Splice" keyEquivalent="q" id="136">
                                 <connections>
                                     <action selector="terminate:" target="-3" id="449"/>
                                 </connections>
@@ -636,7 +636,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Help" systemMenu="help" id="491">
                         <items>
-                            <menuItem title="Phoenix Help" keyEquivalent="?" id="492">
+                            <menuItem title="Splice Help" keyEquivalent="?" id="492">
                                 <connections>
                                     <action selector="showHelp:" target="-1" id="493"/>
                                 </connections>
@@ -661,7 +661,7 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="073-tk-0GS"/>
-                <menuItem title="About Phoenix" id="gbV-5V-Bf7">
+                <menuItem title="About Splice" id="gbV-5V-Bf7">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showAboutPanel:" target="494" id="4d7-hk-h8D"/>
