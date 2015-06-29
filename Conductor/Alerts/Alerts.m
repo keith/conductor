@@ -29,18 +29,10 @@
     static Alerts *sharedAlerts;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedAlerts = [[Alerts alloc] init];
+        sharedAlerts = [Alerts new];
+        sharedAlerts.visibleAlerts = [NSMutableArray array];
     });
     return sharedAlerts;
-}
-
-- (instancetype)init {
-    self = [super init];
-    if (!self) { return nil; }
-
-    self.visibleAlerts = [NSMutableArray array];
-
-    return self;
 }
 
 + (void)show:(NSString *)oneLineMsg duration:(CGFloat)duration {
