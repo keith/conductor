@@ -1,5 +1,5 @@
 #import <QuartzCore/QuartzCore.h>
-#import "PHAlerts.h"
+#import "Alerts.h"
 
 @protocol PHAlertHoraMortisNostraeDelegate <NSObject>
 
@@ -15,19 +15,19 @@
 
 @end
 
-@interface PHAlerts () <PHAlertHoraMortisNostraeDelegate>
+@interface Alerts () <PHAlertHoraMortisNostraeDelegate>
 
 @property NSMutableArray *visibleAlerts;
 
 @end
 
-@implementation PHAlerts
+@implementation Alerts
 
-+ (PHAlerts *)sharedAlerts {
-    static PHAlerts *sharedAlerts;
++ (Alerts *)sharedAlerts {
+    static Alerts *sharedAlerts;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedAlerts = [[PHAlerts alloc] init];
+        sharedAlerts = [[Alerts alloc] init];
     });
     return sharedAlerts;
 }
@@ -97,7 +97,7 @@
     self.window.opaque = NO;
     self.window.level = NSFloatingWindowLevel;
     self.window.ignoresMouseEvents = YES;
-    if ([[PHAlerts sharedAlerts] alertAnimates]) {
+    if ([[Alerts sharedAlerts] alertAnimates]) {
         self.window.animationBehavior = NSWindowAnimationBehaviorAlertPanel;
     } else {
         self.window.animationBehavior = NSWindowAnimationBehaviorNone;

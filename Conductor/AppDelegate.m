@@ -1,15 +1,15 @@
-#import "PHAppDelegate.h"
-#import "PHOpenAtLogin.h"
-#import "PHUniversalAccessHelper.h"
+#import "AppDelegate.h"
+#import "OpenAtLogin.h"
+#import "UniversalAccessHelper.h"
 
-@implementation PHAppDelegate
+@implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    [PHUniversalAccessHelper complainIfNeeded];
+    [UniversalAccessHelper complainIfNeeded];
 
     [self setupStatusItem];
 
-    self.configLoader = [[PHConfigLoader alloc] init];
+    self.configLoader = [[ConfigLoader alloc] init];
     [self.configLoader createConfigiurationIfNeeded];
 }
 
@@ -25,7 +25,7 @@
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
     NSCellStateValue state = NSOffState;
-    if ([PHOpenAtLogin opensAtLogin]) {
+    if ([OpenAtLogin opensAtLogin]) {
         state = NSOnState;
     }
 
@@ -45,7 +45,7 @@
 
 - (IBAction)toggleOpenAtLogin:(NSMenuItem *)sender {
     BOOL openAtLogin = sender.state == NSOffState;
-    [PHOpenAtLogin setOpensAtLogin:openAtLogin];
+    [OpenAtLogin setOpensAtLogin:openAtLogin];
 }
 
 @end

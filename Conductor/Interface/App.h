@@ -1,4 +1,4 @@
-@protocol PHAppJSExport <JSExport>
+@protocol AppJSExport <JSExport>
 
 @property (readonly) pid_t pid;
 
@@ -17,7 +17,7 @@
 
 @end
 
-@interface PHApp : NSObject <PHAppJSExport>
+@interface App : NSObject <AppJSExport>
 
 - (id)initWithPID:(pid_t)pid;
 - (id)initWithRunningApp:(NSRunningApplication *)app;

@@ -1,14 +1,14 @@
-#import "NSScreen+PHExtension.h"
-#import "PHApp.h"
-#import "PHWindow.h"
+#import "NSScreen+JSInterface.h"
+#import "App.h"
+#import "Window.h"
 
-@interface PHWindow ()
+@interface Window ()
 
 @property CFTypeRef window;
 
 @end
 
-@implementation PHWindow
+@implementation Window
 
 - (id)initWithElement:(AXUIElementRef)win {
     if (self = [super init]) {
@@ -22,7 +22,7 @@
         CFRelease(self.window);
 }
 
-- (BOOL)isEqual:(PHWindow *)other {
+- (BOOL)isEqual:(Window *)other {
     return ([self isKindOfClass: [other class]] &&
             CFEqual(self.window, other.window));
 }
@@ -34,7 +34,7 @@
 + (NSArray *)allWindows {
     NSMutableArray *windows = [NSMutableArray array];
 
-    for (PHApp *app in [PHApp runningApps]) {
+    for (App *app in [App runningApps]) {
         [windows addObjectsFromArray:[app allWindows]];
     }
 
@@ -46,7 +46,7 @@
 }
 
 + (NSArray *)visibleWindows {
-    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow *win, NSDictionary *bindings) {
+    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *win, NSDictionary *bindings) {
         return ![[win app] isHidden]
         && ![win isWindowMinimized]
         && [win isNormalWindow];
@@ -92,7 +92,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
                     _AXUIElementGetWindow(win, &tmp); //XXX: undocumented API.  but the alternative is horrifying.
                     if (tmp == win_id) {
                         // finally got it, insert in the result array.
-                        [windows addObject:[[PHWindow alloc] initWithElement:win]];
+                        [windows addObject:[[Window alloc] initWithElement:win]];
                         break;
                     }
                 }
@@ -107,13 +107,13 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 }
 
 - (NSArray *)otherWindowsOnSameScreen {
-    return [[PHWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow *win, NSDictionary *bindings) {
+    return [[Window visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *win, NSDictionary *bindings) {
         return !CFEqual(self.window, win.window) && [[self screen] isEqual: [win screen]];
     }]];
 }
 
 - (NSArray *)otherWindowsOnAllScreens {
-    return [[PHWindow visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow *win, NSDictionary *bindings) {
+    return [[Window visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *win, NSDictionary *bindings) {
         return !CFEqual(self.window, win.window);
     }]];
 }
@@ -128,7 +128,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
     return systemWideElement;
 }
 
-+ (PHWindow *)focusedWindow {
++ (Window *)focusedWindow {
     CFTypeRef app;
     AXUIElementCopyAttributeValue([self systemWideElement], kAXFocusedApplicationAttribute, &app);
 
@@ -139,7 +139,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
         CFRelease(app);
 
         if (result == kAXErrorSuccess) {
-            PHWindow *window = [[PHWindow alloc] init];
+            Window *window = [[Window alloc] init];
             window.window = win;
             return window;
         }
@@ -272,8 +272,8 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
         return 0;
 }
 
-- (PHApp *)app {
-    return [[PHApp alloc] initWithPID:[self processIdentifier]];
+- (App *)app {
+    return [[App alloc] initWithPID:[self processIdentifier]];
 }
 
 - (id)getWindowProperty:(NSString *)propType withDefaultValue:(id)defaultValue {
@@ -324,13 +324,13 @@ NSPoint SDMidpoint(NSRect r) {
 - (NSArray *)windowsInDirectionFn:(double(^)(double angle))whichDirectionFn
                 shouldDisregardFn:(BOOL(^)(double deltaX, double deltaY))shouldDisregardFn
 {
-    PHWindow *thisWindow = [PHWindow focusedWindow];
+    Window *thisWindow = [Window focusedWindow];
     NSPoint startingPoint = SDMidpoint([thisWindow frame]);
 
     NSArray *otherWindows = [thisWindow otherWindowsOnAllScreens];
     NSMutableArray *closestOtherWindows = [NSMutableArray arrayWithCapacity:[otherWindows count]];
 
-    for (PHWindow *win in otherWindows) {
+    for (Window *win in otherWindows) {
         NSPoint otherPoint = SDMidpoint([win frame]);
 
         double deltaX = otherPoint.x - startingPoint.x;
@@ -360,7 +360,7 @@ NSPoint SDMidpoint(NSRect r) {
 }
 
 - (void)focusFirstValidWindowIn:(NSArray *)closestWindows {
-    for (PHWindow *win in closestWindows) {
+    for (Window *win in closestWindows) {
         if ([win focusWindow])
             break;
     }

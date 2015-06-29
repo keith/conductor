@@ -11,5 +11,5 @@
 
 @end
 
-@interface NSScreen (PHExtension) <NSScreenJSExport>
+@interface NSScreen (JSInterface) <NSScreenJSExport>
 @end

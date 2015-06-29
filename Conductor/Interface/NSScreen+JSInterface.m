@@ -1,7 +1,7 @@
 #include <IOKit/graphics/IOGraphicsLib.h>
-#import "NSScreen+PHExtension.h"
+#import "NSScreen+JSInterface.h"
 
-@implementation NSScreen (PHExtension)
+@implementation NSScreen (JSInterface)
 
 - (CGRect)frameIncludingDockAndMenu {
     NSScreen *primaryScreen = [[NSScreen screens] objectAtIndex:0];

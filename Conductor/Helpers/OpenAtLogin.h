@@ -1,4 +1,4 @@
-@interface PHOpenAtLogin : NSObject
+@interface OpenAtLogin : NSObject
 
 + (BOOL)opensAtLogin;
 + (void)setOpensAtLogin:(BOOL)opensAtLogin;

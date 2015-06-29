@@ -1,6 +1,6 @@
-#import "PHUniversalAccessHelper.h"
+#import "UniversalAccessHelper.h"
 
-@implementation PHUniversalAccessHelper
+@implementation UniversalAccessHelper
 
 + (void)complainIfNeeded {
     id key = (__bridge id)(kAXTrustedCheckOptionPrompt);

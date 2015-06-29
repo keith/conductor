@@ -1,10 +1,10 @@
 @import Carbon;
-#import "PHHotKey.h"
+#import "HotKey.h"
 
-@interface PHHotKeyTranslator : NSObject
+@interface HotKeyTranslator : NSObject
 @end
 
-@implementation PHHotKeyTranslator
+@implementation HotKeyTranslator
 
 static NSMutableDictionary *relocatableKeys;
 
@@ -147,20 +147,20 @@ static NSMutableDictionary *relocatableKeys;
 static NSMutableDictionary *PHHotKeys;
 static UInt32 PHHotKeyLastCarbonID;
 
-@interface PHHotKey ()
+@interface HotKey ()
 
 @property EventHotKeyRef carbonHotKey;
 @property UInt32 internalRegistrationNumber;
 
 @end
 
-@implementation PHHotKey
+@implementation HotKey
 
 static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, EventRef inEvent, void *inUserData) {
     EventHotKeyID eventID;
     GetEventParameter(inEvent, kEventParamDirectObject, typeEventHotKeyID, NULL, sizeof(eventID), NULL, &eventID);
 
-    PHHotKey *hotkey = PHHotKeys[@(eventID.id)];
+    HotKey *hotkey = PHHotKeys[@(eventID.id)];
     return (hotkey.handler() ? noErr : eventNotHandledErr);
 }
 
@@ -175,8 +175,8 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
     InstallEventHandler(GetEventDispatcherTarget(), PHHotKeyCarbonCallback, 1, &hotKeyPressedSpec, NULL, NULL);
 }
 
-+ (PHHotKey *)withKey:(NSString *)key mods:(NSArray *)mods handler:(PHHotKeyHandler)handler {
-    PHHotKey *hotkey = [[PHHotKey alloc] init];
++ (HotKey *)withKey:(NSString *)key mods:(NSArray *)mods handler:(CONHotKeyHandler)handler {
+    HotKey *hotkey = [[HotKey alloc] init];
     hotkey.key = key;
     hotkey.mods = mods;
     hotkey.handler = handler;
@@ -184,10 +184,10 @@ static OSStatus PHHotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Eve
 }
 
 - (BOOL)enable {
-    [PHHotKey setup];
+    [HotKey setup];
 
-    UInt32 key = [PHHotKeyTranslator keyCodeForString:self.key];
-    uint32 mods = [PHHotKeyTranslator modifierFlagsForStrings:self.mods];
+    UInt32 key = [HotKeyTranslator keyCodeForString:self.key];
+    uint32 mods = [HotKeyTranslator modifierFlagsForStrings:self.mods];
 
     self.internalRegistrationNumber = ++PHHotKeyLastCarbonID;
 	EventHotKeyID hotKeyID = { .signature = 'FNYX', .id = self.internalRegistrationNumber };

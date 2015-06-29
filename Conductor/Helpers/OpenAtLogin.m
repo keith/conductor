@@ -1,6 +1,6 @@
-#import "PHOpenAtLogin.h"
+#import "OpenAtLogin.h"
 
-@implementation PHOpenAtLogin
+@implementation OpenAtLogin
 
 + (LSSharedFileListRef)sharedFileList {
     static LSSharedFileListRef sharedFileList;

@@ -1,13 +1,13 @@
-#import "NSScreen+PHExtension.h"
-#import "PHAlerts.h"
-#import "PHApp.h"
-#import "PHConfigLoader.h"
-#import "PHHotKey.h"
-#import "PHMousePosition.h"
-#import "PHPathWatcher.h"
-#import "PHWindow.h"
+#import "NSScreen+JSInterface.h"
+#import "Alerts.h"
+#import "App.h"
+#import "ConfigLoader.h"
+#import "HotKey.h"
+#import "MousePosition.h"
+#import "PathWatcher.h"
+#import "Window.h"
 
-@interface PHConfigLoader ()
+@interface ConfigLoader ()
 
 @property NSMutableArray *hotkeys;
 @property NSMutableArray *watchers;
@@ -16,7 +16,7 @@
 
 static NSString *PHConfigPath = @"~/.conductor.js";
 
-@implementation PHConfigLoader
+@implementation ConfigLoader
 
 - (id)init {
     self = [super init];
@@ -31,13 +31,13 @@ static NSString *PHConfigPath = @"~/.conductor.js";
 }
 
 - (void)addConfigListener:(NSString *)path {
-    for (PHPathWatcher *watcher in self.watchers) {
+    for (PathWatcher *watcher in self.watchers) {
         if ([watcher.path isEqualToString:path]) {
             return;
         }
     }
 
-    PHPathWatcher *watcher = [PHPathWatcher watcherFor:path handler:^{
+    PathWatcher *watcher = [PathWatcher watcherFor:path handler:^{
         [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(reload) object:nil];
         [self performSelector:@selector(reload) withObject:nil afterDelay:0.25];
     }];
@@ -55,7 +55,7 @@ static NSString *PHConfigPath = @"~/.conductor.js";
                                             contents:[@"" dataUsingEncoding:NSUTF8StringEncoding]
                                           attributes:nil];
     NSString *message = [NSString stringWithFormat:@"I just created %@ for you :)", filename];
-    [[PHAlerts sharedAlerts] show:message duration:5.0];
+    [[Alerts sharedAlerts] show:message duration:5.0];
 }
 
 - (void)createConfigiurationIfNeeded {
@@ -76,7 +76,7 @@ static NSString *PHConfigPath = @"~/.conductor.js";
 
     if (!config) {
         NSString *message = [NSString stringWithFormat:@"No configuration found at %@\nRelaunch to create one automatically", filename];
-        [[PHAlerts sharedAlerts] show:message duration:5.0];
+        [[Alerts sharedAlerts] show:message duration:5.0];
         return;
     }
 
@@ -86,7 +86,7 @@ static NSString *PHConfigPath = @"~/.conductor.js";
     JSContext *ctx = [[JSContext alloc] initWithVirtualMachine:[[JSVirtualMachine alloc] init]];
 
     ctx.exceptionHandler = ^(JSContext *context, JSValue *val) {
-        [[PHAlerts sharedAlerts] show:[NSString stringWithFormat:@"[js exception] %@", val] duration:3.0];
+        [[Alerts sharedAlerts] show:[NSString stringWithFormat:@"[js exception] %@", val] duration:3.0];
     };
 
     NSURL *_jsURL = [[NSBundle mainBundle] URLForResource:@"underscore-min" withExtension:@"js"];
@@ -97,7 +97,7 @@ static NSString *PHConfigPath = @"~/.conductor.js";
     [self setupAPI:ctx];
 
     [ctx evaluateScript:config];
-    [[PHAlerts sharedAlerts] show:@"Conductor config loaded" duration:1.0];
+    [[Alerts sharedAlerts] show:@"Conductor config loaded" duration:1.0];
 }
 
 - (void)setupAPI:(JSContext *)ctx {
@@ -116,7 +116,7 @@ static NSString *PHConfigPath = @"~/.conductor.js";
         if (isnan(duration))
             duration = 2.0;
 
-        [[PHAlerts sharedAlerts] show:str duration:duration];
+        [[Alerts sharedAlerts] show:str duration:duration];
     };
 
     api[@"log"] = ^(NSString *msg) {
@@ -124,7 +124,7 @@ static NSString *PHConfigPath = @"~/.conductor.js";
     };
 
     api[@"bind"] = ^(NSString *key, NSArray *mods, JSValue *handler) {
-        PHHotKey *hotkey = [PHHotKey withKey:key mods:mods handler:^BOOL{
+        HotKey *hotkey = [HotKey withKey:key mods:mods handler:^BOOL{
             return [[handler callWithArguments:@[]] toBool];
         }];
         [self.hotkeys addObject:hotkey];
@@ -180,14 +180,14 @@ static NSString *PHConfigPath = @"~/.conductor.js";
         }
     };
 
-    ctx[@"Window"] = [PHWindow self];
-    ctx[@"App"] = [PHApp self];
+    ctx[@"Window"] = [Window self];
+    ctx[@"App"] = [App self];
     ctx[@"Screen"] = [NSScreen self];
-    ctx[@"MousePosition"] = [PHMousePosition self];
+    ctx[@"MousePosition"] = [MousePosition self];
 }
 
 - (void)showJsException: (id)arg {
-    [[PHAlerts sharedAlerts] show:[NSString stringWithFormat:@"[js exception] %@", arg] duration:3.0];
+    [[Alerts sharedAlerts] show:[NSString stringWithFormat:@"[js exception] %@", arg] duration:3.0];
 }
 
 @end

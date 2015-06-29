@@ -1,11 +1,11 @@
-@class PHApp;
-@class PHWindow;
+@class App;
+@class Window;
 
-@protocol PHWindowJSExport <JSExport>
+@protocol WindowJSExport <JSExport>
 
 + (NSArray *)allWindows;
 + (NSArray *)visibleWindows;
-+ (PHWindow *)focusedWindow;
++ (Window *)focusedWindow;
 + (NSArray *)visibleWindowsMostRecentFirst;
 - (NSArray *)otherWindowsOnSameScreen;
 - (NSArray *)otherWindowsOnAllScreens;
@@ -21,7 +21,7 @@
 - (void)unMinimize;
 
 - (NSScreen *)screen;
-- (PHApp *)app;
+- (App *)app;
 
 - (BOOL)focusWindow;
 - (NSArray *)windowsToWest;
@@ -39,7 +39,7 @@
 
 @end
 
-@interface PHWindow : NSObject <PHWindowJSExport>
+@interface Window : NSObject <WindowJSExport>
 
 - (id)initWithElement:(AXUIElementRef)win;
 

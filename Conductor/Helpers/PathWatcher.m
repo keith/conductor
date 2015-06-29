@@ -1,6 +1,6 @@
-#import "PHPathWatcher.h"
+#import "PathWatcher.h"
 
-@interface PHPathWatcher ()
+@interface PathWatcher ()
 
 @property (nonatomic) FSEventStreamRef stream;
 @property (nonatomic) NSString *path;
@@ -8,7 +8,7 @@
 
 @end
 
-@implementation PHPathWatcher
+@implementation PathWatcher
 
 void fsEventsCallback(ConstFSEventStreamRef streamRef,
                       void *clientCallBackInfo,
@@ -17,12 +17,12 @@ void fsEventsCallback(ConstFSEventStreamRef streamRef,
                       const FSEventStreamEventFlags eventFlags[],
                       const FSEventStreamEventId eventIds[])
 {
-    PHPathWatcher *watcher = (__bridge PHPathWatcher *)clientCallBackInfo;
+    PathWatcher *watcher = (__bridge PathWatcher *)clientCallBackInfo;
     [watcher fileChanged];
 }
 
-+ (PHPathWatcher *)watcherFor:(NSString *)path handler:(void(^)())handler {
-    PHPathWatcher *watcher = [[PHPathWatcher alloc] init];
++ (PathWatcher *)watcherFor:(NSString *)path handler:(void(^)())handler {
+    PathWatcher *watcher = [[PathWatcher alloc] init];
     watcher.handler = handler;
     watcher.path = path;
     [watcher setup];

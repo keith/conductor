@@ -646,7 +646,7 @@
                 </menuItem>
             </items>
         </menu>
-        <customObject id="494" customClass="PHAppDelegate">
+        <customObject id="494" customClass="AppDelegate">
             <connections>
                 <outlet property="statusItemMenu" destination="nou-Xh-13P" id="nth-ph-tM3"/>
             </connections>

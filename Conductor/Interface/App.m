@@ -1,7 +1,7 @@
-#import "PHApp.h"
-#import "PHWindow.h"
+#import "App.h"
+#import "Window.h"
 
-@interface PHApp ()
+@interface App ()
 
 @property AXUIElementRef app;
 @property (readwrite) pid_t pid;
@@ -12,13 +12,13 @@
 
 @end
 
-@implementation PHApp
+@implementation App
 
 + (NSArray *)runningApps {
     NSMutableArray *apps = [NSMutableArray array];
 
     for (NSRunningApplication *runningApp in [[NSWorkspace sharedWorkspace] runningApplications]) {
-        PHApp *app = [[PHApp alloc] initWithPID:[runningApp processIdentifier]];
+        App *app = [[App alloc] initWithPID:[runningApp processIdentifier]];
         [apps addObject:app];
     }
 
@@ -51,7 +51,7 @@
         CFRelease(self.app);
 }
 
-- (BOOL)isEqual:(PHApp *)object {
+- (BOOL)isEqual:(App *)object {
     return ([self isKindOfClass: [object class]] &&
             self.pid == object.pid);
 }
@@ -61,7 +61,7 @@
 }
 
 - (NSArray *)visibleWindows {
-    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(PHWindow *win, NSDictionary *bindings) {
+    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *win, NSDictionary *bindings) {
         return ![[win app] isHidden]
         && ![win isWindowMinimized]
         && [win isNormalWindow];
@@ -77,7 +77,7 @@
         for (NSInteger i = 0; i < CFArrayGetCount(_windows); i++) {
             AXUIElementRef win = CFArrayGetValueAtIndex(_windows, i);
 
-            PHWindow *window = [[PHWindow alloc] initWithElement:win];
+            Window *window = [[Window alloc] initWithElement:win];
             [windows addObject:window];
         }
         CFRelease(_windows);

@@ -1,9 +1,9 @@
-@interface PHAlerts : NSObject
+@interface Alerts : NSObject
 
 @property (nonatomic) CGFloat alertDisappearDelay;
 @property (nonatomic) BOOL alertAnimates;
 
-+ (PHAlerts *)sharedAlerts;
++ (Alerts *)sharedAlerts;
 
 - (void)show:(NSString *)oneLineMsg;
 - (void)show:(NSString *)oneLineMsg duration:(CGFloat)duration;

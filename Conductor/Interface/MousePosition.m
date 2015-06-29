@@ -1,6 +1,6 @@
-#import "PHMousePosition.h"
+#import "MousePosition.h"
 
-@implementation PHMousePosition
+@implementation MousePosition
 
 + (NSPoint)capture {
     CGEventRef ourEvent = CGEventCreate(NULL);

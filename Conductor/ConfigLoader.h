@@ -1,4 +1,4 @@
-@interface PHConfigLoader : NSObject
+@interface ConfigLoader : NSObject
 
 - (void)reload;
 - (void)createConfigiurationIfNeeded;
