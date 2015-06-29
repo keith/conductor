@@ -55,7 +55,15 @@ static NSString *PHConfigPath = @"~/.splice.js";
                                             contents:[@"" dataUsingEncoding:NSUTF8StringEncoding]
                                           attributes:nil];
     NSString *message = [NSString stringWithFormat:@"I just created %@ for you :)", filename];
-    [[PHAlerts sharedAlerts] show:message duration:7.0];
+    [[PHAlerts sharedAlerts] show:message duration:5.0];
+}
+
+- (void)createConfigiurationIfNeeded {
+    NSString *filename = [PHConfigPath stringByStandardizingPath];
+    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:filename];
+    if (!exists) {
+        [self createConfigInFile:filename];
+    }
 }
 
 - (void)reload {
@@ -67,7 +75,8 @@ static NSString *PHConfigPath = @"~/.splice.js";
                                                     error:NULL];
 
     if (!config) {
-        [self createConfigInFile:filename];
+        NSString *message = [NSString stringWithFormat:@"No configuration found at %@\nRelaunch to create one automatically", filename];
+        [[PHAlerts sharedAlerts] show:message duration:5.0];
         return;
     }
 

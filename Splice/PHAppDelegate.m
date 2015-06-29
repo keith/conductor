@@ -10,18 +10,17 @@
     [self setupStatusItem];
 
     self.configLoader = [[PHConfigLoader alloc] init];
-    [self.configLoader reload];
+    [self.configLoader createConfigiurationIfNeeded];
 }
 
 - (void)setupStatusItem {
-    NSImage *img = [NSImage imageNamed:@"statusitem"];
-    [img setTemplate:YES];
+    NSImage *image = [NSImage imageNamed:@"statusitem"];
+    [image setTemplate:YES];
 
-    self.statusItem = [[NSStatusBar systemStatusBar]
-                       statusItemWithLength:NSVariableStatusItemLength];
-    [self.statusItem setHighlightMode:YES];
-    [self.statusItem setImage:img];
-    [self.statusItem setMenu:self.statusItemMenu];
+    self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    self.statusItem.highlightMode = YES;
+    self.statusItem.image = image;
+    self.statusItem.menu = self.statusItemMenu;
 }
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
