@@ -1,7 +1,6 @@
 @interface Alerts : NSObject
 
 @property (nonatomic) CGFloat alertDisappearDelay;
-@property (nonatomic) BOOL alertAnimates;
 
 + (Alerts *)sharedAlerts;
 

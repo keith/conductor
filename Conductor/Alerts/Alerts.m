@@ -1,5 +1,13 @@
-#import <QuartzCore/QuartzCore.h>
+@import QuartzCore;
 #import "Alerts.h"
+
+@class AlertWindowController;
+
+@protocol AlertDelegate <NSObject>
+
+- (void)alertClosed:(AlertWindowController *)alert;
+
+@end
 
 @protocol PHAlertHoraMortisNostraeDelegate <NSObject>
 
@@ -7,15 +15,15 @@
 
 @end
 
-@interface PHAlertWindowController : NSWindowController
+@interface AlertWindowController : NSWindowController
+
+@property (weak) id<AlertDelegate> delegate;
 
 - (void)show:(NSString *)oneLineMsg duration:(CGFloat)duration pushDownBy:(CGFloat)adjustment;
 
-@property (weak) id<PHAlertHoraMortisNostraeDelegate> delegate;
-
 @end
 
-@interface Alerts () <PHAlertHoraMortisNostraeDelegate>
+@interface Alerts () <AlertDelegate>
 
 @property NSMutableArray *visibleAlerts;
 
@@ -58,7 +66,7 @@
         CGRect screenRect = [currentScreen frame];
         absoluteTop = screenRect.size.height / 1.55;
     } else {
-        PHAlertWindowController *ctrl = [self.visibleAlerts lastObject];
+        AlertWindowController *ctrl = [self.visibleAlerts lastObject];
         absoluteTop = NSMinY([[ctrl window] frame]) - 3.0;
     }
 
@@ -66,43 +74,36 @@
         absoluteTop = NSMaxY([currentScreen visibleFrame]);
     }
 
-    PHAlertWindowController *alert = [[PHAlertWindowController alloc] init];
+    AlertWindowController *alert = [[AlertWindowController alloc] init];
     alert.delegate = self;
     [alert show:oneLineMsg duration:duration pushDownBy:absoluteTop];
     [self.visibleAlerts addObject:alert];
 }
 
-- (void)oraPro:(id)nobis {
-    [self.visibleAlerts removeObject:nobis];
+- (void)alertClosed:(AlertWindowController *)alert {
+    [self.visibleAlerts removeObject:alert];
 }
 
 @end
 
-@interface PHAlertWindowController ()
+@interface AlertWindowController ()
 
 @property (nonatomic) IBOutlet NSTextField *textField;
 @property (nonatomic) IBOutlet NSBox *box;
 
 @end
 
-@implementation PHAlertWindowController
+@implementation AlertWindowController
 
 - (NSString *)windowNibName {
     return @"AlertWindow";
 }
 
 - (void)windowDidLoad {
-    self.window.styleMask = NSBorderlessWindowMask;
     self.window.backgroundColor = [NSColor clearColor];
     self.window.opaque = NO;
     self.window.level = NSFloatingWindowLevel;
     self.window.ignoresMouseEvents = YES;
-    if ([[Alerts sharedAlerts] alertAnimates]) {
-        self.window.animationBehavior = NSWindowAnimationBehaviorAlertPanel;
-    } else {
-        self.window.animationBehavior = NSWindowAnimationBehaviorNone;
-    }
-//    self.collectionBehavior = NSWindowCollectionBehaviorCanJoinAllSpaces | NSWindowCollectionBehaviorStationary;
 }
 
 - (void)show:(NSString *)oneLineMsg duration:(CGFloat)duration pushDownBy:(CGFloat)adjustment {
@@ -145,7 +146,7 @@
     [[self window] orderOut:nil];
     [[self window] setAlphaValue:1.0];
 
-    [self.delegate oraPro:self];
+    [self.delegate alertClosed:self];
 }
 
 - (void)useTitleAndResize:(NSString *)title {
