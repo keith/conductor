@@ -14,7 +14,7 @@
 
 @end
 
-static NSString *PHConfigPath = @"~/.conductor.js";
+static NSString *const ConfigPath = @"~/.conductor.js";
 
 @implementation ConfigLoader
 
@@ -47,7 +47,7 @@ static NSString *PHConfigPath = @"~/.conductor.js";
 
 - (void)resetConfigListeners {
     [self.watchers removeAllObjects];
-    [self addConfigListener:PHConfigPath];
+    [self addConfigListener:ConfigPath];
 }
 
 - (void)createConfigInFile:(NSString *)filename {
@@ -59,7 +59,7 @@ static NSString *PHConfigPath = @"~/.conductor.js";
 }
 
 - (void)createConfigiurationIfNeeded {
-    NSString *filename = [PHConfigPath stringByStandardizingPath];
+    NSString *filename = [ConfigPath stringByStandardizingPath];
     BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:filename];
     if (!exists) {
         [self createConfigInFile:filename];
@@ -69,7 +69,7 @@ static NSString *PHConfigPath = @"~/.conductor.js";
 - (void)reload {
     [self resetConfigListeners];
 
-    NSString *filename = [PHConfigPath stringByStandardizingPath];
+    NSString *filename = [ConfigPath stringByStandardizingPath];
     NSString *config = [NSString stringWithContentsOfFile:filename
                                                  encoding:NSUTF8StringEncoding
                                                     error:NULL];
@@ -165,7 +165,7 @@ static NSString *PHConfigPath = @"~/.conductor.js";
         path = [path stringByStandardizingPath];
 
         if(! [path hasPrefix: @"/"]) {
-            NSString *configPath = [PHConfigPath stringByResolvingSymlinksInPath];
+            NSString *configPath = [ConfigPath stringByResolvingSymlinksInPath];
             NSURL *requirePathUrl = [NSURL URLWithString: path relativeToURL: [NSURL URLWithString: configPath]];
             path = [requirePathUrl absoluteString];
         }
