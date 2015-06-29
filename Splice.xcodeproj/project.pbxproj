@@ -22,8 +22,6 @@
 		94CF94C6184C45FA00E63DE0 /* PHApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94C2184C45FA00E63DE0 /* PHApp.m */; };
 		94CF94C7184C45FA00E63DE0 /* PHWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94C4184C45FA00E63DE0 /* PHWindow.m */; };
 		94CF94CA184C4E7D00E63DE0 /* PHUniversalAccessHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94C9184C4E7D00E63DE0 /* PHUniversalAccessHelper.m */; };
-		94CF94CD184C509100E63DE0 /* statusitem.png in Resources */ = {isa = PBXBuildFile; fileRef = 94CF94CB184C509100E63DE0 /* statusitem.png */; };
-		94CF94CE184C509100E63DE0 /* statusitem@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94CF94CC184C509100E63DE0 /* statusitem@2x.png */; };
 		94CF94D1184C50C700E63DE0 /* PHAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94D0184C50C700E63DE0 /* PHAlerts.m */; };
 		94CF94D4184C527A00E63DE0 /* PHOpenAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94D3184C527A00E63DE0 /* PHOpenAtLogin.m */; };
 		94CF94DF184C5F7700E63DE0 /* PHConfigLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94DE184C5F7700E63DE0 /* PHConfigLoader.m */; };
@@ -48,7 +46,7 @@
 		94C602401849D3B9005E7DB3 /* PHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHAppDelegate.m; sourceTree = "<group>"; };
 		94C602431849D3B9005E7DB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		94C602451849D3B9005E7DB3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		94CF94BC184C22C500E63DE0 /* underscore-min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "underscore-min.js"; sourceTree = "<group>"; };
+		94CF94BC184C22C500E63DE0 /* underscore-min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "underscore-min.js"; path = "../Helpers/underscore-min.js"; sourceTree = "<group>"; };
 		94CF94BF184C45FA00E63DE0 /* NSScreen+PHExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScreen+PHExtension.h"; sourceTree = "<group>"; };
 		94CF94C0184C45FA00E63DE0 /* NSScreen+PHExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScreen+PHExtension.m"; sourceTree = "<group>"; };
 		94CF94C1184C45FA00E63DE0 /* PHApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHApp.h; sourceTree = "<group>"; };
@@ -57,8 +55,6 @@
 		94CF94C4184C45FA00E63DE0 /* PHWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHWindow.m; sourceTree = "<group>"; };
 		94CF94C8184C4E7D00E63DE0 /* PHUniversalAccessHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHUniversalAccessHelper.h; sourceTree = "<group>"; };
 		94CF94C9184C4E7D00E63DE0 /* PHUniversalAccessHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHUniversalAccessHelper.m; sourceTree = "<group>"; };
-		94CF94CB184C509100E63DE0 /* statusitem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statusitem.png; sourceTree = "<group>"; };
-		94CF94CC184C509100E63DE0 /* statusitem@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statusitem@2x.png"; sourceTree = "<group>"; };
 		94CF94CF184C50C700E63DE0 /* PHAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHAlerts.h; sourceTree = "<group>"; };
 		94CF94D0184C50C700E63DE0 /* PHAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHAlerts.m; sourceTree = "<group>"; };
 		94CF94D2184C527A00E63DE0 /* PHOpenAtLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHOpenAtLogin.h; sourceTree = "<group>"; };
@@ -101,7 +97,8 @@
 				94CF94CF184C50C700E63DE0 /* PHAlerts.h */,
 				94CF94D0184C50C700E63DE0 /* PHAlerts.m */,
 			);
-			path = Alerts;
+			name = Alerts;
+			path = Helpers/Alerts;
 			sourceTree = "<group>";
 		};
 		94C602211849D3B9005E7DB3 = {
@@ -131,6 +128,7 @@
 				94C602401849D3B9005E7DB3 /* PHAppDelegate.m */,
 				94CF94DD184C5F7700E63DE0 /* PHConfigLoader.h */,
 				94CF94DE184C5F7700E63DE0 /* PHConfigLoader.m */,
+				949D56E2184D0176008E92DE /* Alerts */,
 				94CF94D5184C546300E63DE0 /* Helpers */,
 				949D56D7184CF5E3008E92DE /* Resources */,
 				94C602451849D3B9005E7DB3 /* Images.xcassets */,
@@ -142,6 +140,7 @@
 		94C602341849D3B9005E7DB3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				94CF94BC184C22C500E63DE0 /* underscore-min.js */,
 				9623D39C194DBDE600D1F92A /* Splice.icns */,
 				94C602351849D3B9005E7DB3 /* Splice-Info.plist */,
 				94C602361849D3B9005E7DB3 /* InfoPlist.strings */,
@@ -155,10 +154,6 @@
 		94CF94D5184C546300E63DE0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				949D56E2184D0176008E92DE /* Alerts */,
-				94CF94BC184C22C500E63DE0 /* underscore-min.js */,
-				94CF94CB184C509100E63DE0 /* statusitem.png */,
-				94CF94CC184C509100E63DE0 /* statusitem@2x.png */,
 				94CF94D2184C527A00E63DE0 /* PHOpenAtLogin.h */,
 				94CF94D3184C527A00E63DE0 /* PHOpenAtLogin.m */,
 				94CF94C8184C4E7D00E63DE0 /* PHUniversalAccessHelper.h */,
@@ -226,12 +221,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				949D56E1184D016E008E92DE /* AlertWindow.xib in Resources */,
-				94CF94CD184C509100E63DE0 /* statusitem.png in Resources */,
 				9623D39D194DBDE600D1F92A /* Splice.icns in Resources */,
 				94C602381849D3B9005E7DB3 /* InfoPlist.strings in Resources */,
 				94C602461849D3B9005E7DB3 /* Images.xcassets in Resources */,
 				94C6023E1849D3B9005E7DB3 /* Credits.rtf in Resources */,
-				94CF94CE184C509100E63DE0 /* statusitem@2x.png in Resources */,
 				94C602441849D3B9005E7DB3 /* MainMenu.xib in Resources */,
 				94CF94BE184C231900E63DE0 /* underscore-min.js in Resources */,
 			);
