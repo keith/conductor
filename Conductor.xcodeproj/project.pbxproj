@@ -35,11 +35,11 @@
 		949D56E0184D016E008E92DE /* AlertWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertWindow.xib; sourceTree = "<group>"; };
 		949D56E3184D0B30008E92DE /* PHPathWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHPathWatcher.h; sourceTree = "<group>"; };
 		949D56E4184D0B30008E92DE /* PHPathWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PHPathWatcher.m; sourceTree = "<group>"; };
-		94C6022A1849D3B9005E7DB3 /* Splice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splice.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		94C602351849D3B9005E7DB3 /* Splice-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Splice-Info.plist"; sourceTree = "<group>"; };
+		94C6022A1849D3B9005E7DB3 /* Conductor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Conductor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94C602351849D3B9005E7DB3 /* Conductor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Conductor-Info.plist"; sourceTree = "<group>"; };
 		94C602371849D3B9005E7DB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		94C602391849D3B9005E7DB3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		94C6023B1849D3B9005E7DB3 /* Splice-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Splice-Prefix.pch"; sourceTree = "<group>"; };
+		94C6023B1849D3B9005E7DB3 /* Conductor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Conductor-Prefix.pch"; sourceTree = "<group>"; };
 		94C6023D1849D3B9005E7DB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		94C6023F1849D3B9005E7DB3 /* PHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PHAppDelegate.h; sourceTree = "<group>"; };
 		94C602401849D3B9005E7DB3 /* PHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PHAppDelegate.m; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 		94C6022B1849D3B9005E7DB3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				94C6022A1849D3B9005E7DB3 /* Splice.app */,
+				94C6022A1849D3B9005E7DB3 /* Conductor.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,8 +139,8 @@
 			children = (
 				94C602361849D3B9005E7DB3 /* InfoPlist.strings */,
 				94C602391849D3B9005E7DB3 /* main.m */,
-				94C602351849D3B9005E7DB3 /* Splice-Info.plist */,
-				94C6023B1849D3B9005E7DB3 /* Splice-Prefix.pch */,
+				94C602351849D3B9005E7DB3 /* Conductor-Info.plist */,
+				94C6023B1849D3B9005E7DB3 /* Conductor-Prefix.pch */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -173,9 +173,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		94C602291849D3B9005E7DB3 /* Splice */ = {
+		94C602291849D3B9005E7DB3 /* Conductor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 94C6025B1849D3B9005E7DB3 /* Build configuration list for PBXNativeTarget "Splice" */;
+			buildConfigurationList = 94C6025B1849D3B9005E7DB3 /* Build configuration list for PBXNativeTarget "Conductor" */;
 			buildPhases = (
 				94C602261849D3B9005E7DB3 /* Sources */,
 				94C602271849D3B9005E7DB3 /* Frameworks */,
@@ -186,8 +186,9 @@
 			);
 			dependencies = (
 			);
-			name = Splice;
-			productReference = 94C6022A1849D3B9005E7DB3 /* Splice.app */;
+			name = Conductor;
+			productName = Splice;
+			productReference = 94C6022A1849D3B9005E7DB3 /* Conductor.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -200,7 +201,7 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Steven;
 			};
-			buildConfigurationList = 94C602251849D3B9005E7DB3 /* Build configuration list for PBXProject "Splice" */;
+			buildConfigurationList = 94C602251849D3B9005E7DB3 /* Build configuration list for PBXProject "Conductor" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -213,7 +214,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				94C602291849D3B9005E7DB3 /* Splice */,
+				94C602291849D3B9005E7DB3 /* Conductor */,
 			);
 		};
 /* End PBXProject section */
@@ -409,9 +410,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Splice/Supporting Files/Splice-Prefix.pch";
-				INFOPLIST_FILE = "Splice/Supporting Files/Splice-Info.plist";
-				PRODUCT_NAME = Splice;
+				GCC_PREFIX_HEADER = "Splice/Supporting Files/Conductor-Prefix.pch";
+				INFOPLIST_FILE = "Splice/Supporting Files/Conductor-Info.plist";
+				PRODUCT_NAME = Conductor;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -423,10 +424,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Splice/Supporting Files/Splice-Prefix.pch";
+				GCC_PREFIX_HEADER = "Splice/Supporting Files/Conductor-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				INFOPLIST_FILE = "Splice/Supporting Files/Splice-Info.plist";
-				PRODUCT_NAME = Splice;
+				INFOPLIST_FILE = "Splice/Supporting Files/Conductor-Info.plist";
+				PRODUCT_NAME = Conductor;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -434,7 +435,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		94C602251849D3B9005E7DB3 /* Build configuration list for PBXProject "Splice" */ = {
+		94C602251849D3B9005E7DB3 /* Build configuration list for PBXProject "Conductor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94C602591849D3B9005E7DB3 /* Debug */,
@@ -443,7 +444,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		94C6025B1849D3B9005E7DB3 /* Build configuration list for PBXNativeTarget "Splice" */ = {
+		94C6025B1849D3B9005E7DB3 /* Build configuration list for PBXNativeTarget "Conductor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				94C6025C1849D3B9005E7DB3 /* Debug */,
