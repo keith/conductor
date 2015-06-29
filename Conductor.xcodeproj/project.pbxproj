@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -197,12 +197,12 @@
 		94C602221849D3B9005E7DB3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = PH;
+				CLASSPREFIX = CON;
 				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = Steven;
+				ORGANIZATIONNAME = "Keith Smiley";
 			};
 			buildConfigurationList = 94C602251849D3B9005E7DB3 /* Build configuration list for PBXProject "Conductor" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
