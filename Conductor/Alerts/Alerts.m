@@ -13,7 +13,7 @@
 
 @property (weak) id<AlertDelegate> delegate;
 
-- (void)show:(NSString *)oneLineMsg duration:(CGFloat)duration pushDownBy:(CGFloat)adjustment;
+- (void)show:(NSString *)message duration:(CGFloat)duration YAdjustment:(CGFloat)adjustment;
 
 @end
 
@@ -55,7 +55,7 @@
 
     AlertWindowController *alert = [[AlertWindowController alloc] init];
     alert.delegate = alerts;
-    [alert show:oneLineMsg duration:duration pushDownBy:absoluteTop];
+    [alert show:oneLineMsg duration:duration YAdjustment:absoluteTop];
     [alerts.visibleAlerts addObject:alert];
 }
 
@@ -85,29 +85,29 @@
     self.window.ignoresMouseEvents = YES;
 }
 
-- (void)show:(NSString *)oneLineMsg duration:(CGFloat)duration pushDownBy:(CGFloat)adjustment {
-    NSDisableScreenUpdates();
-
-    [NSAnimationContext beginGrouping];
-    [[NSAnimationContext currentContext] setDuration:0.01];
-    [[[self window] animator] setAlphaValue:1.0];
-    [NSAnimationContext endGrouping];
-
-    [self useTitleAndResize:[oneLineMsg description]];
-    [self setFrameWithAdjustment:adjustment];
-    [self showWindow:self];
-    [self performSelector:@selector(fadeWindowOut) withObject:nil afterDelay:duration];
-
-    NSEnableScreenUpdates();
+- (void)show:(NSString *)message duration:(CGFloat)duration YAdjustment:(CGFloat)adjustment {
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        context.duration = 0.01;
+        [[[self window] animator] setAlphaValue:1.0];
+        [self useTitleAndResize:message];
+        [self setFrameWithAdjustment:adjustment];
+        [self showWindow:self];
+    } completionHandler:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,
+                                     (int64_t)(duration * NSEC_PER_SEC)),
+                       dispatch_get_main_queue(), ^{
+            [self fadeWindowOut];
+        });
+    }];
 }
 
-- (void)setFrameWithAdjustment:(CGFloat)pushDownBy {
+- (void)setFrameWithAdjustment:(CGFloat)adjustment {
     NSScreen *currentScreen = [NSScreen mainScreen];
     CGRect screenRect = [currentScreen frame];
     CGRect winRect = [[self window] frame];
 
     winRect.origin.x = (screenRect.size.width / 2.0) - (winRect.size.width / 2.0);
-    winRect.origin.y = pushDownBy - winRect.size.height;
+    winRect.origin.y = adjustment - winRect.size.height;
 
     [self.window setFrame:winRect display:NO];
 }
@@ -123,8 +123,6 @@
 
 - (void)closeAndResetWindow {
     [[self window] orderOut:nil];
-    [[self window] setAlphaValue:1.0];
-
     [self.delegate alertClosed:self];
 }
 
