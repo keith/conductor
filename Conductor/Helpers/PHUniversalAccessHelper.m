@@ -9,7 +9,7 @@
 
     if (!enabled) {
         NSRunAlertPanel(@"Enable Accessibility First",
-                        @"Find the little popup right behind this one, click \"Open System Preferences\" and enable Splice. Then launch Splice again.",
+                        @"Find the little popup right behind this one, click \"Open System Preferences\" and enable Conductor. Then launch Conductor again.",
                         @"Quit",
                         nil,
                         nil);

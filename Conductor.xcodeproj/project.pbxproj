@@ -187,7 +187,6 @@
 			dependencies = (
 			);
 			name = Conductor;
-			productName = Splice;
 			productReference = 94C6022A1849D3B9005E7DB3 /* Conductor.app */;
 			productType = "com.apple.product-type.application";
 		};
