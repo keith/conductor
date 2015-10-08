@@ -1,8 +1,11 @@
+@class App;
+
 @protocol AppJSExport <JSExport>
 
 @property (readonly) pid_t pid;
 
 + (NSArray *)runningApps;
++ (App *)frontmostApp;
 
 - (NSArray *)allWindows;
 - (NSArray *)visibleWindows;

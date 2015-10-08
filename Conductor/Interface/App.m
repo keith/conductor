@@ -25,6 +25,11 @@
     return apps;
 }
 
++ (App *)frontmostApp {
+    pid_t pid = [[[NSWorkspace sharedWorkspace] frontmostApplication] processIdentifier];
+    return [[App alloc] initWithPID:pid];
+}
+
 - (id)initWithElement:(AXUIElementRef)element {
     pid_t pid;
     AXUIElementGetPid(element, &pid);
