@@ -203,7 +203,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = "";
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Keith Smiley";
 			};
 			buildConfigurationList = 94C602251849D3B9005E7DB3 /* Build configuration list for PBXProject "Conductor" */;
@@ -331,6 +331,7 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -418,6 +419,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Conductor/Supporting Files/Conductor-Prefix.pch";
 				INFOPLIST_FILE = "Conductor/Supporting Files/Conductor-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.smileykeith.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Conductor;
 				WRAPPER_EXTENSION = app;
 			};
@@ -433,6 +435,7 @@
 				GCC_PREFIX_HEADER = "Conductor/Supporting Files/Conductor-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Conductor/Supporting Files/Conductor-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.smileykeith.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Conductor;
 				WRAPPER_EXTENSION = app;
 			};
