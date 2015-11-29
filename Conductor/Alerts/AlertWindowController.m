@@ -3,7 +3,6 @@
 @interface AlertWindowController ()
 
 @property (nonatomic) IBOutlet NSTextField *textField;
-@property (nonatomic) IBOutlet NSBox *box;
 
 @end
 
@@ -14,6 +13,8 @@
 }
 
 - (void)windowDidLoad {
+    [super windowDidLoad];
+
     self.window.backgroundColor = [NSColor clearColor];
     self.window.opaque = NO;
     self.window.level = NSFloatingWindowLevel;

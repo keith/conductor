@@ -41,6 +41,6 @@
 
 @interface Window : NSObject <WindowJSExport>
 
-- (id)initWithElement:(AXUIElementRef)win;
+- (instancetype)initWithElement:(AXUIElementRef)win;
 
 @end

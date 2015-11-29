@@ -1,14 +1,14 @@
 #import "App.h"
 #import "Window.h"
 
-@interface App ()
+@interface App()
 
 @property AXUIElementRef app;
 @property (readwrite) pid_t pid;
 
 @property NSMutableArray *observers;
 
-- (id)initWithElement:(AXUIElementRef)element;
+- (instancetype)initWithElement:(AXUIElementRef)element;
 
 @end
 
@@ -30,35 +30,37 @@
     return [[App alloc] initWithPID:pid];
 }
 
-- (id)initWithElement:(AXUIElementRef)element {
+- (instancetype)initWithElement:(AXUIElementRef)element {
     pid_t pid;
     AXUIElementGetPid(element, &pid);
     return [self initWithPID:pid];
 }
 
-- (id)initWithRunningApp:(NSRunningApplication *)app {
+- (instancetype)initWithRunningApp:(NSRunningApplication *)app {
     return [self initWithPID:[app processIdentifier]];
 }
 
-- (id)initWithPID:(pid_t)pid {
-    if (self = [super init]) {
-        self.observers = [NSMutableArray array];
-        self.pid = pid;
-        self.app = AXUIElementCreateApplication(pid);
-    }
+- (instancetype)initWithPID:(pid_t)pid {
+    self = [super init];
+    if (!self) return nil;
+
+    self.observers = [NSMutableArray array];
+    self.pid = pid;
+    self.app = AXUIElementCreateApplication(pid);
+
     return self;
 }
 
 - (void)dealloc {
     self.observers = nil; // this will make them un-observe
 
-    if (self.app)
+    if (self.app) {
         CFRelease(self.app);
+    }
 }
 
 - (BOOL)isEqual:(App *)object {
-    return ([self isKindOfClass: [object class]] &&
-            self.pid == object.pid);
+    return ([object isKindOfClass:[App class]] && self.pid == object.pid);
 }
 
 - (NSUInteger)hash {

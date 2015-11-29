@@ -51,77 +51,76 @@ static NSMutableDictionary *relocatableKeys;
     }
 
     CFRelease(currentKeyboard);
-    return;
 }
 
 + (UInt32)keyCodeForString:(NSString *)str {
     str = [str lowercaseString];
-    NSNumber *keycode;
-    if ((keycode = (NSNumber *)[relocatableKeys objectForKey:str])) {
+    NSNumber *keycode = [relocatableKeys objectForKey:str];
+    if (keycode) {
         return [keycode unsignedIntValue];
-    } else {
-        str = [str uppercaseString];
-
-        // you should prefer typing these in upper-case in your config file,
-        // since they look more unique (and less confusing) that way
-        if ([str isEqualToString:@"F1"]) return kVK_F1;
-        if ([str isEqualToString:@"F2"]) return kVK_F2;
-        if ([str isEqualToString:@"F3"]) return kVK_F3;
-        if ([str isEqualToString:@"F4"]) return kVK_F4;
-        if ([str isEqualToString:@"F5"]) return kVK_F5;
-        if ([str isEqualToString:@"F6"]) return kVK_F6;
-        if ([str isEqualToString:@"F7"]) return kVK_F7;
-        if ([str isEqualToString:@"F8"]) return kVK_F8;
-        if ([str isEqualToString:@"F9"]) return kVK_F9;
-        if ([str isEqualToString:@"F10"]) return kVK_F10;
-        if ([str isEqualToString:@"F11"]) return kVK_F11;
-        if ([str isEqualToString:@"F12"]) return kVK_F12;
-        if ([str isEqualToString:@"F13"]) return kVK_F13;
-        if ([str isEqualToString:@"F14"]) return kVK_F14;
-        if ([str isEqualToString:@"F15"]) return kVK_F15;
-        if ([str isEqualToString:@"F16"]) return kVK_F16;
-        if ([str isEqualToString:@"F17"]) return kVK_F17;
-        if ([str isEqualToString:@"F18"]) return kVK_F18;
-        if ([str isEqualToString:@"F19"]) return kVK_F19;
-        if ([str isEqualToString:@"F20"]) return kVK_F20;
-
-        // you should prefer typing these in lower-case in your config file,
-        // since there's no concern for ambiguity/confusion with words, just with chars.
-        if ([str isEqualToString:@"PAD."]) return kVK_ANSI_KeypadDecimal;
-        if ([str isEqualToString:@"PAD*"]) return kVK_ANSI_KeypadMultiply;
-        if ([str isEqualToString:@"PAD+"]) return kVK_ANSI_KeypadPlus;
-        if ([str isEqualToString:@"PAD/"]) return kVK_ANSI_KeypadDivide;
-        if ([str isEqualToString:@"PAD-"]) return kVK_ANSI_KeypadMinus;
-        if ([str isEqualToString:@"PAD="]) return kVK_ANSI_KeypadEquals;
-        if ([str isEqualToString:@"PAD0"]) return kVK_ANSI_Keypad0;
-        if ([str isEqualToString:@"PAD1"]) return kVK_ANSI_Keypad1;
-        if ([str isEqualToString:@"PAD2"]) return kVK_ANSI_Keypad2;
-        if ([str isEqualToString:@"PAD3"]) return kVK_ANSI_Keypad3;
-        if ([str isEqualToString:@"PAD4"]) return kVK_ANSI_Keypad4;
-        if ([str isEqualToString:@"PAD5"]) return kVK_ANSI_Keypad5;
-        if ([str isEqualToString:@"PAD6"]) return kVK_ANSI_Keypad6;
-        if ([str isEqualToString:@"PAD7"]) return kVK_ANSI_Keypad7;
-        if ([str isEqualToString:@"PAD8"]) return kVK_ANSI_Keypad8;
-        if ([str isEqualToString:@"PAD9"]) return kVK_ANSI_Keypad9;
-        if ([str isEqualToString:@"PAD_CLEAR"]) return kVK_ANSI_KeypadClear;
-        if ([str isEqualToString:@"PAD_ENTER"]) return kVK_ANSI_KeypadEnter;
-
-        if ([str isEqualToString:@"RETURN"]) return kVK_Return;
-        if ([str isEqualToString:@"TAB"]) return kVK_Tab;
-        if ([str isEqualToString:@"SPACE"]) return kVK_Space;
-        if ([str isEqualToString:@"DELETE"]) return kVK_Delete;
-        if ([str isEqualToString:@"ESCAPE"]) return kVK_Escape;
-        if ([str isEqualToString:@"HELP"]) return kVK_Help;
-        if ([str isEqualToString:@"HOME"]) return kVK_Home;
-        if ([str isEqualToString:@"PAGE_UP"]) return kVK_PageUp;
-        if ([str isEqualToString:@"FORWARD_DELETE"]) return kVK_ForwardDelete;
-        if ([str isEqualToString:@"END"]) return kVK_End;
-        if ([str isEqualToString:@"PAGE_DOWN"]) return kVK_PageDown;
-        if ([str isEqualToString:@"LEFT"]) return kVK_LeftArrow;
-        if ([str isEqualToString:@"RIGHT"]) return kVK_RightArrow;
-        if ([str isEqualToString:@"DOWN"]) return kVK_DownArrow;
-        if ([str isEqualToString:@"UP"]) return kVK_UpArrow;
     }
+
+    str = [str uppercaseString];
+
+    // you should prefer typing these in upper-case in your config file,
+    // since they look more unique (and less confusing) that way
+    if ([str isEqualToString:@"F1"]) return kVK_F1;
+    if ([str isEqualToString:@"F2"]) return kVK_F2;
+    if ([str isEqualToString:@"F3"]) return kVK_F3;
+    if ([str isEqualToString:@"F4"]) return kVK_F4;
+    if ([str isEqualToString:@"F5"]) return kVK_F5;
+    if ([str isEqualToString:@"F6"]) return kVK_F6;
+    if ([str isEqualToString:@"F7"]) return kVK_F7;
+    if ([str isEqualToString:@"F8"]) return kVK_F8;
+    if ([str isEqualToString:@"F9"]) return kVK_F9;
+    if ([str isEqualToString:@"F10"]) return kVK_F10;
+    if ([str isEqualToString:@"F11"]) return kVK_F11;
+    if ([str isEqualToString:@"F12"]) return kVK_F12;
+    if ([str isEqualToString:@"F13"]) return kVK_F13;
+    if ([str isEqualToString:@"F14"]) return kVK_F14;
+    if ([str isEqualToString:@"F15"]) return kVK_F15;
+    if ([str isEqualToString:@"F16"]) return kVK_F16;
+    if ([str isEqualToString:@"F17"]) return kVK_F17;
+    if ([str isEqualToString:@"F18"]) return kVK_F18;
+    if ([str isEqualToString:@"F19"]) return kVK_F19;
+    if ([str isEqualToString:@"F20"]) return kVK_F20;
+
+    // you should prefer typing these in lower-case in your config file,
+    // since there's no concern for ambiguity/confusion with words, just with chars.
+    if ([str isEqualToString:@"PAD."]) return kVK_ANSI_KeypadDecimal;
+    if ([str isEqualToString:@"PAD*"]) return kVK_ANSI_KeypadMultiply;
+    if ([str isEqualToString:@"PAD+"]) return kVK_ANSI_KeypadPlus;
+    if ([str isEqualToString:@"PAD/"]) return kVK_ANSI_KeypadDivide;
+    if ([str isEqualToString:@"PAD-"]) return kVK_ANSI_KeypadMinus;
+    if ([str isEqualToString:@"PAD="]) return kVK_ANSI_KeypadEquals;
+    if ([str isEqualToString:@"PAD0"]) return kVK_ANSI_Keypad0;
+    if ([str isEqualToString:@"PAD1"]) return kVK_ANSI_Keypad1;
+    if ([str isEqualToString:@"PAD2"]) return kVK_ANSI_Keypad2;
+    if ([str isEqualToString:@"PAD3"]) return kVK_ANSI_Keypad3;
+    if ([str isEqualToString:@"PAD4"]) return kVK_ANSI_Keypad4;
+    if ([str isEqualToString:@"PAD5"]) return kVK_ANSI_Keypad5;
+    if ([str isEqualToString:@"PAD6"]) return kVK_ANSI_Keypad6;
+    if ([str isEqualToString:@"PAD7"]) return kVK_ANSI_Keypad7;
+    if ([str isEqualToString:@"PAD8"]) return kVK_ANSI_Keypad8;
+    if ([str isEqualToString:@"PAD9"]) return kVK_ANSI_Keypad9;
+    if ([str isEqualToString:@"PAD_CLEAR"]) return kVK_ANSI_KeypadClear;
+    if ([str isEqualToString:@"PAD_ENTER"]) return kVK_ANSI_KeypadEnter;
+
+    if ([str isEqualToString:@"RETURN"]) return kVK_Return;
+    if ([str isEqualToString:@"TAB"]) return kVK_Tab;
+    if ([str isEqualToString:@"SPACE"]) return kVK_Space;
+    if ([str isEqualToString:@"DELETE"]) return kVK_Delete;
+    if ([str isEqualToString:@"ESCAPE"]) return kVK_Escape;
+    if ([str isEqualToString:@"HELP"]) return kVK_Help;
+    if ([str isEqualToString:@"HOME"]) return kVK_Home;
+    if ([str isEqualToString:@"PAGE_UP"]) return kVK_PageUp;
+    if ([str isEqualToString:@"FORWARD_DELETE"]) return kVK_ForwardDelete;
+    if ([str isEqualToString:@"END"]) return kVK_End;
+    if ([str isEqualToString:@"PAGE_DOWN"]) return kVK_PageDown;
+    if ([str isEqualToString:@"LEFT"]) return kVK_LeftArrow;
+    if ([str isEqualToString:@"RIGHT"]) return kVK_RightArrow;
+    if ([str isEqualToString:@"DOWN"]) return kVK_DownArrow;
+    if ([str isEqualToString:@"UP"]) return kVK_UpArrow;
 
     NSLog(@"Unhandled Key Code String: %@", str);
     return 0;
@@ -142,8 +141,6 @@ static NSMutableDictionary *relocatableKeys;
 
 @end
 
-
-
 static NSMutableDictionary *HotKeys;
 static UInt32 HotKeyLastCarbonID;
 
@@ -156,27 +153,38 @@ static UInt32 HotKeyLastCarbonID;
 
 @implementation HotKey
 
-static OSStatus HotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, EventRef inEvent, void *inUserData) {
+static OSStatus HotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef,
+                                     EventRef inEvent, void *inUserData)
+{
     EventHotKeyID eventID;
-    GetEventParameter(inEvent, kEventParamDirectObject, typeEventHotKeyID, NULL, sizeof(eventID), NULL, &eventID);
+    GetEventParameter(inEvent,
+                      kEventParamDirectObject,
+                      typeEventHotKeyID,
+                      NULL,
+                      sizeof(eventID),
+                      NULL,
+                      &eventID);
 
     HotKey *hotkey = HotKeys[@(eventID.id)];
-    return (hotkey.handler() ? noErr : eventNotHandledErr);
+    return hotkey.handler() ? noErr : eventNotHandledErr;
 }
 
 + (void)setup {
-    static BOOL settedUp;
-    if (settedUp)
-        return;
-    settedUp = YES;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        HotKeys = [NSMutableDictionary dictionary];
+        EventTypeSpec hotKeyPressedSpec = {
+            .eventClass = kEventClassKeyboard,
+            .eventKind = kEventHotKeyPressed
+        };
 
-    HotKeys = [NSMutableDictionary dictionary];
-    EventTypeSpec hotKeyPressedSpec = { .eventClass = kEventClassKeyboard, .eventKind = kEventHotKeyPressed };
-    InstallEventHandler(GetEventDispatcherTarget(), HotKeyCarbonCallback, 1, &hotKeyPressedSpec, NULL, NULL);
+        InstallEventHandler(GetEventDispatcherTarget(), HotKeyCarbonCallback,
+                            1, &hotKeyPressedSpec, NULL, NULL);
+    });
 }
 
 + (HotKey *)withKey:(NSString *)key mods:(NSArray *)mods handler:(CONHotKeyHandler)handler {
-    HotKey *hotkey = [[HotKey alloc] init];
+    HotKey *hotkey = [HotKey new];
     hotkey.key = key;
     hotkey.mods = mods;
     hotkey.handler = handler;
@@ -204,8 +212,9 @@ static OSStatus HotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef, Event
 }
 
 - (void)disable {
-    if (self.internalRegistrationNumber == 0)
+    if (self.internalRegistrationNumber == 0) {
         return;
+    }
 
     UnregisterEventHotKey(self.carbonHotKey);
     [HotKeys removeObjectForKey:@(self.internalRegistrationNumber)];

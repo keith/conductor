@@ -10,21 +10,23 @@
 
 @implementation Window
 
-- (id)initWithElement:(AXUIElementRef)win {
-    if (self = [super init]) {
-        self.window = CFRetain(win);
-    }
+- (instancetype)initWithElement:(AXUIElementRef)win {
+    self = [super init];
+    if (!self) return nil;
+
+    self.window = CFRetain(win);
+
     return self;
 }
 
 - (void)dealloc {
-    if (self.window)
+    if (self.window) {
         CFRelease(self.window);
+    }
 }
 
 - (BOOL)isEqual:(Window *)other {
-    return ([self isKindOfClass: [other class]] &&
-            CFEqual(self.window, other.window));
+    return ([other isKindOfClass:[Window class]] && CFEqual(self.window, other.window));
 }
 
 - (NSUInteger)hash {
@@ -42,7 +44,7 @@
 }
 
 - (BOOL)isNormalWindow {
-    return [[self subrole] isEqualToString: (__bridge NSString *)kAXStandardWindowSubrole];
+    return [[self subrole] isEqualToString:(__bridge NSString *)kAXStandardWindowSubrole];
 }
 
 + (NSArray *)visibleWindows {
@@ -89,7 +91,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
                 for (id w in (__bridge NSArray *)appwindows) {
                     AXUIElementRef win = (__bridge AXUIElementRef)w;
                     CGWindowID tmp;
-                    _AXUIElementGetWindow(win, &tmp); //XXX: undocumented API.  but the alternative is horrifying.
+                    _AXUIElementGetWindow(win, &tmp); // XXX: undocumented API.  but the alternative is horrifying.
                     if (tmp == win_id) {
                         // finally got it, insert in the result array.
                         [windows addObject:[[Window alloc] initWithElement:win]];
@@ -131,18 +133,21 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 + (Window *)focusedWindow {
     CFTypeRef app;
     AXUIElementCopyAttributeValue([self systemWideElement], kAXFocusedApplicationAttribute, &app);
+    if (!app) {
+        return nil;
+    }
 
-    if (app) {
-        CFTypeRef win;
-        AXError result = AXUIElementCopyAttributeValue(app, (CFStringRef)NSAccessibilityFocusedWindowAttribute, &win);
+    CFTypeRef win;
+    AXError result = AXUIElementCopyAttributeValue(app,
+                                                   (CFStringRef)NSAccessibilityFocusedWindowAttribute,
+                                                   &win);
 
-        CFRelease(app);
+    CFRelease(app);
 
-        if (result == kAXErrorSuccess) {
-            Window *window = [[Window alloc] init];
-            window.window = win;
-            return window;
-        }
+    if (result == kAXErrorSuccess) {
+        Window *window = [[Window alloc] init];
+        window.window = win;
+        return window;
     }
 
     return nil;
@@ -165,20 +170,16 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
     CFTypeRef positionStorage;
     AXError result = AXUIElementCopyAttributeValue(self.window, (CFStringRef)NSAccessibilityPositionAttribute, &positionStorage);
 
-    CGPoint topLeft;
+    CGPoint topLeft = CGPointZero;
     if (result == kAXErrorSuccess) {
         if (!AXValueGetValue(positionStorage, kAXValueCGPointType, (void *)&topLeft)) {
-            NSLog(@"could not decode topLeft");
             topLeft = CGPointZero;
         }
     }
-    else {
-        NSLog(@"could not get window topLeft");
-        topLeft = CGPointZero;
-    }
 
-    if (positionStorage)
+    if (positionStorage) {
         CFRelease(positionStorage);
+    }
 
     return topLeft;
 }
@@ -187,20 +188,16 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
     CFTypeRef sizeStorage;
     AXError result = AXUIElementCopyAttributeValue(self.window, (CFStringRef)NSAccessibilitySizeAttribute, &sizeStorage);
 
-    CGSize size;
+    CGSize size = CGSizeZero;
     if (result == kAXErrorSuccess) {
         if (!AXValueGetValue(sizeStorage, kAXValueCGSizeType, (void *)&size)) {
-            NSLog(@"could not decode topLeft");
             size = CGSizeZero;
         }
     }
-    else {
-        NSLog(@"could not get window size");
-        size = CGSizeZero;
-    }
 
-    if (sizeStorage)
+    if (sizeStorage) {
         CFRelease(sizeStorage);
+    }
 
     return size;
 }
@@ -208,15 +205,17 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 - (void)setTopLeft:(CGPoint)thePoint {
     CFTypeRef positionStorage = (CFTypeRef)(AXValueCreate(kAXValueCGPointType, (const void *)&thePoint));
     AXUIElementSetAttributeValue(self.window, (CFStringRef)NSAccessibilityPositionAttribute, positionStorage);
-    if (positionStorage)
+    if (positionStorage) {
         CFRelease(positionStorage);
+    }
 }
 
 - (void)setSize:(CGSize)theSize {
     CFTypeRef sizeStorage = (CFTypeRef)(AXValueCreate(kAXValueCGSizeType, (const void *)&theSize));
     AXUIElementSetAttributeValue(self.window, (CFStringRef)NSAccessibilitySizeAttribute, sizeStorage);
-    if (sizeStorage)
+    if (sizeStorage) {
         CFRelease(sizeStorage);
+    }
 }
 
 - (NSScreen *)screen {
@@ -266,10 +265,11 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 - (pid_t)processIdentifier {
     pid_t pid = 0;
     AXError result = AXUIElementGetPid(self.window, &pid);
-    if (result == kAXErrorSuccess)
+    if (result == kAXErrorSuccess) {
         return pid;
-    else
+    } else {
         return 0;
+    }
 }
 
 - (App *)app {
@@ -278,19 +278,25 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 
 - (id)getWindowProperty:(NSString *)propType withDefaultValue:(id)defaultValue {
     CFTypeRef _someProperty;
-    if (AXUIElementCopyAttributeValue(self.window, (__bridge CFStringRef)propType, &_someProperty) == kAXErrorSuccess)
+    if (AXUIElementCopyAttributeValue(self.window,
+                                      (__bridge CFStringRef)propType,
+                                      &_someProperty) == kAXErrorSuccess)
+    {
         return CFBridgingRelease(_someProperty);
+    }
 
     return defaultValue;
 }
 
 - (BOOL)setWindowProperty:(NSString *)propType withValue:(id)value {
-    if ([value isKindOfClass:[NSNumber class]]) {
-        AXError result = AXUIElementSetAttributeValue(self.window, (__bridge CFStringRef)(propType), (__bridge CFTypeRef)(value));
-        if (result == kAXErrorSuccess)
-            return YES;
+    if (![value isKindOfClass:[NSNumber class]]) {
+        return NO;
     }
-    return NO;
+
+    AXError result = AXUIElementSetAttributeValue(self.window,
+                                                  (__bridge CFStringRef)(propType),
+                                                  (__bridge CFTypeRef)(value));
+    return result == kAXErrorSuccess;
 }
 
 - (NSString *)title {
@@ -309,13 +315,11 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
     return [[self getWindowProperty:NSAccessibilityMinimizedAttribute withDefaultValue:@(NO)] boolValue];
 }
 
-- (void)setWindowMinimized:(BOOL)flag
-{
+- (void)setWindowMinimized:(BOOL)flag {
     [self setWindowProperty:NSAccessibilityMinimizedAttribute withValue:[NSNumber numberWithLong:flag]];
 }
 
 // focus
-
 
 NSPoint SDMidpoint(NSRect r) {
     return NSMakePoint(NSMidX(r), NSMidY(r));
@@ -336,8 +340,9 @@ NSPoint SDMidpoint(NSRect r) {
         double deltaX = otherPoint.x - startingPoint.x;
         double deltaY = otherPoint.y - startingPoint.y;
 
-        if (shouldDisregardFn(deltaX, deltaY))
+        if (shouldDisregardFn(deltaX, deltaY)) {
             continue;
+        }
 
         double angle = atan2(deltaY, deltaX);
         double distance = hypot(deltaX, deltaY);
@@ -347,13 +352,13 @@ NSPoint SDMidpoint(NSRect r) {
         double score = distance / cos(angleDifference / 2.0);
 
         [closestOtherWindows addObject:@{
-         @"score": @(score),
-         @"win": win,
-         }];
+            @"score": @(score),
+            @"win": win,
+        }];
     }
 
     NSArray *sortedOtherWindows = [closestOtherWindows sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *pair1, NSDictionary *pair2) {
-        return [[pair1 objectForKey:@"score"] compare: [pair2 objectForKey:@"score"]];
+        return [[pair1 objectForKey:@"score"] compare:[pair2 objectForKey:@"score"]];
     }];
 
     return sortedOtherWindows;
@@ -361,8 +366,9 @@ NSPoint SDMidpoint(NSRect r) {
 
 - (void)focusFirstValidWindowIn:(NSArray *)closestWindows {
     for (Window *win in closestWindows) {
-        if ([win focusWindow])
+        if ([win focusWindow]) {
             break;
+        }
     }
 }
 

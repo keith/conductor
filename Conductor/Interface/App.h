@@ -22,8 +22,8 @@
 
 @interface App : NSObject <AppJSExport>
 
-- (id)initWithPID:(pid_t)pid;
-- (id)initWithRunningApp:(NSRunningApplication *)app;
+- (instancetype)initWithPID:(pid_t)pid;
+- (instancetype)initWithRunningApp:(NSRunningApplication *)app;
 
 @property (readonly) pid_t pid;
 

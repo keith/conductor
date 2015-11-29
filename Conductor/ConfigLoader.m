@@ -18,11 +18,9 @@ static NSString *const ConfigPath = @"~/.conductor.js";
 
 @implementation ConfigLoader
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
-    if (!self) {
-        return nil;
-    }
+    if (!self) return nil;
 
     self.watchers = [NSMutableArray array];
     [self resetConfigListeners];
@@ -164,19 +162,21 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     ctx[@"require"] = ^(NSString *path) {
         path = [path stringByStandardizingPath];
 
-        if(! [path hasPrefix: @"/"]) {
+        if (![path hasPrefix:@"/"]) {
             NSString *configPath = [ConfigPath stringByResolvingSymlinksInPath];
-            NSURL *requirePathUrl = [NSURL URLWithString: path relativeToURL: [NSURL URLWithString: configPath]];
+            NSURL *requirePathUrl = [NSURL URLWithString:path relativeToURL:[NSURL URLWithString:configPath]];
             path = [requirePathUrl absoluteString];
         }
 
-        if(! [[NSFileManager defaultManager] fileExistsAtPath: path isDirectory: NULL]) {
-            [self showJsException: [NSString stringWithFormat: @"Require: cannot find path %@", path]];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:NULL]) {
+            [self showJsException:[NSString stringWithFormat:@"Require: cannot find path %@", path]];
         } else {
-            [self addConfigListener: path];
+            [self addConfigListener:path];
 
-            NSString *_js = [NSString stringWithContentsOfFile: path encoding: NSUTF8StringEncoding error: NULL];
-            [weakCtx evaluateScript:_js];
+            NSString *javascript = [NSString stringWithContentsOfFile:path
+                                                             encoding:NSUTF8StringEncoding
+                                                                error:NULL];
+            [weakCtx evaluateScript:javascript];
         }
     };
 
@@ -186,7 +186,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     ctx[@"MousePosition"] = [MousePosition self];
 }
 
-- (void)showJsException: (id)arg {
+- (void)showJsException:(id)arg {
     [Alerts show:[NSString stringWithFormat:@"[js exception] %@", arg] duration:3.0f];
 }
 

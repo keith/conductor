@@ -3,7 +3,7 @@
 
 @interface Alerts () <AlertDelegate>
 
-@property NSMutableArray *visibleAlerts;
+@property (nonatomic) NSMutableArray *visibleAlerts;
 
 @end
 
