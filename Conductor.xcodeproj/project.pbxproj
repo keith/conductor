@@ -15,7 +15,6 @@
 		94C6023E1849D3B9005E7DB3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 94C6023C1849D3B9005E7DB3 /* Credits.rtf */; };
 		94C602411849D3B9005E7DB3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C602401849D3B9005E7DB3 /* AppDelegate.m */; };
 		94C602441849D3B9005E7DB3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94C602421849D3B9005E7DB3 /* MainMenu.xib */; };
-		94C602461849D3B9005E7DB3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94C602451849D3B9005E7DB3 /* Images.xcassets */; };
 		94CF94BE184C231900E63DE0 /* underscore-min.js in Resources */ = {isa = PBXBuildFile; fileRef = 94CF94BC184C22C500E63DE0 /* underscore-min.js */; };
 		94CF94C5184C45FA00E63DE0 /* NSScreen+JSInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94C0184C45FA00E63DE0 /* NSScreen+JSInterface.m */; };
 		94CF94C6184C45FA00E63DE0 /* App.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94C2184C45FA00E63DE0 /* App.m */; };
@@ -43,7 +42,6 @@
 		94C6023F1849D3B9005E7DB3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		94C602401849D3B9005E7DB3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		94C602431849D3B9005E7DB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		94C602451849D3B9005E7DB3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		94CF94BC184C22C500E63DE0 /* underscore-min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "underscore-min.js"; sourceTree = "<group>"; };
 		94CF94BF184C45FA00E63DE0 /* NSScreen+JSInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScreen+JSInterface.h"; sourceTree = "<group>"; };
 		94CF94C0184C45FA00E63DE0 /* NSScreen+JSInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScreen+JSInterface.m"; sourceTree = "<group>"; };
@@ -62,16 +60,6 @@
 		C21F78FC1B40EBB2008E0DE7 /* AlertWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertWindowController.h; sourceTree = "<group>"; };
 		C21F78FD1B40EBB2008E0DE7 /* AlertWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		94C602271849D3B9005E7DB3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		949D56D7184CF5E3008E92DE /* Interface */ = {
@@ -165,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				94C6023C1849D3B9005E7DB3 /* Credits.rtf */,
-				94C602451849D3B9005E7DB3 /* Images.xcassets */,
 				94C602421849D3B9005E7DB3 /* MainMenu.xib */,
 				94CF94BC184C22C500E63DE0 /* underscore-min.js */,
 			);
@@ -180,7 +167,6 @@
 			buildConfigurationList = 94C6025B1849D3B9005E7DB3 /* Build configuration list for PBXNativeTarget "Conductor" */;
 			buildPhases = (
 				94C602261849D3B9005E7DB3 /* Sources */,
-				94C602271849D3B9005E7DB3 /* Frameworks */,
 				94C602281849D3B9005E7DB3 /* Resources */,
 				7EA9B0DD0F60418886739E2A /* Warn for TODO and FIXME comments */,
 			);
@@ -227,7 +213,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				949D56E1184D016E008E92DE /* AlertWindow.xib in Resources */,
-				94C602461849D3B9005E7DB3 /* Images.xcassets in Resources */,
 				94C6023E1849D3B9005E7DB3 /* Credits.rtf in Resources */,
 				94C602441849D3B9005E7DB3 /* MainMenu.xib in Resources */,
 				94CF94BE184C231900E63DE0 /* underscore-min.js in Resources */,

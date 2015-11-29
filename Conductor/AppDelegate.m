@@ -14,7 +14,7 @@
 }
 
 - (void)setupStatusItem {
-    NSImage *image = [NSImage imageNamed:@"statusitem"];
+    NSImage *image = [NSImage imageNamed:NSImageNameColumnViewTemplate];
     [image setTemplate:YES];
 
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
