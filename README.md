@@ -1,5 +1,3 @@
-<img align="right" valign="top" src="https://raw.githubusercontent.com/keith/conductor/master/Conductor/Resources/Images.xcassets/AppIcon.appiconset/icon_256x256.png"/>
-
 ### Conductor
 
 *The lightweight OS X window manager for hackers*
