@@ -47,4 +47,4 @@ transferred to [Jason Milkins](https://github.com/jasonm23), this is a
 fork of Phoenix which has diverged and was renamed to avoid confusion.
 
 Steven is continuing work on OS X window management in
-[Mjolnir](https://github.com/mjolnir-io/mjolnir)
+[Mjolnir](https://github.com/sdegutis/mjolnir)
