@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "Config.h"
 #import "OpenAtLogin.h"
 #import "UniversalAccessHelper.h"
 
@@ -7,13 +8,16 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [UniversalAccessHelper complainIfNeeded];
 
-    [self setupStatusItem];
-
     self.configLoader = [[ConfigLoader alloc] init];
     [self.configLoader createConfigurationOrLoad];
+    [self setupStatusItem];
 }
 
 - (void)setupStatusItem {
+    if ([Config sharedConfig].hideMenuBar) {
+        return;
+    }
+
     NSImage *image = [NSImage imageNamed:NSImageNameColumnViewTemplate];
     [image setTemplate:YES];
 

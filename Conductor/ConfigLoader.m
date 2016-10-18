@@ -1,9 +1,10 @@
-#import "NSScreen+JSInterface.h"
 #import "Alerts.h"
 #import "App.h"
+#import "Config.h"
 #import "ConfigLoader.h"
 #import "HotKey.h"
 #import "MousePosition.h"
+#import "NSScreen+JSInterface.h"
 #import "PathWatcher.h"
 #import "Window.h"
 
@@ -184,6 +185,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     ctx[@"App"] = [App self];
     ctx[@"Screen"] = [NSScreen self];
     ctx[@"MousePosition"] = [MousePosition self];
+    ctx[@"Config"] = [Config self];
 }
 
 - (void)showJsException:(id)arg {

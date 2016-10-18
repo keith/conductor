@@ -23,6 +23,7 @@
 		94CF94D1184C50C700E63DE0 /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94D0184C50C700E63DE0 /* Alerts.m */; };
 		94CF94D4184C527A00E63DE0 /* OpenAtLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94D3184C527A00E63DE0 /* OpenAtLogin.m */; };
 		94CF94DF184C5F7700E63DE0 /* ConfigLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CF94DE184C5F7700E63DE0 /* ConfigLoader.m */; };
+		C2071CFB1CC47D05004B0A3F /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = C2071CFA1CC47D05004B0A3F /* Config.m */; };
 		C21F78FE1B40EBB2008E0DE7 /* AlertWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C21F78FD1B40EBB2008E0DE7 /* AlertWindowController.m */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,8 @@
 		94CF94D3184C527A00E63DE0 /* OpenAtLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenAtLogin.m; sourceTree = "<group>"; };
 		94CF94DD184C5F7700E63DE0 /* ConfigLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigLoader.h; sourceTree = "<group>"; };
 		94CF94DE184C5F7700E63DE0 /* ConfigLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigLoader.m; sourceTree = "<group>"; };
+		C2071CF91CC47D05004B0A3F /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		C2071CFA1CC47D05004B0A3F /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		C21F78FC1B40EBB2008E0DE7 /* AlertWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertWindowController.h; sourceTree = "<group>"; };
 		C21F78FD1B40EBB2008E0DE7 /* AlertWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertWindowController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,12 +68,14 @@
 		949D56D7184CF5E3008E92DE /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				94CF94BF184C45FA00E63DE0 /* NSScreen+JSInterface.h */,
-				94CF94C0184C45FA00E63DE0 /* NSScreen+JSInterface.m */,
 				94CF94C1184C45FA00E63DE0 /* App.h */,
 				94CF94C2184C45FA00E63DE0 /* App.m */,
+				C2071CF91CC47D05004B0A3F /* Config.h */,
+				C2071CFA1CC47D05004B0A3F /* Config.m */,
 				9451790F18E0DA2B00FB2B4B /* MousePosition.h */,
 				9451791018E0DA2B00FB2B4B /* MousePosition.m */,
+				94CF94BF184C45FA00E63DE0 /* NSScreen+JSInterface.h */,
+				94CF94C0184C45FA00E63DE0 /* NSScreen+JSInterface.m */,
 				94CF94C3184C45FA00E63DE0 /* Window.h */,
 				94CF94C4184C45FA00E63DE0 /* Window.m */,
 			);
@@ -250,6 +255,7 @@
 				94CF94C7184C45FA00E63DE0 /* Window.m in Sources */,
 				94CF94C6184C45FA00E63DE0 /* App.m in Sources */,
 				94CF94CA184C4E7D00E63DE0 /* UniversalAccessHelper.m in Sources */,
+				C2071CFB1CC47D05004B0A3F /* Config.m in Sources */,
 				94C6023A1849D3B9005E7DB3 /* main.m in Sources */,
 				94CF94D4184C527A00E63DE0 /* OpenAtLogin.m in Sources */,
 				94CF94DF184C5F7700E63DE0 /* ConfigLoader.m in Sources */,
