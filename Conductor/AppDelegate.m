@@ -28,11 +28,7 @@
 }
 
 - (void)menuNeedsUpdate:(NSMenu *)menu {
-    NSCellStateValue state = NSOffState;
-    if ([OpenAtLogin opensAtLogin]) {
-        state = NSOnState;
-    }
-
+    NSCellStateValue state = [OpenAtLogin opensAtLogin] ? NSOnState : NSOffState;
     [[menu itemWithTitle:@"Open at Login"] setState:state];
 }
 

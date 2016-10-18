@@ -44,9 +44,7 @@
 
 + (BOOL)opensAtLogin {
     NSURL *appURL = [[[NSBundle mainBundle] bundleURL] fileReferenceURL];
-
-    UInt32 seed;
-    NSArray *sharedFileListArray = (__bridge_transfer NSArray *)LSSharedFileListCopySnapshot([self sharedFileList], &seed);
+    NSArray *sharedFileListArray = (__bridge_transfer NSArray *)LSSharedFileListCopySnapshot([self sharedFileList], NULL);
     for (id item in sharedFileListArray) {
         LSSharedFileListItemRef sharedFileItem = (__bridge LSSharedFileListItemRef)item;
         CFURLRef url = NULL;
