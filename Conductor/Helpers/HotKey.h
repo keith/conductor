@@ -1,3 +1,5 @@
+@import JavaScriptCore;
+
 typedef BOOL(^CONHotKeyHandler)(void);
 @class HotKey;
 

@@ -1,3 +1,4 @@
+@import AppKit;
 #import "UniversalAccessHelper.h"
 
 @implementation UniversalAccessHelper

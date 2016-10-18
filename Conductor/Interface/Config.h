@@ -1,3 +1,6 @@
+@import Foundation;
+@import JavaScriptCore;
+
 @protocol ConfigJSExport <JSExport>
 
 + (void)hideMenuBar;

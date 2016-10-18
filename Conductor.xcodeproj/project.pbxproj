@@ -38,7 +38,6 @@
 		94C6022A1849D3B9005E7DB3 /* Conductor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Conductor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C602351849D3B9005E7DB3 /* Conductor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Conductor-Info.plist"; sourceTree = "<group>"; };
 		94C602391849D3B9005E7DB3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		94C6023B1849D3B9005E7DB3 /* Conductor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Conductor-Prefix.pch"; sourceTree = "<group>"; };
 		94C6023D1849D3B9005E7DB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		94C6023F1849D3B9005E7DB3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		94C602401849D3B9005E7DB3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -134,7 +133,6 @@
 			children = (
 				94C602391849D3B9005E7DB3 /* main.m */,
 				94C602351849D3B9005E7DB3 /* Conductor-Info.plist */,
-				94C6023B1849D3B9005E7DB3 /* Conductor-Prefix.pch */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -393,8 +391,6 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Conductor/Supporting Files/Conductor-Prefix.pch";
 				INFOPLIST_FILE = "Conductor/Supporting Files/Conductor-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.smileykeith.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Conductor;
@@ -407,8 +403,6 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Conductor/Supporting Files/Conductor-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Conductor/Supporting Files/Conductor-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.smileykeith.$(PRODUCT_NAME:rfc1034identifier)";

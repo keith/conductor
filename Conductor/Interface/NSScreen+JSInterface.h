@@ -1,3 +1,6 @@
+@import AppKit;
+@import JavaScriptCore;
+
 @protocol NSScreenJSExport <JSExport>
 
 + (float)getBrightness;
