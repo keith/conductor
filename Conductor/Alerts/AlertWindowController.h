@@ -1,3 +1,5 @@
+@import AppKit;
+
 @class AlertWindowController;
 
 @protocol AlertDelegate <NSObject>

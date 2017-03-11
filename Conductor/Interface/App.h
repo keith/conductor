@@ -1,3 +1,6 @@
+@import AppKit;
+@import JavaScriptCore;
+
 @class App;
 
 @protocol AppJSExport <JSExport>

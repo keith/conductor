@@ -1,3 +1,4 @@
+@import AppKit;
 #import "ConfigLoader.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>

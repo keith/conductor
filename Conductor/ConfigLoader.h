@@ -1,3 +1,5 @@
+@import Foundation;
+
 @interface ConfigLoader : NSObject
 
 - (void)reload;

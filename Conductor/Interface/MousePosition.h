@@ -1,3 +1,6 @@
+@import Foundation;
+@import JavaScriptCore;
+
 @class MousePosition;
 
 @protocol MousePositionJSExport <JSExport>

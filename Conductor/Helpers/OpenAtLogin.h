@@ -1,3 +1,5 @@
+@import Foundation;
+
 @interface OpenAtLogin : NSObject
 
 + (BOOL)opensAtLogin;
