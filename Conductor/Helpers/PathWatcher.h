@@ -1,6 +1,6 @@
 @interface PathWatcher : NSObject
 
-+ (PathWatcher *)watcherFor:(NSString *)path handler:(void(^)())handler;
+- (instancetype)initWithPath:(NSString *)path handler:(dispatch_block_t)handler;
 
 - (NSString *)path;
 

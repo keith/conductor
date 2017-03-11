@@ -30,12 +30,12 @@ static NSString *const ConfigPath = @"~/.conductor.js";
 
 - (void)addConfigListener:(NSString *)path {
     for (PathWatcher *watcher in self.watchers) {
-        if ([watcher.path isEqualToString:path]) {
+        if ([watcher.path isEqualToString:[path stringByExpandingTildeInPath]]) {
             return;
         }
     }
 
-    PathWatcher *watcher = [PathWatcher watcherFor:path handler:^{
+    PathWatcher *watcher = [[PathWatcher alloc] initWithPath:[path stringByExpandingTildeInPath] handler:^{
         [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(reload) object:nil];
         [self performSelector:@selector(reload) withObject:nil afterDelay:0.25];
     }];
