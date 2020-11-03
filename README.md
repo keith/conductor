@@ -6,8 +6,8 @@
 
 Install with [`brew-cask`](https://github.com/caskroom/homebrew-cask)
 
-```
-brew cask install conductor
+```sh
+brew cask install keith/formulae/conductor
 ```
 
 OR:
