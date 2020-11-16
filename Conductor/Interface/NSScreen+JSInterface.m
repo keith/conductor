@@ -65,8 +65,8 @@
 
 + (void)setBrightness:(float)brightness
 {
-    double userLevel = brightness / 100.0;
-    userLevel = MAX(MIN(userLevel, 1.0), 0.0);
+    float userLevel = brightness / 100.0f;
+    userLevel = MAX(MIN(userLevel, 1.0f), 0.0f);
     float level = (float)userLevel;
 
     io_iterator_t iterator;
