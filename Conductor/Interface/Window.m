@@ -356,7 +356,7 @@ NSPoint SDMidpoint(NSRect r) {
     }
 
     NSArray *sortedOtherWindows = [closestOtherWindows sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *pair1, NSDictionary *pair2) {
-        return [[pair1 objectForKey:@"score"] compare:[pair2 objectForKey:@"score"]];
+        return [(NSNumber *)[pair1 objectForKey:@"score"] compare:(NSNumber *)[pair2 objectForKey:@"score"]];
     }];
 
     return sortedOtherWindows;
