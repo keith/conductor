@@ -85,7 +85,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
 
     JSContext *ctx = [[JSContext alloc] initWithVirtualMachine:[[JSVirtualMachine alloc] init]];
 
-    ctx.exceptionHandler = ^(JSContext *context, JSValue *val) {
+    ctx.exceptionHandler = ^(__unused JSContext *context, JSValue *val) {
         [Alerts show:[NSString stringWithFormat:@"[js exception] %@", val] duration:3.0];
     };
 

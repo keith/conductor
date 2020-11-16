@@ -157,8 +157,9 @@ static UInt32 HotKeyLastCarbonID;
 
 @implementation HotKey
 
-static OSStatus HotKeyCarbonCallback(EventHandlerCallRef inHandlerCallRef,
-                                     EventRef inEvent, void *inUserData)
+static OSStatus HotKeyCarbonCallback(__unused EventHandlerCallRef inHandlerCallRef,
+                                     EventRef inEvent,
+                                     __unused void *inUserData)
 {
     EventHotKeyID eventID;
     GetEventParameter(inEvent,
