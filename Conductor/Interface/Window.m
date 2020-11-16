@@ -25,8 +25,8 @@
     }
 }
 
-- (BOOL)isEqual:(Window *)other {
-    return ([other isKindOfClass:[Window class]] && CFEqual(self.window, other.window));
+- (BOOL)isEqual:(id)other {
+    return [other isKindOfClass:[Window class]] && CFEqual(self.window, [(Window *)other window]);
 }
 
 - (NSUInteger)hash {
