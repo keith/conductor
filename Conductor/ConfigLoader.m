@@ -89,11 +89,11 @@ static NSString *const ConfigPath = @"~/.conductor.js";
         [Alerts show:[NSString stringWithFormat:@"[js exception] %@", val] duration:3.0f];
     };
 
-    NSURL *_jsURL = [[NSBundle mainBundle] URLForResource:@"underscore-min" withExtension:@"js"];
-    NSString *_js = [NSString stringWithContentsOfURL:_jsURL
-                                             encoding:NSUTF8StringEncoding
-                                                error:NULL];
-    [ctx evaluateScript:_js];
+    NSURL *underscoreURL = [[NSBundle mainBundle] URLForResource:@"underscore-min" withExtension:@"js"];
+    NSString *underscore = [NSString stringWithContentsOfURL:underscoreURL
+                                                    encoding:NSUTF8StringEncoding
+                                                       error:NULL];
+    [ctx evaluateScript:underscore];
     [self setupAPI:ctx];
 
     [ctx evaluateScript:config];

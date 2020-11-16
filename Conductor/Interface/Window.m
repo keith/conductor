@@ -48,10 +48,8 @@
 }
 
 + (NSArray *)visibleWindows {
-    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *win, NSDictionary *bindings) {
-        return ![[win app] isHidden]
-        && ![win isWindowMinimized]
-        && [win isNormalWindow];
+    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *window, NSDictionary *bindings) {
+        return ![[window app] isHidden] && ![window isWindowMinimized] && [window isNormalWindow];
     }]];
 }
 
@@ -83,12 +81,12 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 
             int pid = [[entry objectForKey:(id)kCGWindowOwnerPID] intValue];
             AXUIElementRef app = AXUIElementCreateApplication(pid);
-            CFArrayRef appwindows;
-            AXUIElementCopyAttributeValues(app, kAXWindowsAttribute, 0, 1000, &appwindows);
-            if (appwindows) {
-                // looks like appwindows can be NULL when this function is called during the
+            CFArrayRef appWindows;
+            AXUIElementCopyAttributeValues(app, kAXWindowsAttribute, 0, 1000, &appWindows);
+            if (appWindows) {
+                // looks like appWindows can be NULL when this function is called during the
                 // switch-workspaces animation
-                for (id w in (__bridge NSArray *)appwindows) {
+                for (id w in (__bridge NSArray *)appWindows) {
                     AXUIElementRef win = (__bridge AXUIElementRef)w;
                     CGWindowID tmp;
                     _AXUIElementGetWindow(win, &tmp); // XXX: undocumented API.  but the alternative is horrifying.
@@ -98,7 +96,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
                         break;
                     }
                 }
-                CFRelease(appwindows);
+                CFRelease(appWindows);
             }
             CFRelease(app);
         }
@@ -334,8 +332,8 @@ NSPoint SDMidpoint(NSRect r) {
     NSArray *otherWindows = [thisWindow otherWindowsOnAllScreens];
     NSMutableArray *closestOtherWindows = [NSMutableArray arrayWithCapacity:[otherWindows count]];
 
-    for (Window *win in otherWindows) {
-        NSPoint otherPoint = SDMidpoint([win frame]);
+    for (Window *window in otherWindows) {
+        NSPoint otherPoint = SDMidpoint([window frame]);
 
         double deltaX = otherPoint.x - startingPoint.x;
         double deltaY = otherPoint.y - startingPoint.y;
@@ -353,7 +351,7 @@ NSPoint SDMidpoint(NSRect r) {
 
         [closestOtherWindows addObject:@{
             @"score": @(score),
-            @"win": win,
+            @"win": window,
         }];
     }
 
@@ -365,8 +363,8 @@ NSPoint SDMidpoint(NSRect r) {
 }
 
 - (void)focusFirstValidWindowIn:(NSArray *)closestWindows {
-    for (Window *win in closestWindows) {
-        if ([win focusWindow]) {
+    for (Window *window in closestWindows) {
+        if ([window focusWindow]) {
             break;
         }
     }
