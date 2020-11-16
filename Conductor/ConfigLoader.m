@@ -104,24 +104,24 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     JSValue *api = [JSValue valueWithNewObjectInContext:ctx];
     ctx[@"api"] = api;
 
-    api[@"reload"] = ^(NSString *str) {
+    api[@"reload"] = ^void(NSString *str) {
         [self reload];
     };
 
-    api[@"launch"] = ^(NSString *appName) {
+    api[@"launch"] = ^void(NSString *appName) {
         [[NSWorkspace sharedWorkspace] launchApplication:appName];
     };
 
-    api[@"alert"] = ^(NSString *str, CGFloat duration) {
+    api[@"alert"] = ^void(NSString *str, CGFloat duration) {
         if (isnan(duration)) { duration = 2.0f; }
         [Alerts show:str duration:duration];
     };
 
-    api[@"log"] = ^(NSString *msg) {
+    api[@"log"] = ^void(NSString *msg) {
         NSLog(@"%@", msg);
     };
 
-    api[@"bind"] = ^(NSString *key, NSArray *mods, JSValue *handler) {
+    api[@"bind"] = ^void(NSString *key, NSArray *mods, JSValue *handler) {
         HotKey *hotkey = [HotKey withKey:key mods:mods handler:^BOOL{
             return [[handler callWithArguments:@[]] toBool];
         }];
@@ -129,7 +129,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
         [hotkey enable];
     };
 
-    api[@"runCommand"] = ^(NSString *path, NSArray *args) {
+    api[@"runCommand"] = ^void(NSString *path, NSArray *args) {
         NSTask *task = [[NSTask alloc] init];
 
         [task setArguments:args];
@@ -139,7 +139,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
         while([task isRunning]);
     };
 
-    api[@"setTint"] = ^(NSArray *red, NSArray *green, NSArray *blue) {
+    api[@"setTint"] = ^void(NSArray *red, NSArray *green, NSArray *blue) {
         CGGammaValue cred[red.count];
         for (NSUInteger i = 0; i < red.count; ++i) {
             cred[i] = [[red objectAtIndex:i] floatValue];
@@ -158,7 +158,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
 
     __weak JSContext *weakCtx = ctx;
 
-    ctx[@"require"] = ^(NSString *path) {
+    ctx[@"require"] = ^void(NSString *path) {
         path = [path stringByStandardizingPath];
 
         if (![path hasPrefix:@"/"]) {
