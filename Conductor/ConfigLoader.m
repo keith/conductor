@@ -104,7 +104,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     JSValue *api = [JSValue valueWithNewObjectInContext:ctx];
     ctx[@"api"] = api;
 
-    api[@"reload"] = ^void(NSString *str) {
+    api[@"reload"] = ^void {
         [self reload];
     };
 
