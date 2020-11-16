@@ -59,8 +59,8 @@
     }
 }
 
-- (BOOL)isEqual:(App *)object {
-    return ([object isKindOfClass:[App class]] && self.pid == object.pid);
+- (BOOL)isEqual:(id)object {
+    return [object isKindOfClass:[App class]] && self.pid == [(App *)object pid];
 }
 
 - (NSUInteger)hash {
