@@ -86,7 +86,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     JSContext *ctx = [[JSContext alloc] initWithVirtualMachine:[[JSVirtualMachine alloc] init]];
 
     ctx.exceptionHandler = ^(__unused JSContext *context, JSValue *val) {
-        [Alerts show:[NSString stringWithFormat:@"[js exception] %@", val] duration:3.0];
+        [Alerts show:[NSString stringWithFormat:@"[JavaScript exception] %@", val] duration:3.0];
     };
 
     NSURL *underscoreURL = [[NSBundle mainBundle] URLForResource:@"underscore-min" withExtension:@"js"];
