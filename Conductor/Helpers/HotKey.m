@@ -27,7 +27,11 @@ static NSMutableDictionary *relocatableKeys;
     CFDataRef layoutData = TISGetInputSourceProperty(currentKeyboard, kTISPropertyUnicodeKeyLayoutData);
 
     if (layoutData) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wcast-align"
         const UCKeyboardLayout *keyboardLayout = (const UCKeyboardLayout *)CFDataGetBytePtr(layoutData);
+#pragma clang diagnostic pop
+
         UInt32 keysDown = 0;
         UniChar chars[4];
         UniCharCount realLength;
