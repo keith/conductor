@@ -286,11 +286,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
     return defaultValue;
 }
 
-- (BOOL)setWindowProperty:(NSString *)propType withValue:(id)value {
-    if (![value isKindOfClass:[NSNumber class]]) {
-        return NO;
-    }
-
+- (BOOL)setWindowProperty:(NSString *)propType withValue:(NSNumber *_Nonnull)value {
     AXError result = AXUIElementSetAttributeValue(self.window,
                                                   (__bridge CFStringRef)(propType),
                                                   (__bridge CFTypeRef)(value));
@@ -310,7 +306,7 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 }
 
 - (BOOL)isWindowMinimized {
-    return [[self getWindowProperty:NSAccessibilityMinimizedAttribute withDefaultValue:@(NO)] boolValue];
+    return [(NSNumber *)[self getWindowProperty:NSAccessibilityMinimizedAttribute withDefaultValue:@(NO)] boolValue];
 }
 
 - (void)setWindowMinimized:(BOOL)flag {
