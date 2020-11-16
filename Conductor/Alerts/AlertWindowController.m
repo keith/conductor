@@ -43,7 +43,7 @@
 
 - (void)fadeWindowOut {
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        context.duration = 0.15f;
+        context.duration = 0.15;
         [[[self window] animator] setAlphaValue:0.0];
     } completionHandler:^{
         [self closeAndResetWindow];
