@@ -128,7 +128,6 @@ static NSString *const ConfigPath = @"~/.conductor.js";
         }];
         [self.hotkeys addObject:hotkey];
         [hotkey enable];
-        return hotkey;
     };
 
     api[@"runCommand"] = ^(NSString *path, NSArray *args) {
