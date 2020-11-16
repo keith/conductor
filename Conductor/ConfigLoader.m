@@ -37,8 +37,9 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     }
 
     PathWatcher *watcher = [[PathWatcher alloc] initWithPath:[path stringByExpandingTildeInPath] handler:^{
-        [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(reload) object:nil];
-        [self performSelector:@selector(reload) withObject:nil afterDelay:0.25];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reload];
+        });
     }];
 
     [self.watchers addObject:watcher];
@@ -68,8 +69,6 @@ static NSString *const ConfigPath = @"~/.conductor.js";
 }
 
 - (void)reload {
-    [self resetConfigListeners];
-
     NSString *filename = [ConfigPath stringByStandardizingPath];
     NSString *config = [NSString stringWithContentsOfFile:filename
                                                  encoding:NSUTF8StringEncoding
