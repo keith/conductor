@@ -55,7 +55,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
                                             contents:[@"" dataUsingEncoding:NSUTF8StringEncoding]
                                           attributes:nil];
     NSString *message = [NSString stringWithFormat:@"I just created %@ for you :)", filename];
-    [Alerts show:message duration:5.0f];
+    [Alerts show:message duration:5.0];
 }
 
 - (void)createConfigurationOrLoad {
@@ -76,7 +76,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
 
     if (!config) {
         NSString *message = [NSString stringWithFormat:@"No configuration found at %@\nRelaunch to create one automatically", filename];
-        [Alerts show:message duration:5.0f];
+        [Alerts show:message duration:5.0];
         return;
     }
 
@@ -97,7 +97,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     [self setupAPI:ctx];
 
     [ctx evaluateScript:config];
-    [Alerts show:@"Conductor config loaded" duration:1.3f];
+    [Alerts show:@"Conductor config loaded" duration:1.3];
 }
 
 - (void)setupAPI:(JSContext *)ctx {
@@ -113,7 +113,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
     };
 
     api[@"alert"] = ^void(NSString *str, CGFloat duration) {
-        if (isnan(duration)) { duration = 2.0f; }
+        if (isnan(duration)) { duration = 2.0; }
         [Alerts show:str duration:duration];
     };
 
@@ -187,7 +187,7 @@ static NSString *const ConfigPath = @"~/.conductor.js";
 }
 
 - (void)showJsException:(id)arg {
-    [Alerts show:[NSString stringWithFormat:@"[js exception] %@", arg] duration:3.0f];
+    [Alerts show:[NSString stringWithFormat:@"[js exception] %@", arg] duration:3.0];
 }
 
 @end
