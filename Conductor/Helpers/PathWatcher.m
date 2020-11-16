@@ -45,10 +45,10 @@ static void callback(__unused ConstFSEventStreamRef streamRef,
                                            &context,
                                            (__bridge CFArrayRef)@[path],
                                            kFSEventStreamEventIdSinceNow,
-                                           1.0,
-                                           kFSEventStreamCreateFlagWatchRoot | kFSEventStreamCreateFlagIgnoreSelf);
+                                           0.3,
+                                           kFSEventStreamCreateFlagWatchRoot |  kFSEventStreamCreateFlagFileEvents);
     FSEventStreamScheduleWithRunLoop(self.eventStream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
-    FSEventStreamStart(self.eventStream);
+    assert(FSEventStreamStart(self.eventStream));
 }
 
 - (void)dealloc {
