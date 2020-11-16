@@ -2,11 +2,23 @@
 
 @interface PathWatcher ()
 
-@property (nonatomic) dispatch_source_t source;
-@property (nonatomic) NSString *path;
-@property (nonatomic, copy) dispatch_block_t handler;
+@property (nonatomic) FSEventStreamRef eventStream;
+@property (nonatomic, nonnull) NSString *path;
+@property (nonatomic, copy, nonnull) dispatch_block_t handler;
 
 @end
+
+static void callback(__unused ConstFSEventStreamRef streamRef,
+                     void *clientCallBackInfo,
+                     __unused size_t numEvents,
+                     __unused void *eventPaths,
+                     __unused const FSEventStreamEventFlags eventFlags[],
+                     __unused const FSEventStreamEventId eventIds[])
+{
+    PathWatcher *watcher = (__bridge id)(clientCallBackInfo);
+    assert(watcher != nil);
+    watcher.handler();
+}
 
 @implementation PathWatcher
 
@@ -24,21 +36,24 @@
 
 
 - (void)setupWithPath:(NSString *)path handler:(dispatch_block_t)handler {
-    uintptr_t file = (uintptr_t)open(path.UTF8String, O_RDONLY);
-    dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, file,
-                                                      DISPATCH_VNODE_DELETE | DISPATCH_VNODE_WRITE |
-                                                      DISPATCH_VNODE_EXTEND | DISPATCH_VNODE_ATTRIB |
-                                                      DISPATCH_VNODE_LINK | DISPATCH_VNODE_RENAME |
-                                                      DISPATCH_VNODE_REVOKE,
-                                                      dispatch_get_main_queue());
-    dispatch_source_set_event_handler(source, handler);
-    dispatch_source_set_cancel_handler(source, ^{ close((int)file); });
-    dispatch_resume(source);
-    self.source = source;
+    FSEventStreamContext context;
+    memset(&context, 0, sizeof(context));
+    context.info = (__bridge void * _Nullable)(self);
+
+    self.eventStream = FSEventStreamCreate(NULL,
+                                           callback,
+                                           &context,
+                                           (__bridge CFArrayRef)@[path],
+                                           kFSEventStreamEventIdSinceNow,
+                                           1.0,
+                                           kFSEventStreamCreateFlagWatchRoot | kFSEventStreamCreateFlagIgnoreSelf);
+    FSEventStreamScheduleWithRunLoop(self.eventStream, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
+    FSEventStreamStart(self.eventStream);
 }
 
 - (void)dealloc {
-    dispatch_source_cancel(self.source);
+    FSEventStreamStop(self.eventStream);
+    FSEventStreamInvalidate(self.eventStream);
 }
 
 @end
