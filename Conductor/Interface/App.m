@@ -68,10 +68,8 @@
 }
 
 - (NSArray *)visibleWindows {
-    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *win, NSDictionary *bindings) {
-        return ![[win app] isHidden]
-        && ![win isWindowMinimized]
-        && [win isNormalWindow];
+    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *window, NSDictionary *bindings) {
+        return ![[window app] isHidden] && ![window isWindowMinimized] && [window isNormalWindow];
     }]];
 }
 
