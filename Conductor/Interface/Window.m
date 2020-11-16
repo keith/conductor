@@ -48,7 +48,7 @@
 }
 
 + (NSArray *)visibleWindows {
-    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *window, NSDictionary *bindings) {
+    return [[self allWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *window, __unused NSDictionary *bindings) {
         return ![[window app] isHidden] && ![window isWindowMinimized] && [window isNormalWindow];
     }]];
 }
@@ -107,13 +107,13 @@ AXError _AXUIElementGetWindow(AXUIElementRef, CGWindowID *out);
 }
 
 - (NSArray *)otherWindowsOnSameScreen {
-    return [[Window visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *win, NSDictionary *bindings) {
+    return [[Window visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *win, __unused NSDictionary *bindings) {
         return !CFEqual(self.window, win.window) && [[self screen] isEqual: [win screen]];
     }]];
 }
 
 - (NSArray *)otherWindowsOnAllScreens {
-    return [[Window visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *win, NSDictionary *bindings) {
+    return [[Window visibleWindows] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(Window *win, __unused NSDictionary *bindings) {
         return !CFEqual(self.window, win.window);
     }]];
 }
@@ -372,22 +372,22 @@ NSPoint SDMidpoint(NSRect r) {
 
 - (NSArray *)windowsToWest {
     return [[self windowsInDirectionFn:^double(double angle) { return M_PI - abs((int)angle); }
-                     shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaX >= 0); }] valueForKeyPath:@"win"];
+                     shouldDisregardFn:^BOOL(double deltaX, __unused double deltaY) { return (deltaX >= 0); }] valueForKeyPath:@"win"];
 }
 
 - (NSArray *)windowsToEast {
     return [[self windowsInDirectionFn:^double(double angle) { return 0.0 - angle; }
-                     shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaX <= 0); }] valueForKeyPath:@"win"];
+                     shouldDisregardFn:^BOOL(double deltaX, __unused double deltaY) { return (deltaX <= 0); }] valueForKeyPath:@"win"];
 }
 
 - (NSArray *)windowsToNorth {
     return [[self windowsInDirectionFn:^double(double angle) { return -M_PI_2 - angle; }
-                     shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaY >= 0); }] valueForKeyPath:@"win"];
+                     shouldDisregardFn:^BOOL(__unused double deltaX, double deltaY) { return (deltaY >= 0); }] valueForKeyPath:@"win"];
 }
 
 - (NSArray *)windowsToSouth {
     return [[self windowsInDirectionFn:^double(double angle) { return M_PI_2 - angle; }
-                     shouldDisregardFn:^BOOL(double deltaX, double deltaY) { return (deltaY <= 0); }] valueForKeyPath:@"win"];
+                     shouldDisregardFn:^BOOL(__unused double deltaX, double deltaY) { return (deltaY <= 0); }] valueForKeyPath:@"win"];
 }
 
 - (void)focusWindowLeft {
