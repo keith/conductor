@@ -1,4 +1,4 @@
-#include <IOKit/graphics/IOGraphicsLib.h>
+@import IOKit.graphics;
 #import "NSScreen+JSInterface.h"
 
 @implementation NSScreen (JSInterface)
