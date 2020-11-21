@@ -13,6 +13,11 @@
     [self setupStatusItem];
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
+    [sender orderFrontStandardAboutPanel:nil];
+    return YES;
+}
+
 - (void)setupStatusItem {
     if ([Config sharedConfig].hideMenuBar) {
         return;
