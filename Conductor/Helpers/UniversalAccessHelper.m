@@ -12,11 +12,12 @@
         return;
     }
 
-    NSRunAlertPanel(@"Enable Accessibility First",
-                    @"Find the little popup right behind this one, click \"Open System Preferences\" and enable Conductor. Then launch Conductor again.",
-                    @"Quit",
-                    nil,
-                    nil);
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = @"Enable Accessibility First";
+    alert.informativeText = @"Find the system popup behind this one, click \"Open System Preferences\" and enable Conductor. Then launch Conductor again.";
+    alert.alertStyle = NSAlertStyleCritical;
+    [alert addButtonWithTitle:@"Quit"];
+    [alert runModal];
     [NSApp terminate:self];
 }
 
