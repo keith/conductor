@@ -187,8 +187,9 @@
 		94C602221849D3B9005E7DB3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = "";
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 2640;
 				ORGANIZATIONNAME = "Keith Smiley";
 				TargetAttributes = {
 					94C602291849D3B9005E7DB3 = {
@@ -202,6 +203,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 94C602211849D3B9005E7DB3;
 			productRefGroup = 94C6022B1849D3B9005E7DB3 /* Products */;
@@ -300,8 +302,10 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -350,8 +354,10 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
@@ -378,16 +384,16 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
-				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = "Conductor/Supporting Files/Conductor-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.smileykeith.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Conductor;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = (
-					"-Weverything",
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-gnu-statement-expression",
 					"-Wno-objc-messaging-id",
@@ -403,17 +409,16 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
-				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = "Conductor/Supporting Files/Conductor-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.smileykeith.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Conductor;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WARNING_CFLAGS = (
-					"-Weverything",
 					"-Wno-objc-missing-property-synthesis",
 					"-Wno-gnu-statement-expression",
 					"-Wno-objc-messaging-id",
