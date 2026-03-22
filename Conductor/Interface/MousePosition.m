@@ -1,4 +1,5 @@
 #import "MousePosition.h"
+@import CoreGraphics;
 
 @implementation MousePosition
 
