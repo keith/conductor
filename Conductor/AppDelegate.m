@@ -1,3 +1,4 @@
+#import "AboutWindowController.h"
 #import "AppDelegate.h"
 #import "Config.h"
 #import "OpenAtLogin.h"
@@ -14,7 +15,7 @@
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
-    [sender orderFrontStandardAboutPanel:nil];
+    [[AboutWindowController sharedController] showWindow];
     return YES;
 }
 
@@ -44,8 +45,7 @@
 }
 
 - (IBAction)showAboutPanel:(id)sender {
-    [NSApp activateIgnoringOtherApps:YES];
-    [NSApp orderFrontStandardAboutPanel:sender];
+    [[AboutWindowController sharedController] showWindow];
 }
 
 - (IBAction)toggleOpenAtLogin:(NSMenuItem *)sender {
